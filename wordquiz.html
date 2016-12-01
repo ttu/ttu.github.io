@@ -1,0 +1,64 @@
+<html>
+ <head>
+ <title>0x546F6D69</title>
+ <head>
+ <body>
+ 
+<font size="5"><b>Word Quiz</b></font> 
+[<a href="./Source/WordQuiz.rar">Source</a>]<br/><br/>
+
+	<li>WPF Application gets random word from xml-file and user has to write correct translation fore selected language<br/><br/>
+	
+	<img src='./Pics/WordQuiz.jpg' alt='Main Window'/><br/>
+	Word Quiz window<br/><br/>
+	
+	<li>User can ask help and program will first give first letter, then last and then rest one letter at a time<br/><br/>
+	
+	<img src='./Pics/WordQuizHelp.jpg' alt='Help Asked'/><br/>
+	Word Quiz helping<br/><br/>
+	
+	<li>User can select which language he/she has to quess<br/><br/>
+	
+	<img src='./Pics/WordQuiz2nd.jpg' alt='Help Asked'/><br/>
+	Finnish first<br/><br/>
+	
+	<li>User can create own xml-files or create xls file and use console admin tool to transform it to correct xml-file<br/>
+	<li>One word can have multiple translations<br/>
+	<li>User can define any number of languages<br/><br/>
+	
+	<img src='./Pics/WordQuizXLS.jpg' alt='xls file'/><br/>
+	Xls sample<br/><br/>
+	
+	<li>Xml format with two languages:<br/>
+	
+	<pre>
+	&lt;wordlist&gt;
+		&lt;languages&gt;
+		    &lt;lan&gt;Spanish&lt;/lan&gt;
+		    &lt;lan&gt;Finnish&lt;/lan&gt;
+		&lt;/languages&gt;
+		&lt;words&gt;
+		    &lt;word&gt;
+		      &lt;lan&gt;a la derecha&lt;/lan&gt;
+		      &lt;lan&gt;oikealla,oikealle&lt;/lan&gt;
+		    &lt;/word&gt;
+		    &lt;word&gt;
+		      &lt;lan&gt;a la izquierda&lt;/lan&gt;
+		      &lt;lan&gt;vasemmalla, vasemmalle&lt;/lan&gt;
+		    &lt;/word&gt;
+			...
+		&lt;/words&gt;
+	&lt;/wordlist&gt;
+	</pre>
+
+	<li>Application will use default words and languages if words.xml is not placed in same folder with application<br/><br/>
+	<hr>
+	<div align="right">
+  <address>
+   <small>
+     24.5.2009<br/>
+     <a href="mailto:tomi.tuhkanen@iki.fi">tomi.tuhkanen@iki.fi</a>
+   </small>
+  </address>
+ </body>
+</html>

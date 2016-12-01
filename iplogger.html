@@ -1,0 +1,150 @@
+<html>
+ <head>
+ <title>0x546F6D69</title>
+ <head>
+ <body>
+<font size="5"><b>IP Logger</b></font> 
+<br/><br/>	
+
+	<li>Compares user agent to bot list and writes IP to file.</li>
+
+	<li>Logs normal visitors and bots to different files.</li>
+	<br/>
+
+	<li>First version got xml list from <a href="http://www.user-agents.org">User-agents.org</a>, but that list didn't have all bots.</li>
+
+	<pre>
+	function produceXMLTree($raw_XML) {
+
+		try {
+			$xmlTree = new SimpleXMLElement($raw_XML);
+		} catch (Exception $e) {
+			writeErrorLog('SimpleXMLElement threw an exception: '.$e->getMessage());		
+			return false;
+		}
+
+		return $xmlTree;
+	}
+	
+	function getData($url) {
+	
+		try {
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, $url);
+			curl_setopt($ch, CURLOPT_HEADER, false);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			$data = curl_exec($ch);
+			curl_close($ch);
+		} catch (Exception $e) {
+			writeErrorLog('cURL threw an exception: '.$e->getMessage());			
+			return false;
+		}
+
+		return $data;
+	}
+	
+	function writeErrorLog($entry) {
+		$date = date("d.m.Y H:i");
+		$file = fopen("errorLogFile.txt", "a"); 
+		fwrite($file, "$date: $entry\r\n");
+		fclose($file);
+	}
+	
+	$user_agent =  $_SERVER['HTTP_USER_AGENT'];
+	$ip = $_SERVER['REMOTE_ADDR'];
+	$date = date("d.m.Y H:i");
+	$logEntry = "$date IP: $ip - $user_agent\r\n";
+	
+	$url = 'http://www.user-agents.org/allagents.xml';
+	$fileName = "ipFile.txt";	
+	
+	$xml = getData($url);
+
+	$feed = produceXMLTree($xml);
+	
+	$isBot = false;
+	
+	if ($feed != null) {
+		foreach ($feed->{'user-agent'} as $agent) {
+			// Use absolute comparison, in case string starts from beginning of string
+			if (strpos($agent->String, $user_agent) !== false){
+				$isBot = true;
+				break;
+			}
+		}
+	}
+	
+	if ($isBot)
+		$fileName = "ipBotFile.txt";
+		
+	$file = fopen($fileName, "a");
+	fwrite($file, $logEntry); 
+	fclose($file); 
+	</pre>
+
+	<li>Second version uses <a href="http://www.useragentstring.com/pages/api.php"> User Agents String.com API</a> to get current User Agent info in JSON.</li>
+	
+	<pre>
+	function getData($url) {
+	
+		try {
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, $url);
+			curl_setopt($ch, CURLOPT_HEADER, false);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			$data = curl_exec($ch);
+			curl_close($ch);
+		} catch (Exception $e) {
+			writeErrorLog('cURL threw an exception: '.$e->getMessage());			
+			return false;
+		}
+
+		return $data;
+	}
+	
+	function writeErrorLog($entry) {
+		$date = date("d.m.Y H:i");
+		$file = fopen("errorLogFile.txt", "a"); 
+		fwrite($file, "$date: $entry\r\n");
+		fclose($file);
+	}
+	
+	$user_agent =  $_SERVER['HTTP_USER_AGENT'];
+	$ip = $_SERVER['REMOTE_ADDR'];
+	$date = date("d.m.Y H:i");
+	$logEntry = "$date IP: $ip - $user_agent\r\n";
+	$fileName = "ipFile.txt";
+	$isBot = false;
+	
+	$url = 'http://www.useragentstring.com/?getJSON=all&uas='.urlencode($user_agent);
+
+	$json = getData($url);
+
+	if ($json != null){
+		$obj = json_decode($json);
+		if ($obj != null){
+			$agent_type = strtolower($obj->{'agent_type'});
+			if ($agent_type != "unknown" && $agent_type != "browser")
+				$isBot = true;
+		}
+	}
+	
+	if ($isBot)
+		$fileName = "ipBotFile.txt";
+		
+	$file = fopen($fileName, "a");
+	fwrite($file, $logEntry); 
+	fclose($file); 
+	</pre>
+
+	<hr>
+
+	<div align="right">
+	  <address>
+	   <small>
+		 20.4.2011<br>
+		 <a href="mailto:tomi.tuhkanen@iki.fi">tomi.tuhkanen@iki.fi</a>
+	   </small>
+	  </address>
+ </body>
+</html>

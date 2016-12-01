@@ -1,0 +1,191 @@
+{"events": [ 
+		{
+			"id": 4125,
+			"name": "UFC 127: Penn vs. Fitch",
+			"date": "27.2.2011",
+			"fights": [
+					{
+						"id": 2234,
+						"fighter1": {
+							"name": "Diego Sanhez",
+							"url": "http://www.google.com"
+						},
+						"fighter2" : {
+							"name": "Martin Kampmann",
+							"url": "http://www.google.com"
+						},
+						"up": 8,
+						"down": 17
+					},
+					{
+							"id": 3241,
+							"fighter1": {
+								"name": "C.B. Dollaway",
+								"url": "http://www.google.com"
+							},
+							"fighter2" : {
+								"name": "Mark Munoz",
+								"url": "http://www.google.com"
+							},
+							"up": 4,
+							"down": 2
+					},
+					{
+						"id": 2256,
+						"fighter1": {
+							"name": "Mauricio Rua",
+							"url": "http://www.google.com"
+						},
+						"fighter2" : {
+							"name": "Jon Jones",
+							"url": "http://www.google.com"
+						},
+						"up": 164,
+						"down": 6
+					},
+					{
+							"id": 3432,
+							"fighter1": {
+								"name": "Nate Maquardt",
+								"url": "http://www.google.com"
+							},
+							"fighter2" : {
+								"name": "Dan Miller",
+								"url": "http://www.google.com"
+							},
+							"up": 64,
+							"down": 30
+					},
+					{
+							"id": 3432,
+							"fighter1": {
+								"name": "Urijah Faber",
+								"url": "http://www.google.com"
+							},
+							"fighter2" : {
+								"name": "Eddie Wineland",
+								"url": "http://www.google.com"
+							},
+							"up": 108,
+							"down": 27
+					},
+					{
+						"id": 2256,
+						"fighter1": {
+							"name": "Mauricio Rua",
+							"url": "http://www.google.com"
+						},
+						"fighter2" : {
+							"name": "Jon Jones",
+							"url": "http://www.google.com"
+						},
+						"up": 164,
+						"down": 6
+					},
+					{
+							"id": 3432,
+							"fighter1": {
+								"name": "Nate Maquardt",
+								"url": "http://www.google.com"
+							},
+							"fighter2" : {
+								"name": "Dan Miller",
+								"url": "http://www.google.com"
+							},
+							"up": 64,
+							"down": 30
+					},
+					{
+							"id": 3432,
+							"fighter1": {
+								"name": "Urijah Faber",
+								"url": "http://www.google.com"
+							},
+							"fighter2" : {
+								"name": "Eddie Wineland",
+								"url": "http://www.google.com"
+							},
+							"up": 108,
+							"down": 27
+					},
+					{
+						"id": 2256,
+						"fighter1": {
+							"name": "Mauricio Rua",
+							"url": "http://www.google.com"
+						},
+						"fighter2" : {
+							"name": "Jon Jones",
+							"url": "http://www.google.com"
+						},
+						"up": 164,
+						"down": 6
+					},
+					{
+							"id": 3432,
+							"fighter1": {
+								"name": "Nate Maquardt",
+								"url": "http://www.google.com"
+							},
+							"fighter2" : {
+								"name": "Dan Miller",
+								"url": "http://www.google.com"
+							},
+							"up": 64,
+							"down": 30
+					},
+					{
+							"id": 3432,
+							"fighter1": {
+								"name": "Urijah Faber",
+								"url": "http://www.google.com"
+							},
+							"fighter2" : {
+								"name": "Eddie Wineland",
+								"url": "http://www.google.com"
+							},
+							"up": 108,
+							"down": 27
+					},
+					{
+						"id": 2256,
+						"fighter1": {
+							"name": "Mauricio Rua",
+							"url": "http://www.google.com"
+						},
+						"fighter2" : {
+							"name": "Jon Jones",
+							"url": "http://www.google.com"
+						},
+						"up": 164,
+						"down": 6
+					},
+					{
+							"id": 3432,
+							"fighter1": {
+								"name": "Nate Maquardt",
+								"url": "http://www.google.com"
+							},
+							"fighter2" : {
+								"name": "Dan Miller",
+								"url": "http://www.google.com"
+							},
+							"up": 64,
+							"down": 30
+					},
+					{
+							"id": 3432,
+							"fighter1": {
+								"name": "Urijah Faber",
+								"url": "http://www.google.com"
+							},
+							"fighter2" : {
+								"name": "Eddie Wineland",
+								"url": "http://www.google.com"
+							},
+							"up": 108,
+							"down": 27
+					}
+				]
+		}
+]}

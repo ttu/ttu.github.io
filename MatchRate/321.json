@@ -1,0 +1,35 @@
+{"events": [ 
+		{
+			"id": 321,
+			"name": "UFC Live: Sanchez vs. Kampmann",
+			"date": "3.3.2011",
+			"fights": [
+					{
+						"id": 2234,
+						"fighter1": {
+							"name": "Diego Sanhez",
+							"url": "http://www.google.com"
+						},
+						"fighter2" : {
+							"name": "Martin Kampmann",
+							"url": "http://www.google.com"
+						},
+						"up": 8,
+						"down": 17
+					},
+					{
+							"id": 3241,
+							"fighter1": {
+								"name": "C.B. Dollaway",
+								"url": "http://www.google.com"
+							},
+							"fighter2" : {
+								"name": "Mark Munoz",
+								"url": "http://www.google.com"
+							},
+							"up": 4,
+							"down": 2
+					}
+				]
+		}
+]}

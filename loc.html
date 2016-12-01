@@ -1,0 +1,34 @@
+<html>
+ <head>
+ <title>0x546F6D69</title>
+ <head>
+ <body>
+  <font size="5"><b>Lines of Code</b></font> [<a href="./Source/Loc.rar">Source</a>]<br/><br/>
+
+	<img src='./Pics/LOC.jpg' alt='LOC screen'/><br/><br/>
+	<li>Command line application that counts physical code lines from .cs and .vb files<br/>
+	<li>Application skips all bin, obj and properties folders<br/>
+	<pre>
+	ProcessDir()
+	  foreach selected type
+	    foreach file matching filetype
+	      read file
+	        while lines
+	         if line not comment
+	          add count
+	  foreach subdirectory 
+	    if not skip type
+	      ProcessDir
+	</pre>
+	User defines folder: LOC.exe [directory]<br/>
+	<br/>
+	<hr>
+	<div align="right">
+  <address>
+   <small>
+     31.12.2010<br>
+     <a href="mailto:tomi.tuhkanen@iki.fi">tomi.tuhkanen@iki.fi</a>
+   </small>
+  </address>
+ </body>
+</html>

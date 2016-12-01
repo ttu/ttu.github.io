@@ -1,0 +1,30 @@
+body{
+	font-family: verdana,helvetica,arial,sans-serif;
+	font-size: 12px;
+}
+
+.area{
+	padding-bottom: 20px;
+	border-bottom: 1px solid #000000;
+	margin-bottom: 20px;
+}
+	
+.ownDevOld .ownDevLan{
+	font-weight: normal; 
+}
+		
+.ownDev{
+	padding-bottom:6px;
+}
+ 
+.ownDev a{
+	font-weight: bold;
+}
+ 
+.ownDevLan{
+	font-weight: bold; 
+}
+		 
+.inProgress{
+	color:red;
+}

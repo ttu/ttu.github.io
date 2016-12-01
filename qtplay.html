@@ -1,0 +1,104 @@
+<html>
+ <head>
+ <title>0x546F6D69</title>
+ <head>
+ <body>
+ 
+<font size="5"><b>QT Play</b></font> <br/>
+<small>
+Source: <a href="https://github.com/ttu/Product-Getter">GitHub</a>, <a href="./Source/ProductGetter.rar">rar</a>
+</small>
+<br/>
+
+	<p style="color:red">Play's web page has changed. Doesn't work with new page.</p>
+	
+	<li>List products from play.com under selected price<br/>
+	<li>Same overall functionality as <a href="play.html">List Play.com products</a><br/>
+	<li>Multi-Threaded so updates UI while processing data.<br/><br/>
+
+	<label style="color:red">Screencapture taken when Play.com's page had changed, so unable to get products.</label><br/>
+	<img src='./Pics/qtplay.jpg' alt='QTPlay'/><br/>
+	Selections<br/><br/>
+	
+	<li>Page shows total amount of pages and products processed and how many under selected price.<br/>
+	<li>Result list shows name of the product and price.<br/>
+	<li>Clicking name of the item will open new browser to item's page in play.com<br/><br/>
+	<br/>
+		
+	Sequence Diagram:<br/>
+	<br/>
+	<img src='./Pics/qtplay_seq.jpg' alt='Sequence'/><br/>
+	<br/><br/>
+	
+	<pre>
+	CLASSES:
+	--------------------------
+	Communication between Widget and ItemManager with Signals
+
+	* Widget
+		- User Interface
+		* BrowserWidget
+			- Internet browser
+		
+	* ItemManager 
+		* Categories
+			- Contains list of urls
+		* HtmlWorker
+			- Gets html page
+		* ItemWorker
+			- Process page to items
+		* CollectionWorker
+			- Check that new item is valid
+			- Add items to collection (check duplicates)
+			* ItemCollection
+				- Collection on all items, new items (stack) etc.
+				
+	* Item
+		- Item data (name, url, prices)
+	* Money
+		- Helper class for currency
+		
+		
+	WORKFLOW:
+	------------------------
+	All workers are Threads.
+	
+	1) ItemManager generates urls for selected Category
+	2) User Defines Category and max price from Widget
+	3) User presses start
+	
+	4) ItemManager passes url to HtmlWorker and starts it
+	4.1) HtmlWorker gets HtmlData from selected url
+	4.2) If HtmlData is empty and no more urls to process set HtmlWorker to finished
+	4.2) Else ItemManager places HtmlData to WorkQueue for ItemWorker
+	4.2.1) If ItemWorker not running start it
+	4.2.2) Go to 4
+
+	5) ItemWorker processes HtmlData from WorkQueue to Item objects
+	5.1) Items are placed to WorkQueue for CollectionWorker
+	5.2) If CollectionWorker is not running start it
+	5.3) If WorkQueue is empty and HtmlWorker is finished set ItemWorker to finished
+	5.3) If HtmlData in WorkQueue
+	5.3.1) Go to 5
+	5.3) If WorkQueue is empty do nothing (wait that is started in 4.2.1)
+	
+	6) CollectionWorker gets items from WorkQueue and cheks valid items
+	6.1) Checks that items are valid and places those to ItemCollection
+	6.2) ItemManager send new items to Widget
+	6.3) If more items in WorkQueue
+	6.3.1) Go to 6
+	6.3) If ItemWorker is finished set CollectionWorker to finished
+	6.3) If WorkQueue is empty do nothing (wait that is started in 5.2)
+	</pre>
+	<br/>
+	
+	<hr>
+	<div align="right">
+  <address>
+   <small>
+     29.1.2011<br/>
+     <a href="mailto:tomi.tuhkanen@iki.fi">tomi.tuhkanen@iki.fi</a>
+   </small>
+  </address>
+ </body>
+</html>

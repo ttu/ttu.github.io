@@ -1,0 +1,70 @@
+<html>
+ <head>
+ <title>0x546F6D69</title>
+ <head>
+ <body>
+<font size="5"><b>HTML Application Frame</b></font>
+[<a href="HTMLApplication/index.html">Site</a> (recommended width ~640px) 
+<a href="./Source/HTMLApplication.rar">Source</a>]
+<br/><br/>
+	
+	<li>This is not my own design, but based on e-book, <a href="http://ofps.oreilly.com/titles/9780596805784/">
+	Building iPhone Apps with HTML, CSS, and JavaScript
+	</a>.</li>
+	<li>HTML Site that behaves more like desktop application.</li>
+	<br/>
+	<li>All content is shown on main page's container div.</li>
+	<li>When loading new page, loading div is shown. Page content is loaded to container.</li>
+	<li>When loading is complete, "hijack" all links from page to call loadPage function and remove loading div.</li>
+	<li>When loading new page collect it to history. If on sub page show previous page as button on left corner.</li>
+	
+	<pre>
+	// Simple version
+	$(document).ready(function(){
+		loadPage();
+	});
+	
+	function loadPage(url) {
+		// Show loading panel
+		$('body').append('&lt;div id="progress"&gt;Loading...&lt;/div&gt;');
+		if (url == undefined) {
+			// Load main page
+			$('#container').load('main.html .event', hijackLinks);
+		} else {
+			// Load link page
+			$('#container').load(url + ' #content', hijackLinks);
+		}
+	}
+	
+	function hijackLinks() {
+		$('#container a').click(function(e){
+			e.preventDefault();
+			loadPage(e.target.href);
+		});
+		// Remove loading panel
+		$('#progress').remove();
+	}
+	</pre>
+
+	<img src='./Pics/ha1.jpg' alt='Main Menu'/><br/>
+	Main Menu. Bing and Google are external links.<br/><br/>
+	<img src='./Pics/ha2.jpg' alt='Loading page'/><br/>
+	Loading page<br/><br/>
+	<img src='./Pics/ha3.jpg' alt='Main Menu'/><br/>
+	Content Page. Main link in up left.<br/><br/>
+	<img src='./Pics/ha4.jpg' alt='Loading page'/><br/>
+	Loading sub page<br/><br/>
+	<img src='./Pics/ha5.jpg' alt='Main Menu'/><br/>
+	Sub page. Application link in up left.<br/><br/>
+	
+	<hr>
+
+	<div align="right">
+	  <address>
+	   <small>
+		 28.12.2010<br>
+		 <a href="mailto:tomi.tuhkanen@iki.fi">tomi.tuhkanen@iki.fi</a>
+	   </small>
+	  </address>
+ </body>
+</html>

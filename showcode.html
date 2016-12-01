@@ -1,0 +1,42 @@
+<html>
+ <head>
+ <title>0x546F6D69</title>
+ <head>
+ <body>
+ 
+<font size="5"><b>Show Code</b></font> 
+[<a href="./Source/FilePrinter.rar">Source</a>]<br/><br/>
+
+	<li>Reads text or code file and colors reserved, class words, comments and text<br/>
+	<li>Changes greater than and smaller than to html entities<br/>
+	<li>Uses Visual Studio's default colors<br/>
+	<pre>
+		reserved - blue
+		class - cyan
+		comment - green
+		text - red
+	</pre>
+	
+	<li>Uses regex to find correct match from each line<br/>
+	<pre>
+		text - \"[^\"]*\"
+		comment - //.*
+		reserved & class - [ |\t|\\.|\\(|,|&gt;|&lt;|!]{0}[ |\t|$||\r|\\.|\\[|\\&gt;|\\&lt;|;|\\(]
+		htmlbegin - <[a-zA-Z0-9]*.*?>
+		htmlend - </[a-zA-Z0-9]*>
+	</pre>
+
+	<li>User can insert any url address with code file<br/>
+	<pre>
+		Default.aspx?url=[url here]
+	</pre>
+	<hr>
+	<div align="right">
+  <address>
+   <small>
+     18.12.2010<br/>
+     <a href="mailto:tomi.tuhkanen@iki.fi">tomi.tuhkanen@iki.fi</a>
+   </small>
+  </address>
+ </body>
+</html>

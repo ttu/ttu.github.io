@@ -1,0 +1,56 @@
+<html>
+ <head>
+ <title>0x546F6D69</title>
+ <head>
+ <body>
+ 
+<font size="5"><b>IRCBot</b></font> 
+[<a href="./Source/IRCBot.rar">Source</a>
+<a href="./Pics/IRCBotUML.jpg">UML</a>]<br/><br/>
+
+	<li>Collects links from selected channel to xml file.<br/><br/>
+	<img src='./Pics/Bot.jpg' alt='Bot window'/><br/>
+	IRCBot window<br/><br/>
+	
+	<li>User can define nick, bot info, channel, owner, file and server infos in config file.<br/>	
+	<pre>
+	&lt;configuration&gt;
+	  &lt;appSettings&gt;
+	    &lt;add key="nick" value="Vombotti"/&gt;
+	    &lt;add key="user" value="Olen tyhma botti"/&gt;
+	    &lt;add key="channel" value="#stadia"/&gt;
+	    &lt;add key="server" value="irc.elisa.fi"/&gt;
+	    &lt;add key="port" value="6667"/&gt;
+	    &lt;add key="owner" value="nolla"/&gt;
+	    &lt;add key="file" value="C:\Bot\Links.xml"/&gt;
+	  &lt;/appSettings>
+	&lt;/configuration>
+	</pre>
+	<li>Writes links to xml file. (hits count is updated when same link is sent again)<br/>
+	<pre>
+	&lt;link&gt;
+	  &lt;time&gt;09:38&lt;/time&gt;
+	  &lt;date&gt;07.07.2008&lt;/date&gt;
+	  &lt;sender&gt;ravel&lt;/sender&gt;
+	  &lt;url&gt;http://thedailywtf.com/Articles/Slaves-to-The-Process.aspx&lt;/url&gt;
+	  &lt;hits&gt;1&lt;/hits&gt;
+	&lt;/link&gt;
+	</pre>
+	<li>When application is hidden, only notifyicon is shown.<br/><br/>
+	
+	<img src='./Pics/BotIcon.jpg' alt='Bot NotifyIcon'/><br/>
+	IRCBot's notify icon<br/><br/>
+	
+	<li>In irc users can ask is link sent to channel, stats and info from bot.<br/><br/>
+	<img src='./Pics/Putty.jpg' alt='Putty'/><br/>
+	Having conversation with Bot<br/><br/>
+	<hr>
+	<div align="right">
+  <address>
+   <small>
+     31.12.2010<br>
+     <a href="mailto:tomi.tuhkanen@iki.fi">tomi.tuhkanen@iki.fi</a>
+   </small>
+  </address>
+ </body>
+</html>

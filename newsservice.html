@@ -1,0 +1,49 @@
+<html>
+ <head>
+ <title>0x546F6D69</title>
+ <head>
+ <body>
+<font size="5"><b>News service</b></font><br/>
+<small>
+Source: <a href="https://github.com/ttu/News-Service">GitHub</a>
+</small>
+<br/><br/>
+	
+	<li>Web site where user can like/dislike news.</li>
+	<li>Main point of voting is to find news that user might like.</li>
+	<br/>
+
+	Done so far:<br/><br/>
+
+	<li>Python process that reads rss feeds using <a href="http://www.feedparser.org/">feedparser</a> and adds processed news to queue.</li>
+	<li>Python process that adds news from queue to MySQL database.</li>
+	<li>Python process for matching users based on news they like or dislike.</li>
+	<li>Started to do web site with Django.</li>
+	<br/>
+
+	TODO:<br/><br/>
+
+	<li>Voting maybe with Node.js.</li>
+	<li>User authentication with OAuth/GMail/something else...</li>
+	<br/>
+
+	Database:<br/>
+	<pre>
+	User (ID, Name) 
+	Feed (ID, Name, Url)
+	News (ID, Title, Url, Date, FeedID)
+	Vote (UserID, NewsID, Rate, Date) // Rate 0 = down, 1 = up
+	UserMatch (UserID_1, UserID_2, Match, Miss)
+	</pre>
+	
+	<hr>
+
+	<div align="right">
+	  <address>
+	   <small>
+		 27.6.2011<br>
+		 <a href="mailto:tomi.tuhkanen@iki.fi">tomi.tuhkanen@iki.fi</a>
+	   </small>
+	  </address>
+ </body>
+</html>

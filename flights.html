@@ -1,0 +1,65 @@
+<html>
+ <head>
+ <title>0x546F6D69</title>
+ <head>
+ <body>
+ 
+<font size="5"><b>Flights</b></font> 
+[<a href="./Source/FlightTimesProject.rar">Source</a>
+<a href="./Pics/FlightClientUML.jpg">UML</a>]<br/><br/>
+
+	<p style="color:red">Finavia's web page has changed. Doesn't work with new page.</p>
+
+	<li>Gets arriving and departing flights to Helsinki-Vantaa airport from Finavia web page<br/>
+	<li>Client gets flight data from WCF Service and shows hourly view of all flights<br/>
+	<li>Two different versions:<br/>
+	<li>Stand-Alone Windows Client<br/><br/>
+	
+	<img src='./Pics/FlightsClient.jpg' alt='Windows Client'/><br/>
+	Client window<br/><br/>
+	
+	<img src='./Pics/FlightsList.jpg' alt='List of flights'/><br/>
+	When cell is clicked list of flights is shown<br/><br/>
+	
+	<li>Web page that gets data from WCF-Service<br/>
+	<li>WCF Service creates a dataset from flightdata from Finavia web page and sends info to client<br/><br/>
+		
+	<img src='./Pics/FlightsPage.jpg' alt='Web Page'/><br/>
+	Web page<br/><br/>
+	
+	<li>WCF Service can be run in console mode or as a service<br/>
+	<li>WCF Service can send flight data as full dataset or in string format<br/>
+	<li>Dataset has two tables, Inbound and Outbound and columns:<br/>
+	<pre>
+		code - code of flight 
+		destination - flying to / arriving from
+		originaltime - original time of departure / arriving
+		newtime - if delayed etc.
+		status - delayed / arriving / landing etc.
+		hourcategory - in how many hours plane will arrive / leave
+		big - is plane big (planes from asia and us) (boolean)
+		international - is flight domestic or international (boolean)
+	</pre>
+	<li>When sending data in sting method need variables<br/>
+	<pre>
+		type - inbound = 0; outbound = 1
+		hour - hourcategory
+		big - send only big planes
+	</pre>
+	<li>Format of string:<br/>
+	<pre>
+		13:50 : Stockholm : Landing
+		13:55 : Madrid : Delayed
+		14:10 : New York : None
+	</pre>
+	
+	
+	<div align="right">
+  <address>
+   <small>
+     31.12.2008 16:39 <br>
+     <a href="mailto:tomi.tuhkanen@iki.fi">tomi.tuhkanen@iki.fi</a>
+   </small>
+  </address>
+ </body>
+</html>

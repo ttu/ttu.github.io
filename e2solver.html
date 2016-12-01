@@ -1,0 +1,55 @@
+<html>
+ <head>
+ <title>0x546F6D69</title>
+ <head>
+ <body>
+<font size="5"><b>Eternity II Solver</b></font> 
+[<a href="./Source/ESolver.rar">Source</a>
+<a href="./Pics/ESolverUML.jpg">UML</a>]<br/><br/>
+
+	<img src='./Pics/Esolver.jpg' alt='E2Solver'/><br/><br/>
+	
+	<li>Application uses brute force to solve <a href='http://en.wikipedia.org/wiki/Eternity_II_puzzle'>Eternity II Puzzle</a><br/>
+	<li>Application can use multiple cores to make many solving attemps at the same time<br/>
+	<li>Writes log file to temp folder (starting times, all over 150 pieces solving attemps)<br/>
+	<pre>
+	Thread[0] Start: 24.7.2008 9:17:49
+	Thread[1] Start: 24.7.2008 9:17:49
+	Thread[1] 9:18:52 Board: 18864 - Pieces used: 157
+	Thread[0] 9:26:14 Board: 141909 - Pieces used: 151
+	</pre>
+	<li>Writes solution of solving attemp when used over 160 pieces<br/>
+	<pre>
+	Thread[1] 9:35:29 Board: 308292 - Pieces used: 163
+	-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 
+	-1 -1 110 102 149 114 251 214 195 202 142 141 107 80 136 -1 
+	-1 -1 121 130 218 174 131 165 94 205 103 108 112 188 61 -1 
+	-1 -1 168 143 95 79 116 185 203 220 134 219 253 233 91 -1 
+	-1 -1 238 146 88 245 246 119 215 183 156 210 248 169 105 -1 
+	-1 -1 86 217 135 99 125 62 213 199 243 190 204 187 118 -1 
+	-1 -1 75 92 113 84 126 66 67 106 252 198 200 193 132 -1 
+	-1 -1 189 83 226 90 180 140 176 122 109 191 182 237 150 -1 
+	-1 -1 151 162 192 72 167 139 236 232 175 242 178 129 -1 -1 
+	-1 -1 231 221 196 184 152 63 93 241 240 239 227 229 -1 -1 
+	-1 -1 250 74 228 155 153 64 81 247 234 244 235 212 -1 -1 
+	-1 -1 207 82 96 164 161 145 68 230 170 171 186 147 -1 -1 
+	-1 -1 223 133 117 70 177 137 71 209 77 73 111 128 -1 -1 
+	-1 -1 97 255 127 89 158 98 120 154 225 104 148 211 -1 -1 
+	-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 
+	-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 
+	</pre>
+	User define options: Esolver.exe [options]<br/>
+	a - uses all cores (default 1 core)<br/>
+	h - hides command prompt window (console window will be shown again when solution found)<br/>
+	int - time to sleep between solvin attemps<br/>
+	<br/>
+	<hr>
+	<div align="right">
+  <address>
+   <small>
+     31.12.2010<br>
+     <a href="mailto:tomi.tuhkanen@iki.fi">tomi.tuhkanen@iki.fi</a>
+   </small>
+  </address>
+ </body>
+</html>

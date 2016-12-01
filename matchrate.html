@@ -1,0 +1,164 @@
+<html>
+ <head>
+ <title>0x546F6D69</title>
+ <head>
+ <body>
+<font size="5"><b>Match Rate</b></font><br/>
+<small>
+Source: <a href="https://github.com/ttu/Match-Rate">GitHub</a>
+</small>
+<br/><br/>	
+
+	<li>Rating site for MMA matches.</li>
+	<li>Simple up / down rating.</li>
+	<li>User recognition is now based on IP-address.</li>
+	
+	<br/>
+	
+	<img src='./Pics/matchrate.jpg' alt='Web page' width="500px"/><br/>
+	Web page
+	<br/><br/>
+	
+	Try <a href="./MatchRate/index.html">development</a> version.<br/>
+	<br/>
+	
+	<li>Web page shows all data ofn latest event and only names of the rest of the events. Clicking event's name, will get event's data with ajax.</li>
+	<li>Windows Phone version shows all events in list and clicking event's name will switch to next view where event info is shown.</li>
+	<li>PHP Web Site sends data to clients in JSON.</li>
+	<li>Web page creates controls dynamically from JSON.</li>
+	<li>Data is stored in MySQL database.</li>
+	<li>Web site has checks that check request is made by human. (Should add CAPTCHA check)</li>
+	<br/>
+	
+	<img src='./Pics/matchrate_wp1.jpg' alt='Events page' style='padding-right: 40px;'/><img src='./Pics/matchrate_wp2.jpg' alt='Event page'/><br/>
+	Windows Phone application
+	<br/><br/>
+	
+	<li>Windows Phone application creates Domail Models from JSON data (Web requests run on separate threads).</li>
+	<li>Domain Models are converted to ViewModels. View Models use Commands, although Windows Phone doesn't support yet Command bindings.</li>
+	<li>For now commands are binded to Tags and are executed from code-behind (I read from internet that MVVM Police won't take my family away, so it's ok like that).</li>
+	<br/>
+	
+	<label style="color:red">TODO: Bind up/down images to model.</label>
+	<br/><br/>
+	
+	Sample JSON data:<br/>
+	<pre>
+	{"events": [ 
+		{
+			"id": 7992,
+			"name": "Strikeforce: Diaz vs. Daley",
+			"date": "9.4.2011",
+			"fights": [
+					{
+						"id": 2234,
+						"ipvote": 1,
+						"fighter1": {
+							"name": "Nick Diaz",
+							"url": "http://www.google.com"
+						},
+						"fighter2" : {
+							"name": "Paul Daley",
+							"url": "http://www.google.com"
+						},
+						"up": 92,
+						"down": 11
+					},
+					{
+						"id": 3241,
+						"ipvote": -1,
+						"fighter1": {
+							"name": "Gilbert Melendez",
+							"url": "http://www.google.com"
+						},
+						"fighter2" : {
+							"name": "Tatsuya Kawajiri",
+							"url": "http://www.google.com"
+						},
+						"up": 67,
+						"down": 3
+					}
+				]
+		}
+	]}
+	</pre>
+	
+	Database:<br/>
+	<pre>
+	Fighter (id, name, url) 
+	Fight (id, eventID, fighter_1_ID, fighter_2_ID)
+	Event (id, name, date, url)
+	Rating (id, ip, fightID, rate, time) // rate 0 down, 1 up
+	</pre>
+	
+	Web site processing:<br/>
+	<pre>
+	GetEvents		
+		- Get all events
+			SELECT * FROM Event
+		- Create JSON
+		
+	GetEvent(eventID, ip)
+		- Validate inputs
+		- Get all matches for event (let DB do all the work)
+			SELECT ID as EventID, Name, Date, fight.FightID, Fighter1_ID, Fighter1_Name, Fighter1_Url, Fighter2_ID, Fighter2_Name, Fighter2_Url, COALESCE(Up,0) as Up, COALESCE(Down,0) as Down, COALESCE(ipRate.Rate, -1) AS IpRate FROM Event 
+			LEFT JOIN 
+				(SELECT ID AS FightID, EventID,Fighter_1_ID,Fighter_2_ID FROM Fight) fight 
+			ON Event.ID = fight.EventID 
+			LEFT JOIN 
+				(SELECT ID as Fighter1_ID, Name as Fighter1_Name, Url as Fighter1_Url FROM Fighter) f1 
+			ON Fighter_1_ID = f1.Fighter1_ID
+			LEFT JOIN 
+				(SELECT ID as Fighter2_ID, Name as Fighter2_Name, Url as Fighter2_Url FROM Fighter) f2 
+			ON Fighter_2_ID = f2.Fighter2_ID 
+			LEFT JOIN 
+				(SELECT rate1.FightID, Up, Down FROM 
+					(SELECT Rating.*, COUNT(*) AS Up FROM Rating 
+					LEFT JOIN Fight ON Rating.FightID = Fight.ID 
+					WHERE Fight.EventID = @eventID AND Rating.Rate = 1 
+					GROUP BY Rating.FightID) rate1 
+				LEFT JOIN
+					(SELECT Rating.*, COUNT(*) AS Down FROM Rating 
+					LEFT JOIN Fight ON Rating.FightID = Fight.ID 
+					WHERE Fight.EventID = @eventID AND Rating.Rate = 0 
+					GROUP BY Rating.FightID) rate2 
+				ON rate2.FightID = rate1.FightID
+				UNION
+				SELECT rate2.FightID, Up, Down FROM 
+					(SELECT Rating.*, COUNT(*) AS Up FROM Rating 
+					LEFT JOIN Fight ON Rating.FightID = Fight.ID 
+					WHERE Fight.EventID = @eventID AND Rating.Rate = 1 
+					GROUP BY Rating.FightID) rate1 
+				RIGHT JOIN
+					(SELECT Rating.*, COUNT(*) AS Down FROM Rating 
+					LEFT JOIN Fight ON Rating.FightID = Fight.ID 
+					WHERE Fight.EventID = @eventID AND Rating.Rate = 0 
+					GROUP BY Rating.FightID) rate2 
+				ON rate2.FightID = rate1.FightID) r1 
+			ON r1.FightID = fight.FightID
+			LEFT JOIN
+				(SELECT FightID, Rate FROM Rating WHERE IP = '@ip') ipRate
+			ON ipRate.FightID = fight.FightID
+			WHERE EventID = @eventID
+		- Create json
+
+	Vote(fightID, ip, rateValue)
+		- Validate inputs
+		- Check that fight haven't been voted by ip
+		- Check that ip is not voting too frequently
+		// TODO: Some other checks
+		- Enter rating to db	
+			INSERT INTO Rating VALUES (@ip, @fightID, @rateBit, @time) 
+	</pre>
+
+	<hr>
+
+	<div align="right">
+	  <address>
+	   <small>
+		 10.6.2011<br>
+		 <a href="mailto:tomi.tuhkanen@iki.fi">tomi.tuhkanen@iki.fi</a>
+	   </small>
+	  </address>
+ </body>
+</html>

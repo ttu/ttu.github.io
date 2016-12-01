@@ -1,0 +1,94 @@
+{"events": [ 
+		{
+			"id": 7992,
+			"name": "Strikeforce: Diaz vs. Daley",
+			"date": "9.4.2011",
+			"fights": [
+					{
+						"id": 2234,
+						"ipvote": 1,
+						"fighter1": {
+							"name": "Nick Diaz",
+							"url": "http://www.google.com"
+						},
+						"fighter2" : {
+							"name": "Paul Daley",
+							"url": "http://www.google.com"
+						},
+						"up": 92,
+						"down": 11
+					},
+					{
+							"id": 3241,
+							"fighter1": {
+								"name": "Gilbert Melendez",
+								"url": "http://www.google.com"
+							},
+							"fighter2" : {
+								"name": "Tatsuya Kawajiri",
+								"url": "http://www.google.com"
+							},
+							"up": 67,
+							"down": 3
+					}
+				]
+		},
+		{
+			"id": 7998,
+			"name": "UFC 128: Rua vs. Jones",
+			"date": "19.3.2011",
+			"fights": [
+					{
+						"id": 2256,
+						"ipvote": 2,
+						"fighter1": {
+							"name": "Mauricio Rua",
+							"url": "http://www.google.com"
+						},
+						"fighter2" : {
+							"name": "Jon Jones",
+							"url": "http://www.google.com"
+						},
+						"up": 164,
+						"down": 6
+					},
+					{
+							"id": 3432,
+							"ipvote": 1,
+							"fighter1": {
+								"name": "Nate Maquardt",
+								"url": "http://www.google.com"
+							},
+							"fighter2" : {
+								"name": "Dan Miller",
+								"url": "http://www.google.com"
+							},
+							"up": 64,
+							"down": 30
+					},
+					{
+							"id": 3432,
+							"fighter1": {
+								"name": "Urijah Faber",
+								"url": "http://www.google.com"
+							},
+							"fighter2" : {
+								"name": "Eddie Wineland",
+								"url": "http://www.google.com"
+							},
+							"up": 108,
+							"down": 27
+					}
+				]
+		},
+		{
+			"id": 321,
+			"name": "UFC Live: Sanchez vs. Kampmann",
+			"date": "3.3.2011"
+		},
+		{
+			"id": 4125,
+			"name": "UFC 127: Penn vs. Fitch",
+			"date": "27.2.2011"
+		}
+]}

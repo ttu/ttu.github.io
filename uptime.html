@@ -1,0 +1,51 @@
+<html>
+ <head>
+ <title>0x546F6D69</title>
+ <head>
+ <body>
+<font size="5"><b>Uptime</b></font><br/>
+<small>
+Source: <a href="https://github.com/ttu/Uptime">GitHub</a>, <a href="./Source/Uptime.rar">rar</a>
+</small>
+<br/><br/>
+
+	<li>Widget for N900.</li>
+	<li>Shows phones current uptime.</li>
+	<br/>
+	
+	<img src='./Pics/uptime.jpg' alt='Desktop'/><br/><br/>
+
+	<pre>
+	CLASSES:
+	--------------------------
+	* Controller
+		- Has timer, interval 10sec
+		- If seconds are shown, it has own timer that just updates screen every second
+			- Both use same time object
+				- main timer checks time from system 
+				- second timer just adds 1 sec to time object
+		- Saves record uptime to text file
+		- Compares current uptime to it and updates it if necessary
+	
+	* DataGetter
+		- Either Win or Unix datagetter (this version works only with N900, so Win obsolete)
+		- Gets uptime string from process
+			- Unix uses uptime
+			- Windows uses Systeminfo.exe
+			
+	* UptimeStruct (was struct, now object, bad naming)
+		- Time data and helper methods
+		
+	</pre>
+	
+	<hr>
+	
+	<div align="right">
+  <address>
+   <small>
+     29.1.2011<br/>
+     <a href="mailto:tomi.tuhkanen@iki.fi">tomi.tuhkanen@iki.fi</a>
+   </small>
+  </address>
+ </body>
+</html>

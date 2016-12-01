@@ -1,6 +1,817 @@
-<!DOCTYPE html>
 <html>
-<body onload="window.location = 'http://www.iki.fi/tomi.tuhkanen'">
-Redirecting to <a href="http://www.iki.fi/tomi.tuhkanen">homepage</a>
-</body>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1" >
+	<title>0x546F6D69</title>
+	
+	<!-- In the beginning, plan was to have page without any styles, but had to add some, so now css is on the TODO list. So sorry for all the <br/> tags -->
+	<link rel='stylesheet' type='text/css' href='style.css'/>
+	
+</head>
+<body>
+	
+	<div class="area">
+		<a name="up"/>
+		<h2>Information</h2>
+
+		Tomi Tuhkanen<br/>
+		Master of Engineering (Software, 2013)<br/>
+		Bachelor of Engineering (Software, 2007)<br/>
+		Software Consultant at Vincit Oy (01/2015 --)<br/>
+		Tmi Tomi Tuhkanen (Sole Proprietorship) (05/2012 --)<br/>
+		CV (<a href="http://fi.linkedin.com/in/tomitu">LinkedIn</a>)<br/>
+		<br/>
+
+		<a href="#owndev">Own Development</a><br/>
+		<a href="#weblinks">Web Links</a><br/>
+		<a href="#books">Books</a><br/>
+		<a href="#programs">Programs</a><br/>
+		<a href="#other">Other</a><br/>
+		
+		<br/>
+		
+		<small>
+		What is considered a good looking web page changes way too fast, so better to have a simple page that always looks ugly.<br/>
+		I shamelessly copy the style from the masters ;) (e.g. <a href="http://www-cs-faculty.stanford.edu/~uno/">Knuth</a>, <a href="http://stallman.org/">Stallman</a>, <a href="http://www-formal.stanford.edu/jmc/">McCarthy</a>, <a href="http://norvig.com/">Norvig</a>)
+		</small>
+		
+	</div>
+ 
+	<div class="area">
+		<a name="owndev"/>
+		<h2>Own Development</h2>
+
+		<p>
+			All programs are <a href="definitions.html">MeWare</a>. Some are old, some older and some newish. Where is my time for programming?<br/>
+			Sources can be found from <a href="https://github.com/ttu">GitHub</a> and older stuff are in rar-archives.
+		</p>
+	 
+		<div class="ownDev">
+			<a href="https://github.com/ttu/arduino-weather-datahandler">Arduino WeatherShield data handler</a> (<label class="ownDevLan">Node.js</label>) (1/2016)<br/> 
+			Node.js Arduino WeatherShield data handler with Johnny Five
+		</div>
+		
+	 
+		<div class="ownDev">
+			<a href="https://github.com/ttu/dummy-sensor-server">Dummy sensor server</a> (<label class="ownDevLan">Node.js</label>) (1/2016)<br/> 
+			HTTP service that serves dummy sensor data
+		</div>
+		
+		<div class="ownDev">
+			<a href="https://github.com/ttu/sensordata-node-restapi">Node REST Api for sensor data</a> (<label class="ownDevLan">Node.js</label>) (1/2016)<br/> 
+			Node Express REST API (ES2015 & ESnext) for cubesensors-iot-azure
+		</div>
+		
+		<div class="ownDev">
+			<a href="https://github.com/ttu/cubesensors-iot-azure">Cubesensors IoT & Azure</a> (<label class="ownDevLan">F#, Python, Azure, SQL</label>) (2/2015)<br/> 
+			Processing for (Cube)Sensor data
+		</div>
+		
+	 	<div class="ownDev">
+			<a href="https://github.com/ttu/email-statistic-service">Email statistics service</a> (<label class="ownDevLan">F#</label>) (2/2014)<br/> 
+			Create email statistics from gmail account.
+		</div>
+	 
+		<div class="ownDev">
+			<a href="https://github.com/ttu/node-yamaha-avr">Node.js Yamaha AVR module </a> (<label class="ownDevLan">Node.js</label>) (2/2014)<br/> 
+			Node.js module for controlling Yamaha RX-series receiver.
+		</div>
+		
+		<div class="ownDev">
+			<a href="https://github.com/ttu/mono-raspberry-app">Raspberry Pi & Mono</a> (<label class="ownDevLan">C#, Mono, NancyFx, OWIN, AngularJS, SignalR, ZeroMQ, ProtoBuf, Redis, Raspberry# IO</label>) (2/2014)<br/> 
+			Controlling Raspberry GPIO and testing Mono with Raspbian and RaspberryPI.
+		</div>
+		
+		<div class="ownDev">
+			<a href="https://github.com/ttu/ar-plane-tracker">Augmented Reality Plane Tracker</a> (<label class="ownDevLan">C#, Azure, WebAPI, SignalR, Windows Phone, HTML</label>) (2/2014)<br/> 
+			Track nearby planes with Windows Phone application.
+		</div>
+		
+		<div class="ownDev">
+			<a href="https://github.com/ttu/rabbitmq-zeromq-experiments">RabbitMQ & ZeroMQ experiments</a> (<label class="ownDevLan">C#, RabbitMQ, ZeroMQ</label>) (1/2014)<br/> 
+			Experimenting messaging middleware with RabbitMQ and ZeroMQ.
+		</div>
+		
+		<div class="ownDev">
+			<a href="https://github.com/ttu/hwo-2014">Hello World Open 2014</a> (<label class="ownDevLan">C#, Mono</label>) (1/2014)<br/> 
+			HWO 2014 bot code.
+		</div>
+		
+		<div class="ownDev">
+			<a href="https://github.com/ttu/appengine-blog-vs-project">App Engine Web Application</a> (<label class="ownDevLan">Python, HTML, Google App Engine, Visual Studio, oAuth</label>) (1/2014)<br/> 
+			Debuggable Visual Studio Python project for a web app running on the Google App Engine.
+		</div>
+		
+	 	<div class="ownDev">
+			<a href="miniwiki.html">miniWiki</a> (<label class="ownDevLan">Python, HTML5, jQuery</label>) (1/2012)<br/> 
+			Create read-only wiki from text files.
+		</div>
+
+		<div class="ownDev">
+			<a href="newsservice.html">News service</a> (<label class="ownDevLan">Python, Django, MySQL, ..</label>) <br/> 
+			RSS reader, news rating.
+		</div>
+		
+		<div class="ownDev">
+			<a href="strategygame.html">Game architecure test project</a> (<label class="ownDevLan">C#, XNA</label>) (1/2011)<br/> 
+			Real-time boardgame style strategy game test.
+		</div>
+		
+		<div class="ownDev">
+			<a href="matchrate.html">Match Rate</a> (<label class="ownDevLan">jQuery, Windows Phone, PHP, MySQL</label>) (1/2011)<br/> 
+			Match rating web site and Windows Phone application.
+		</div>
+		
+		<div class="ownDev">
+			<a href="iplogger.html">IP Logger</a> (<label class="ownDevLan">PHP</label>) (1/2011)<br/> 
+			Compares user agent to bot list and logs IP.
+		</div>
+		
+		<div class="ownDev">
+			<a href="ems.html">Email Statistics</a> (<label class="ownDevLan">C#, WPF</label>) (1/2011)<br/> 
+			Show statistics of own email account. Supports Gmail and IMAP.
+		</div>
+		
+		<div class="ownDev">
+			<a href="mc.html">Missile Commander</a> (<label class="ownDevLan">C#</label>) (2/2010)<br/> 
+			My first attempt to learn game programming. Simple shoot incoming missiles game.
+		</div>
+		
+		<div class="ownDev">
+			<a href="qtplay.html">List Play.com products</a> (<label class="ownDevLan">QT</label>) (1/2010)<br/> 
+			List products from Play.com that are under selected price.
+		</div>
+		
+		<div class="ownDev">
+			<a href="uptime.html">Uptime</a> (<label class="ownDevLan">QT</label>) (1/2010)<br/> 
+			Widget that shows current uptime on desktop.
+		</div>
+		
+		<br/><label class="ownDevLan">Older stuff</label><br/>
+		
+		<div class="ownDevOld">
+			<a href="youtubepage.html">Youtube to embedded flash</a> (<label class="ownDevLan">JavaScript</label>) (2/2009)<br/> 
+			Transforms youtube page to embedded flash video. If youtube's web site is blocked, this should still work.
+		</div>
+		
+		<div class="ownDevOld">
+			<a href="play.html">List Play.com products</a> (<label class="ownDevLan">C#, ASP.NET</label>) (2/2009)<br/> 
+			List products from Play.com that are under selected price.
+		</div>
+		
+		<div class="ownDevOld">
+			<a href="flights.html">Flight times</a> (<label class="ownDevLan">C#, WCF, ASP.NET</label>) (1/2009)<br/> 
+			Shows hourly count of inbound and outbound flights from Helsinki Vantaa airport.
+		</div>
+		
+		<div class="ownDevOld">
+			<a href="wordquiz.html">Word Quiz</a> (<label class="ownDevLan">C#, XML, Excel</label>) (1/2009)<br/> 
+			User has to write correct translation for shown word.
+		</div>
+		
+		<div class="ownDevOld">
+			<a href="ircbot.html">IRCBot</a> (<label class="ownDevLan">C#, XML</label>) (2/2008)<br/> 
+			Collects links from selected channel to xml file.
+		</div>
+		
+		<div class="ownDevOld">
+			<a href="e2solver.html">Eternity II solver</a> (<label class="ownDevLan">C#</label>) (2/2008)<br/> 
+			Uses brute force to solve Eternity II puzzle (surprisingly not very succesful).
+		</div>
+		
+		<div class="ownDevOld">
+			<a href="showcode.html">Show Code</a> (<label class="ownDevLan">C#, ASP.NET, Regex</label>) (2/2008)<br/> 
+			Creates web page from selected code file.
+		</div>
+		
+		<div class="ownDevOld">
+			<a href="loc.html">Lines of Code</a> (<label class="ownDevLan">C#</label>) (2/2008)<br/> 
+			Counts physical lines of code from .cs and .vb files from given directory and its subdirectories.
+		</div>
+		
+		<div class="ownDevOld">
+			<a href="break.html">Take a Break!</a> (<label class="ownDevLan">C#</label>) (1/2008)<br/> 
+			Reminds user to keep breaks.
+		</div>
+		
+		<div class="ownDevOld">
+			<a href="lottery.html">Lottery numbers</a> (<label class="ownDevLan">C#</label>) (1/2008)<br/> 
+			Compares given numbers to this weeks correct numbers.
+		</div>
+		
+		<br/>
+
+		<a href="#up">up</a>
+
+	</div>
+
+	<div class="area">
+		<a name="weblinks"/>
+		<h2>Web Links</h2>
+		
+		<a href="http://www.reddit.com/r/programming/wiki/faq">
+		Reddit FAQ Programming
+		</a><br/>
+		This is actually only link you need. You can stop browsing my site now.<br/>
+		<a href="http://duckduckgo.com">
+		DuckDuckGo
+		</a><br/>
+		<a href="http://donttrack.us/">Why</a> to use this search engine? <a href="http://en.wikipedia.org/wiki/Tin_foil_hat">Tin foil hats</a> are also useful.
+		(<a href="http://news.ycombinator.com/item?id=2460411">+1</a>)<br/>
+		<a href="http://www.reddit.com/r/programming/">
+		Reddit Programming
+		</a><br/>
+		Social news website's programming subcategory. Keeps you busy whole day.<br/>	
+		<a href="http://news.ycombinator.com/over?points=100">
+		Hacker News
+		</a><br/>
+		Programming related social news website.<br/>
+		<a href="http://stackoverflow.com/">
+		Stack Overflow
+		</a><br/>
+		Best programming related question & answer website.<br/>
+		<a href="http://thedailywtf.com/">
+		The Daily WTF
+		</a><br/>
+		Lots of funny (or sad, depends on the point of view) stories from IT field.<br/>
+		<a href="http://www.codinghorror.com/blog/">
+		Coding Horror
+		</a><br/>
+		Good programming Blog.<br/>
+		<a href="http://thisdeveloperslife.com/">
+		This Developer's Life
+		</a><br/>
+		Podcast about things technical and not so technical.<br/>
+		<br/>
+
+		<b>Web Magazines</b><br/>	
+		
+		<a href="http://pragprog.com/magazines?utm_content=PR+-+PragPub+Magazine">
+		PragPub
+		</a><br/>
+		The Pragmatig Programmer Monthly Magazine
+		<br/>
+		<a href="http://msdn.microsoft.com/en-us/magazine/default.aspx">
+		MSDN Monthly
+		</a><br/>
+		Microsoft Developer Network Monthly Magazine
+		<br/>
+		<a href="http://casualconnect.org/magazine-archive/">
+		Casual Connect
+		</a><br/>
+		Magazine for the video game industry.<br/>
+		<br/>
+		
+		<b>Algorithms and Data Structures</b><br/>
+		
+		<a href="http://www.cs.usfca.edu/~galles/visualization/Algorithms.html">
+		Data Structure Visualizations
+		</a><br/>
+		<a href="http://www.sorting-algorithms.com">
+		Sorting Algorithm Animations
+		</a><br/>
+		<a href="http://algs4.cs.princeton.edu/code/">
+		Algorithm code examples in Java
+		</a><br/>
+		<br/>
+		
+		<b>Desing Patterns and Principles</b><br/>
+		
+		<a href="http://xkcd.com/844/">
+		xkcd: Good Code</a><br/>
+		Flowchart of good code.<br/>
+		<a href="http://sourcemaking.com/design_patterns">
+		SourceMaking Design Patterns tutorial
+		</a><br/>
+		<a href="http://www.scribd.com/doc/7534738/Design-Patterns-Quick-Reference-Card">
+		Quick Reference Card
+		</a><br/>
+		Most common Design Patterns in two pages.<br/>
+		<a href="http://amazedsaint.blogspot.com/2009/06/software-design-patterns-for-everyone.html">
+		Design Patterns for everyone
+		</a> (pdf)<br/>
+		<a href="http://mmiika.wordpress.com/oo-design-principles/">
+		OO Design Principles
+		</a><br/>
+		Good colletion of object-oriented design principles and values.<br/>
+		<a href="http://www.blackwasp.co.uk/SOLIDPrinciples.aspx">
+		The SOLID Principles</a><br/>
+		Code examples of SOLID principles.<br/>
+		<br/>
+
+		<b>SQL</b><br/>
+		
+		<a href="http://www.codinghorror.com/blog/2007/10/a-visual-explanation-of-sql-joins.html">
+		A Visual Explanation of SQL Joins
+		</a> (<a href="http://www.codeproject.com/KB/database/Visual_SQL_Joins/Visual_SQL_JOINS_orig.jpg">image from Code Project</a>)<br/>	
+		<a href="http://stackoverflow.com/questions/621884/database-development-mistakes-made-by-application-developers/">
+		Stack Overflow : Mistakes made by application developers
+		</a><br/>
+		<a href="http://use-the-index-luke.com/">
+		Use the Index Luke</a><br/>
+		Tutorial to SQL indexing and SQL tuning for developers.<br/>
+		<a href="http://www.sqlservercurry.com/2011/08/net-developer-database-knowledge.html">
+		Every .NET Developer Should Know About the Database they are working with</a><br/>
+		Collection of usefull SQL Server scripts.<br/> 
+		<a href="http://highlyscalable.wordpress.com/2012/03/01/nosql-data-modeling-techniques/">
+		NoSQL Data Modeling Techniques
+		</a><br/>
+		Explanation of NoSQL data models<br/>
+		<a href="http://www.artfulsoftware.com/infotree/queries.php">
+		Common MySQL Queries</a><br/>
+		Collection of useful SQL queries.<br/>
+		<br/>
+		
+		<b>Regular Expression</b><br/>
+		
+		<a href="http://regexpal.com/">
+		JavaScript regex tester
+		</a><br/>
+		<a href="http://www.addedbytes.com/cheat-sheets/download/regular-expressions-cheat-sheet-v2.pdf">
+		Regex Cheat Sheet
+		</a> (pdf)<br/>	
+		<br/>
+		
+		<b>UML</b><br/>
+		
+		<a href="http://www.tracemodeler.com/articles/a_quick_introduction_to_uml_sequence_diagrams/index.html">
+		A Quick introduction to UML Sequence diagrams
+		</a><br/>
+		<a href="http://sourcemaking.com/uml">
+		SourceMaking UML tutorial
+		</a><br/>	
+		<br/>
+		
+		<b>Cheat Sheets</b><br/>
+		
+		<a href="http://www.cheat-sheets.org/">
+		http://www.cheat-sheets.org/
+		</a><br/>
+		Collection of cheat sheet links from various pages.<br/>
+		<a href="http://refcardz.dzone.com/">
+		http://refcardz.dzone.com/
+		</a><br/>
+		Lots of multipage cheat sheets. (Requires login)<br/>
+		<a href="http://www.topdesignmag.com/all-the-cheat-sheets-that-a-web-developer-needs/">
+		All The Cheat Sheets That A Web Developer Needs
+		</a><br/>
+		<br/>
+		
+		<b>.NET related</b><br/>
+		
+		<a href="http://www.codeproject.com/">
+		Code Project
+		</a><br/>
+		Programming related articles.<br/>
+		<a href="http://geekswithblogs.net/BlackRabbitCoder/archive/2010/11/11/c.net-little-wonders---a-presentation.aspx">
+		C#/.NET Little Wonders & Little Pitfalls
+		</a><br/>
+		<a href="http://msmvps.com/blogs/jon_skeet/">
+		Jon Skeet: Coding Blog
+		</a><br/>
+		<a href="http://weblogs.asp.net/scottgu/">
+		ScottGu's Blog
+		</a><br/>
+		<a href="http://hanselman.com/blog/">
+		Scott Hanselman's Blog
+		</a><br/>
+		<a href="https://dotnetfiddle.net/">
+		.NET Fiddle
+		</a></br>
+		.NET sandbox for developers to quickly try out code, share fiddles and collaborate in real-time.</br>
+		<br/>
+
+		
+		<b>Web Development</b><br/>
+		
+		<a href="http://bonsaiden.github.com/JavaScript-Garden/">
+		JavaScript Garden</a><br/>
+		Collection of documentation about most quirky parts of the JS.<br/>
+		<a href="http://blog.mikecouturier.com/2010/02/beginning-with-jquery-solid-foundation_22.html">
+		Beginning with jQuery - A Solid Foundation to Learn The Basics
+		</a><br/>
+		Also simple explanation of HTTP-protocol and DOM.<br/>
+		<a href="http://www.scribd.com/doc/54504131/What-is-node-JS-developerWorks">
+		Just what is Node.js?
+		</a><br/>
+		Brief explanation what Node.js is and when to use it.<br/>
+		<a href="http://komunitasweb.com/2010/02/django-tutorial-simple-notes-application/">
+		Simple Django tutorial
+		</a><br/>
+		Although Django has good documentation, this is what helped me to get things working.<br/>
+		<a href="http://css-tricks.com/">
+		CSS Tricks
+		</a><br/>
+		Lots of CSS and Web Design examples.<br/>
+		<a href="http://www.slideshare.net/stubbornella/our-best-practices-are-killing-us">
+		CSS: Our best practices are killing us
+		</a><br/>
+		Presentation of CSS-Hell.<br/>
+		<a href="http://kuler.adobe.com/#themes/mostpopular?time=30">
+		Kuler
+		</a> | 
+		<a href="http://www.colourlovers.com/">
+		Colour Lovers
+		</a><br/>
+		These two are good links for "color blind" people. Good color patterns.<br/>
+		<a href="http://dillinger.io/">
+		Dillinger
+		</a><br/>
+		Dillinger is a cloud-enabled HTML5 Markdown editor.<br/>
+		<br/>
+
+		<b>Web Security</b><br/>
+		
+		<a href="http://www.owasp.org/index.php/Top_10_2010-Introduction">
+		OWASP Top 10 Most Critical Web Application Security Risks
+		</a> (<a href="http://www.google.fi/url?sa=t&source=web&cd=1&ved=0CBwQFjAA&url=http%3A%2F%2Fowasptop10.googlecode.com%2Ffiles%2FOWASP%2520Top%252010%2520-%25202010.pdf&rct=j&q=owasp%20top%2010%20pdf&ei=4oscTaPUFcjCswbVxfncDA&usg=AFQjCNGQYQo-TFTnCAbnP7dSN8FTd5W99Q&cad=rja">pdf</a>)<br/>
+		<a href="http://www.troyhunt.com/2010/05/owasp-top-10-for-net-developers-part-1.html">
+		OWASP Top 10 for .NET developers
+		</a> (<a href="http://asafaweb.com/OWASP%20Top%2010%20for%20.NET%20developers.pdf">pdf</a>)<br/>
+		C# Code Samples of OWASP Top 10 Security Risks.<br/>
+		<a href="http://www.youtube.com/watch?v=fEmO7wQKCMw">
+		DEFCON 18: How I Met Your Girlfriend
+		</a><br/>
+		Presentation of the discovery and execution of entirely new classes of Web attacks.<br/>
+		<br/>
+		
+		<b>Game Development</b><br/>
+		
+		<a href="http://gameprogrammingpatterns.com/">
+		Game Programming Patterns
+		</a><br/>
+		Online book about patterns used in game programming.<br/>
+		<a href="http://www.gamedev.net/reference/list.asp?categoryid=45">
+		GameDEV.net
+		</a><br/>
+		Articles and resources for game developers.<br/>
+		<a href="http://create.msdn.com/en-us/education/roadmap">
+		AppHub
+		</a><br/>
+		XNA guides and examples<br/>
+		<a href="http://www.google.com/events/io/2009/sessions/WritingRealTimeGamesAndroid.html">
+		Writing Real-Time Games for Android
+		</a><br/>
+		Good video of game architecture etc.<br/>
+		<a href="http://www.wildbunny.co.uk/blog/2011/04/06/physics-engines-for-dummies/">
+		Physics engines for dummies
+		</a><br/>
+		Guide of basic components that make up a physics engine and how to put them together.<br/>
+		<a href="http://forums.tigsource.com/index.php?topic=14154.0">
+		Vector Arithmetic For The Complete Novice
+		</a><br/>
+		Beginner's guide to vector arithmetic with good examples.<br/>
+		<br/>
+		
+
+		<b>Finnish sites</b><br/>
+		
+		<a href="http://www.ohjelmointiputka.net/">
+		Ohjelmointiputka
+		</a><br/>
+		<a href="http://mureakuha.com/">
+		Mureakuha
+		</a><br/>
+		<br/>
+		
+		<b>Documentaries</b><br/>
+		
+		<a href="http://www.clickmovement.org/content/code-rush-film-alone">
+		Code Rush
+		</a><br/>
+		Documentary following the lives of a group of Netscape engineers in Silicon Valley.<br/>
+		<a href="http://www.youtube.com/user/demoscenedoc">
+		Demoscene Documentary
+		</a><br/>
+		Documentary of finnish demoscene subculture.<br/>
+		<a href="https://www.youtube.com/watch?v=g0lrIi0ce5E">
+		Riot On!
+		</a><br/>
+		Story of finnish media company (<a href="http://en.wikipedia.org/wiki/Riot-E">Riot-E</a>) during Dot-com bubble.<br/>
+		<br/>
+		
+		
+		<b>Random</b><br/>
+		
+		<a href="http://www.lighterra.com/papers/modernmicroprocessors/">
+		Modern Microprosessors - A 90 minute guide
+		</a><br/>
+		Brief guide to microprocessors<br/>
+		<a href="http://blog.sherweb.com/the-men-behind-the-code-creators-of-famous-programming-languages/">
+		The People Behind the Code
+		</a><br/>
+		Famous programmers who have influenced computer programming<br/>
+		<a href="http://weblogs.asp.net/infinitiesloop/archive/2006/08/06/Join-the-Dark-Side-of-Visual-Studio.aspx">
+		Dark Side of Visual Studio
+		</a> | 
+		<a href="http://studiostyl.es/">
+		Studiostyles
+		</a><br/>
+		Color schemes for Visual Studio<br/>
+		<a href="http://wallbase.cc/toplist">
+		Wallbase
+		</a><br/>
+		Good wallpaper collection<br/>
+		<a href="http://programming-motherfucker.com/">
+		Programming Motherfucker
+		</a><br/>
+		Anti Agile Manifesto.<br/>
+		<br/>
+		<a href="http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/">
+		MIT Computer Science Online Course Material
+		</a><br/>
+		<a href="http://oldsite.precedence.co.uk/nc/putty.html">
+		Using PuTTY to create SSH tunnel
+		</a><br/>	
+		<a href="http://farm3.static.flickr.com/2010/2115997043_4c19ff1b52_o.jpg">
+		The Programmer Hierarchy</a> (jpg)<br/>
+		<a href="http://www.youtube.com/watch?v=u6XAPnuFjJc&feature=player_embedded">
+		RSA Animate: The surprising truth about what motivates us
+		</a><br/>
+		<a href="http://code.google.com/edu/">
+		Google Code University
+		</a><br/>
+		<a href="http://www.rackspace.com/cloud/blog/2011/05/17/infographic-evolution-of-computer-languages/">
+		Evolution of Computer Languages</a><br/>
+		<a href="http://programmingzen.com/2010/12/28/give-your-programmers-professional-tools/">
+		Give your programmers professional tools
+		</a><br/>
+		<a href="http://blog.fogcreek.com/the-price-of-dev-happiness-part-one/">
+		The Prices of (Dev) Happiness
+		</a><br/>
+		<a href="http://www.joelonsoftware.com/articles/fog0000000018.html">
+		Don't Let Architecture Astronauts Scare You
+		</a><br/>
+		<a href="http://programmers.stackexchange.com/questions/72336/is-hiring-only-the-best-a-really-practical-advice-for-normal-desktop-applicatio">
+		Is hiring only the best a really practical advice for normal desktop application
+		</a><br/>
+		<a href="http://www.quora.com/Code-Quality/What-was-the-code-quality-of-the-initial-version-of-Google">
+		What was the code quality of the initial version of Google?
+		</a><br/>
+		<a href="http://www.randsinrepose.com/">
+		Rands in Response
+		</a><br/>
+		<a href="http://www.avc.com/a_vc/2012/02/the-management-team-guest-post-from-joel-spolsky.html">
+		The Management Team - Guest Post From Joel Spolsky
+		</a><br/>
+		<a href="http://www.joelonsoftware.com/articles/HighNotes.html">
+		Hitting the High Notes
+		</a><br/>
+		<a href="http://sealedabstract.com/rants/why-software-projects-are-terrible-and-how-not-to-fix-them/">
+		Why Software Projects are Terrible and How Not To Fix Them
+		</a><br/>
+		<a href="http://hbr.org/2011/12/first-lets-fire-all-the-managers/ar/1">
+		First, Let's Fire All the Managers
+		</a><br/>
+		<a href="http://programmer.97things.oreilly.com/wiki/index.php/Contributions_Appearing_in_the_Book">
+		97 Things every programmer should know
+		</a><br/>
+		<a href="http://labs.spotify.com/2014/03/27/spotify-engineering-culture-part-1/">
+		Spotify Engineering Culture
+		</a><br/>
+		<a href="http://www.bennorthrop.com/Essays/2012/the-user-interface-and-the-halo-effect.php">
+		The User Interface and the Halo Effect 
+		</a><br/>
+		<a href="http://www.targetprocess.com/articles/speed-in-software-development.html">
+		Speed in Software Development
+		</a><br/>
+		<a href="https://medium.com/@joaomilho/festina-lente-e29070811b84">
+		Technical debt 101
+		</a><br/>
+		<br/>
+
+		<b>Videos</b><br/>
+		<a href="http://vimeo.com/78908217">
+		F# for C# developers
+		</a><br/>
+		<a href="http://vimeo.com/97454683">
+		Fun with JavaScript - Scott Hanselman
+		</a><br/>
+		<a href="http://vimeo.com/37936474">
+		.NET Collections Deep Dive - Gary Short
+		</a><br/>
+		<a href="http://vimeo.com/56708193">
+		Demanding Professionalism - Uncle Bob
+		</a><br/>
+		22min, 1h3min<br/>
+		<br/>
+		
+		<a href="#up">up</a>	
+	</div>
+	
+	<div class="area">
+		<a name="books"/>  
+		<h2>Books</h2>
+		
+		Collected here some books that I found useful and that are also easy to read (so don't have to be a rocket scientist to get something out of these).<br/><br/>
+		
+		<a href="http://en.wikipedia.org/wiki/Code_Complete">
+		Code Complete
+		</a><br/>
+		Must read book for all new software engineers (won't hurt more experienced either). [<a href="http://codecourse.sourceforge.net/materials/Code-Complete-A-Detailed-Book-Review.html">summary</a>]<br/>
+		<a href="http://en.wikipedia.org/wiki/Pragmatic_Programmer">
+		Pragmatic programmer
+		</a><br/>
+		Best practices and pitfalls of software development. [<a href="http://www.codinghorror.com/blog/2004/10/a-pragmatic-quick-reference.html">summary</a>]<br/>
+		<a href="http://www.goodreads.com/book/show/3735293-clean-code">
+		Clean Code
+		</a><br/>
+		How to write clean and undestandable code.<br/>
+		<a href="http://en.wikipedia.org/wiki/The_C_Programming_Language_%28book%29">
+		The C Programming Language
+		</a><br/>
+		Best basic C book. Just by keeping this on your table makes you look like a seasoned professional.<br/>
+		<a href="http://www.amazon.com/Managing-Humans-Humorous-Software-Engineering/dp/159059844X">
+		Managing Humans
+		</a><br/>
+		How to become better manager. If don't care about that, maybe helps you to understand your managers better. Contains also good guide for graduates seeking first job.<br/>
+		<a href="http://en.wikipedia.org/wiki/Peopleware:_Productive_Projects_and_Teams">
+		Peopleware
+		</a>&nbsp;[<a href="http://javatroopers.com/Peopleware.html">summary</a>]<br/>
+		What is wrong with software development.<br/>
+		<a href="http://www.laputan.org/mud/">
+		Big Ball of Mud
+		</a><br/>
+		Why all software architectures tends to go there?
+		<br/>
+		<a href="http://csharpindepth.com/">
+		C# in Depth
+		</a><br/>
+		Great C# book.<br/>
+		<a href="http://www.codinghorror.com/blog/2008/03/revisiting-the-facts-and-fallacies-of-software-engineering.html">
+		Facts and Fallacies of Software Engineering
+		</a>&nbsp;[<a href="http://www.codinghorror.com/blog/2008/03/revisiting-the-facts-and-fallacies-of-software-engineering.html">review</a>]<br/>
+		Collection of Software Engineering facts.<br/>
+		<a href="http://books.google.co.uk/books/about/Patterns_of_Enterprise_Application_Archi.html?id=FyWZt5DdvFkC">
+		Patterns of Enterprise Application Architecture
+		</a><br/>
+		Describes all most commonly used architectural patterns. [<a href="http://martinfowler.com/eaaCatalog/">summary</a>]<br/>
+		<a href="http://en.wikipedia.org/wiki/Head_First_%28book_series%29">
+		Head First Design Patterns
+		</a> (<a href="http://books.google.fi/books?id=LjJcCnNf92kC&printsec=frontcover">Google books</a>)<br/>
+		Good explanations of Design Patterns.<br/>
+		<br/>
+
+		<b>"History" books:</b><br/>
+		<a href="http://en.wikipedia.org/wiki/Masters_of_Doom">
+		Masters of Doom
+		</a><br/>
+		<a href="http://en.wikipedia.org/wiki/Hackers:_Heroes_of_the_Computer_Revolution">
+		Hackers
+		</a><br/>
+		<a href="http://www.amazon.com/Ultimate-History-Video-Games-Pokemon/dp/0761536434">
+		The Ultimate History of Video Games
+		</a><br/>
+		<br/>
+		
+		<b>My to read list:</b><br/>
+		This list seems to grow longer all the time.<br/>
+		<a href="http://portswigger.net/wahh/">
+		The Web Application Hacker's Handbook
+		</a><br/>
+		<a href="http://www.amazon.com/Design-Everyday-Things-Donald-Norman/dp/0465067107">
+		The Design of Everyday Things
+		</a><br/>
+		<a href="http://www.amazon.com/Being-Geek-Software-Developers-Handbook/dp/0596155409">
+		Being Geek
+		</a><br/>
+		<a href="http://en.wikipedia.org/wiki/Coders_at_work">
+		Coders at work
+		</a><br/>
+		<a href="http://en.wikipedia.org/wiki/The_Mythical_Man-Month">
+		The Mythical Man-Month
+		</a>&nbsp;[<a href="http://javatroopers.com/Mythical_Man_Month.html">summary</a>]<br/>		
+		<br/>
+		
+		<b>Free e-books:</b><br/>
+		<a href="http://mysite.verizon.net/Graeme_Birchall/id1.html">
+		DB2 SQL Cookbook
+		</a><br/>
+		<a href="http://www.robmiles.com/c-yellow-book/">
+		C# Yellow Book 
+		</a><br/>
+		<a href="http://ofps.oreilly.com/titles/9780596805784/">
+		Building iPhone Apps with HTML, CSS, and JavaScript
+		</a> (my <a href="htmlapp.html">source</a> for app)<br/>
+		<a href="http://mislav.uniqpath.com/poignant-guide/">
+		Poignant Guide To Ruby
+		</a><br/>
+		<a href="http://diveintohtml5.org/">
+		Dive Into HTML5
+		</a><br/>
+		<a href="http://eloquentjavascript.net/">
+		Eloquent JavaScript
+		</a><br/>
+		<a href="http://learnpythonthehardway.org/">
+		Learn Python The Hard Way
+		</a><br/>
+		<br/>
+
+		<a name="sobooklists"/>
+		<a href="http://stackoverflow.com/questions/194812/list-of-freely-available-programming-books">
+		Good list of free e-books
+		</a> (Stack Overflow)<br/>
+		<a href="http://stackoverflow.com/questions/1711/what-is-the-single-most-influential-book-every-programmer-should-read">
+		Good list of books
+		</a> (Stack Overflow)<br/>
+		<br/>
+		
+		<a href="#up">up</a>		
+	</div>
+	
+	<div class="area">
+		<a name="programs"/>
+		<h2>Programs</h2>
+		
+		<a href="http://technet.microsoft.com/en-us/sysinternals/bb896653">
+		Process Explorer
+		</a><br/>
+		Replace Windows Task Manager with this<br/>
+		<a href="http://notepad-plus-plus.org/">
+		Notepad++
+		</a><br/>
+		Good text editor for windows<br/>
+		<a href="http://www.getpaint.net/">
+		Paint.NET
+		</a><br/>
+		Good enough free image editor<br/>
+		<a href="http://www.truecrypt.org">
+		TrueCrypt
+		</a><br/>
+		Software application used for on-the-fly encryption<br/>
+		<a href="http://ninite.com/">
+		Ninite
+		</a><br/>
+		Because Windows is missing apt-get<br/>
+		<a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/">
+		Putty
+		</a><br/>
+		SSH client<br/>
+		<a href="http://winsplit-revolution.com/">
+		Winsplit Revolution
+		</a><br/>
+		Organize windows fast on your desktop<br/>
+		<a href="http://lynx.isc.org/">
+		Lynx
+		</a><br/>
+		Text-based web browser<br/>
+		<a href="http://vagrantup.com/">
+		Vagrant
+		</a><br/>
+		Tool for building virtualized dev enviroments 
+		(Ruby Box and <a href="http://www.engineyard.com/blog/2010/virtualize-this-instant-rails-in-a-virtual-box/">instuctions</a>)<br/>
+		<br/>
+		
+		<b>Visual Studio extensions</b><br/>
+		<a href="http://www.codemaid.net/">
+		CodeMaid
+		</a><br/>
+		<a href="http://submain.com/products/ghostdoc.aspx">
+		GhostDoc
+		</a><br/>
+		<a href="http://visualstudiogallery.msdn.microsoft.com/a23de100-31a1-405c-b4b7-d6be40c3dfff">
+		Spell Checker
+		</a><br/>
+		<br/>
+		
+		<a href="#up">up</a>
+	</div>
+	
+	<div class="area">
+		<a name="other"/>
+		<h2>Other</h2>
+
+		MEng Thesis (<a href='Software Platform Architecture for Laboratory Workstation Software.pdf'>pdf</a>) <br/>
+		BEng Thesis (<a href='insinoorityo.pdf'>pdf</a>) <br/>
+		Best <a href='./Pics/reddit_scifi_books.jpg'>scifi</a> / <a href='./Pics/reddit_fantasy_books.jpg'>fantasy</a> books from Reddit.com<br/>
+		
+		<br/>
+		<br/>
+
+		<img src='./Pics/works_on_my_machine.png'/><br/>
+		<small>Every developer needs this image<br/>(<a href="http://www.codinghorror.com/blog/2007/03/the-works-on-my-machine-certification-program.html">original link</a>)</small><br/>
+		
+		<br/>	
+		<br/>
+		
+		<a href="#up">up</a>
+	</div>
+	
+	<div align="right">
+		<address>
+			<small>
+				10.08.2016<br/>
+				<a href="mailto:tomi.tuhkanen@iki.fi">tomi.tuhkanen@iki.fi</a>
+			</small>
+		</address>
+	</div>
+	
+	<!-- Asynchronous Google Analytics snippet. Change UA-XXXXX-X to be your site's ID. -->
+	<script>
+	   var _gaq=[['_setAccount','UA-35200362-1'],['_trackPageview']];
+	   (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+	   g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+	   s.parentNode.insertBefore(g,s)}(document,'script'));
+	</script>
+
+ </body>
 </html>

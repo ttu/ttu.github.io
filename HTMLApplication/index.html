@@ -1,0 +1,100 @@
+<html>
+	<head>
+		<title>HTML Application</title>
+		
+		<meta name="viewport" content="user-scalable=no, width=device-width" />
+		<link rel="stylesheet" type="text/css" href="mobile.css" />
+		<!--<link rel="stylesheet" type="text/css" href="mobile.css" media="only screen and (max-width: 480px)" />-->
+		<!--<link rel="stylesheet" type="text/css" href="desktop.css" media="screen and (min-width: 481px)" />-->
+		<!--[if IE]>
+		<link rel="stylesheet" type="text/css" href="desktop.css" media="all" />
+		<![endif]-->
+
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+		
+		<script type="text/javascript">
+
+			var hist = [];
+			var startUrl = 'main.html';
+			var siteDomain = '';
+			
+			$(document).ready(function(){
+				siteDomain = window.location.href.substring(0,window.location.href.lastIndexOf('/'));
+				loadPage(startUrl);
+			});
+			
+			function loadPage(url) {
+				// Show loading container
+				$('#container').append('<div id="progress">Loading...</div>');
+				// Go back to up
+				scrollTo(0,0);
+				// This could actually be same, so would always use #content
+				var element = "";
+				if (url == startUrl) {
+					element  = '#header ul';
+				} else {
+					element  = '#content';
+				}		
+				
+				// After load is finished continue with anonymous function
+				$('#pagedata').load(url + element, function(){							
+					// get h2 as page title and remove it from page
+					var title = $('h2').html() || 'Main';
+					$('h1').html(title);
+					$('h2').remove();
+					$('.leftButton').remove();
+					
+					// Update history
+					var page = new Object();
+					page.url = url;
+					page.title = title;
+					hist.unshift(page);
+					
+					if (hist.length > 1) {
+						// Add back button to page
+						$('#header').append('<div class="leftButton">'+hist[1].title+'</div>');
+						// Event for back button click
+						$('#header .leftButton').click(function(){
+							// Get current page from top (and "discard" it)
+							var thisPage = hist.shift();
+							// Get previous page
+							var previousPage = hist.shift();
+							loadPage(previousPage.url);
+						});
+					}
+
+					// Set click function for all links
+					$('#pagedata a').click(function(e){
+						var url = e.target.href;
+						// Check that url is not external link
+						var currentDomain = url.substring(0,url.lastIndexOf('/'));
+						if (url.match(siteDomain)){
+							e.preventDefault();
+							loadPage(url);
+						}
+						else{
+							// Redirect away from "application"
+							window.location.href = url;
+						}
+					});
+					
+					// remove loading container
+					$('#progress').remove();
+				});
+			}
+		</script>
+		
+	</head>
+	<body>
+		<div id="header">
+			<h1></h1>
+		</div>
+		<div id="container">
+			<div id="pagedata">
+			</div>
+		</div>
+		<div id="footer">
+				<p class="subtle">T² Consulting</p>
+		</div>
+	</body>
+</html>

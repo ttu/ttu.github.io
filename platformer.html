@@ -1,0 +1,99 @@
+<html>
+ <head>
+ <title>0x546F6D69</title>
+ <head>
+ <body>
+<font size="5"><b>Unnamed <font style="text-decoration: line-through;">platformer</font> strategy game</b></font> 
+<br/><br/>	
+
+	<li>My next game project changed from platformer to strategy game. Better to do something you like, so there's a chance it will be finished one day :)</li>
+
+	<li>Style: medieval / fantasy boardgame look with pretty simple rules (like Warhammer etc.).</li>
+	<li>Game is in real-time and used can stop time to give commands to units.</li>
+	<li>UI is separated from Game Engine, so engine works with WinForms and XNA (XNA.Game replaces Game-class).</li>
+	<li>Have to find nice physics engine from somewhere. I don't have enough time to make my own (working one).</li>
+	<li>Architecture is almost ready (at least for now).</li>
+	<li>Getting good tips from <a href="http://replicaisland.net/">Replica Island's</a> architecture.</li>
+	<li><a href="http://www.google.com/events/io/2009/sessions/WritingRealTimeGamesAndroid.html">Google I/O 2009: Writing Real Time Games For Android</a>.</li>
+	<br/>
+
+	<img src='./Pics/sg1.jpg' alt='Main View'/><br/>
+	Full view of map
+	<br/><br/>
+	
+	GameState Update sequence at the moment:<br/>
+	<br/>
+	<img src='./Pics/sg_seq_update3.jpg' alt='Update'/><br/>
+	<br/><br/>
+	
+	Notes:<br/>
+	<pre>
+	UI
+	- User Interface
+	Game
+		- Main loop
+	StateManager
+		- Keep track in what state game is
+	State
+		- Game bahaviour logic
+		- Decide what to do when updating and with inputs
+	InputManager
+		- Handle Input Queue
+		- Execute InputActions
+	InputAction
+		- Move Camera, Zoom, Select etc.
+		- DoAction does all the action
+	ObjectManager
+		- Creates and handles all GameObjects
+		QuadTree
+			- Keeps track of object locations
+		GameObject
+			- Objects you can see in the UI
+				- Includes blocking objects, like houses, walls and trees.
+			Character
+			- Objects that participate in the "game"
+				Behavior
+					- What will AI character do
+			Item
+				- Objects Characters can use (weapons, armor etc.)
+	CameraSystem
+		- Keeps track of coordinates of what is shown in window
+	GameArea
+		- Info of full map
+		
+	----------------------------------------------------
+	Game has different States:
+	Init
+		- Load all objects
+	GameState
+		- Game is running
+	Pause
+		- Game is paused 
+		- User can view map, give commands to GameObjects, but objects are not moving.
+	End
+		- Show statistics
+	
+	----------------------------------------------------
+	On UserInput current state checks if input is allowed in this state and InputManager adds inputs to queues and returns those to State at Update.
+	
+	User can zoom in/out camera. Game will only draw object on view (using QuadTree).
+	
+	QuadTree is also used to check collisions and when calculating routes to target.
+	</pre>
+
+	<br/>
+	
+	<img src='./Pics/Platformer.jpg' alt='Platformer'/><br/><br/>
+	<small>These were amazing graphics for platformer.</small><br/><br/>
+
+	<hr>
+
+	<div align="right">
+	  <address>
+	   <small>
+		 11.4.2011<br>
+		 <a href="mailto:tomi.tuhkanen@iki.fi">tomi.tuhkanen@iki.fi</a>
+	   </small>
+	  </address>
+ </body>
+</html>
