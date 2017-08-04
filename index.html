@@ -4,8 +4,39 @@
 	<title>0x546F6D69</title>
 	
 	<!-- In the beginning, plan was to have page without any styles, but had to add some, so now css is on the TODO list. So sorry for all the <br/> tags -->
-	<link rel='stylesheet' type='text/css' href='style.css'/>
-	
+
+	<style>
+		body{
+			font-family: verdana,helvetica,arial,sans-serif;
+			font-size: 12px;
+		}
+
+		.area{
+			padding-bottom: 20px;
+			border-bottom: 1px solid #000000;
+			margin-bottom: 20px;
+		}
+			
+		.ownDevOld .ownDevLan{
+			font-weight: normal; 
+		}
+				
+		.ownDev{
+			padding-bottom:6px;
+		}
+		
+		.ownDev a{
+			font-weight: bold;
+		}
+		
+		.ownDevLan{
+			font-weight: bold; 
+		}
+				
+		.inProgress{
+			color:red;
+		}
+</style>
 </head>
 <body>
 	
@@ -37,18 +68,31 @@
 		
 	</div>
 
+	</div>
+	
 	<div class="area">
 		<a name="posts"/>
 		<h2>Posts</h2>
 
 		<div class="ownDev">
-			<a href="https://gist.github.com/ttu/6b933bc15d8e550ab0cef63e1f82d115">ASP.NET Core Performance Tests</a> (2/2017)<br/>
+			<a href="/fake-json-server-iot-be">Fake JSON Server as an IoT Back End</a> (2/2017)<br/>
+			How to use Fake JSON Server as an IoT Back End.
+		</div>
+
+		<div class="ownDev">
+			<a href="/aspnet-core-performance-wrk">ASP.NET Core Performance Tests</a> (2/2017)<br/>
 			How to execute performance tests for ASP.NET Core with wrk.
 		</div>
 
 		<div class="ownDev">
-			<a href="https://gist.github.com/ttu/964429a2aef1532602f2c9d57572a861">Philips Hue Outdoors Use</a> (1/2017)<br/> 
+			<a href="/philips-hue-outdoors-use">Philips Hue Outdoors Use</a> (1/2017)<br/> 
 			Philips Hue White bulbs outdoors at South Finland since 07/2016.
+		</div>
+
+		<br/>
+
+		<div class="ownDev">
+			Go to <a href="/blog">blog</a>
 		</div>
 
 		<br/>
@@ -67,7 +111,7 @@
 		</p>
 	 
 		<div class="ownDev">
-			<a href="https://github.com/ttu/dotnet-fake-json-server">Fake JSON Server</a> (<label class="ownDevLan">C#</label>) (1/2017)<br/> 
+			<a href="https://github.com/ttu/dotnet-fake-json-server">Fake JSON Server</a> (<label class="ownDevLan">C#</label>) (2/2017)<br/> 
 			Fake REST API for prototyping or as a CRUD backend.
 		</div>
 
