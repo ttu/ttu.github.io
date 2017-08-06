@@ -15,7 +15,7 @@ __Status:__ (07/2017) 7/7 working
 
 __Weather history:__ 08/2016 - 09/2017 (provided by _wunderground.com_)
 
-<img src="https://www.wunderground.com/cgi-bin/histGraphAll?day=1&year=2016&month=8&dayend=31&yearend=2017&monthend=9&ID=EFHK&type=6&width=614" />
+<img src="https://www.wunderground.com/cgi-bin/histGraphAll?day=1&year=2016&month=8&dayend={{ 'now' | date: "%d" }}&yearend={{ 'now' | date: "%Y" }}&monthend={{ 'now' | date: "%m" }}&ID=EFHK&type=6&width=614" />
 
 ---
 
