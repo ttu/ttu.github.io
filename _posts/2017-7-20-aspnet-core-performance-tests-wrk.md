@@ -5,8 +5,6 @@ title: ASP.NET Core Performance Tests
 
 How to execute performance tests for __ASP.NET Core__ with __wrk__.
 
-## Create Performance Test Environment
-
 ### Create .NET Core Web App
 
 Create new web app
