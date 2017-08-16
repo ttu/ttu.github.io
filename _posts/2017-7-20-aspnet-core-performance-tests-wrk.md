@@ -92,3 +92,7 @@ Running 10s test @ http://localhost:5000
 Requests/sec:  22834.69
 Transfer/sec:      2.68MB
 ```
+
+## Source
+
+GitHub: [aspnet-core-benchmark](https://github.com/ttu/aspnet-core-benchmark)
