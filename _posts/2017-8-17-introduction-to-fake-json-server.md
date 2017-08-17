@@ -29,7 +29,11 @@ First problem with this project was that I couldn't find any JSON flat file data
 
 ## Quick start
 
-This post shows how to integrate Fake JSON Server to an existing Front End _prototype_ that didn't previously use any Back End. This post also shows how to test API endpoints with Swagger and curl. The prototype used as an example is the official [Redux TodoMVC](https://github.com/reactjs/redux/tree/master/examples/todomvc) example. The modified code can be found from [todomvc-fake-server](https://github.com/ttu/todomvc-fake-server) repository.
+This post shows how to:
+* __Use Fake JSON Server with an existing Front End prototype__
+* __Test API endpoints with Swagger and curl__
+
+The prototype used as an example is the official [Redux TodoMVC](https://github.com/reactjs/redux/tree/master/examples/todomvc) example. The modified code can be found from [todomvc-fake-server](https://github.com/ttu/todomvc-fake-server) repository.
 
 Complete documentation and examples for [Fake JSON Server](https://github.com/ttu/dotnet-fake-json-server) and [JSON Flat File Datastore](https://github.com/ttu/json-flatfile-datastore) can be found from Github. 
 
@@ -432,7 +436,17 @@ $ curl http://localhost:57602/api/todos?completed=True
 
 __GraphQL__
 
-Get completed Todo items with GraphQL.
+Get completed Todo items with GraphQL query:
+
+```graphql
+query { 
+  todos(completed: true) { 
+    id 
+    text 
+    completed 
+  } 
+}
+```
 
 ```sh
 $ curl -H "Content-type: application/graphql" -X POST -d 'query { todos(completed: true) { id text completed } }' http://localhost:57602/graphql
@@ -508,7 +522,7 @@ Curl will show all headers with vebose argument.
 
 ### Final words
 
-There are many uses cases for Fake JSON Server, this article shows how to use it as [an IoT backend](https://gist.github.com/ttu/9d4933aae7d08e5a72ca99b62eb5c015). Fake JSON Server is used to collect data from sensors for validation and to provide a way to observe sensor statuses real-time.
+There are many uses cases for Fake JSON Server, this article shows how to use it as [an IoT backend](/fake-json-server-iot-be). Fake JSON Server is used to collect data from sensors for validation and to provide a way to observe sensor statuses real-time.
 
 Fake JSON Server has more features than were not covered in this post. Check the complete guide and more examples from [https://github.com/ttu/dotnet-fake-json-server](https://github.com/ttu/dotnet-fake-json-server).
 
