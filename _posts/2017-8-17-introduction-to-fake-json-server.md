@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Intoroduction to .NET Fake JSON Server
+title: Introduction to Fake JSON Server
 excerpt: Introduction to .NET Fake JSON Server and how to use it as a Back End for a prototype project that previusly didn't use any Back End.
 ---
 
@@ -21,7 +21,7 @@ Fake JSON Server is a __REST API__ which uses __JSON flat file__ as a data store
 * _Experimantal_ GraphQL query support
 * No configuration needed, start the Server and API is ready to be used with any data
 
-There are some fake REST APIs for __node.js__, e.g. [Typicode's json-server](https://github.com/typicode/json-server), but none for __.NET__. Instead of adding more features to some existing node project, I decided to make one for __.NET__.
+There are some fake REST APIs for __node.js__, e.g. [Typicode's json-server](https://github.com/typicode/json-server), but none for __.NET__. Instead of adding more features to some existing node project, I decided to develop one using __C#__ / __.NET Core__.
 
 ### Store for dynamic data
 
