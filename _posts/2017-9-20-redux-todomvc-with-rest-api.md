@@ -1,46 +1,42 @@
 ---
 layout: post
-title: Introduction to Fake JSON Server
-excerpt: Introduction to .NET Fake JSON Server and how to use it as a Back End for a prototype project that previusly didn't use any Back End.
+title: How to modify React TodoMVC example to use a REST API and WebSockets
+excerpt: Step by step guide how to modify Redux TodoMVC example to use Fake JSON Server as a REST API Back End to store the todo-data and use WebSockets for update notifications.
 ---
 
-There may be a time when you need a simple Back End for prototyping or maybe a Back End for some small project, but you don't want to use any setup time for it. Then [Fake JSON Server](https://github.com/ttu/dotnet-fake-json-server) is for you!
+This post contains:
+* __Step by step guide how to modify React TodoMVC example to use Fake JSON Server as a REST API Back End to store the todo-data and use WebSockets for update notifications__
+* __How to test Fake JSON Server endpoints with Swagger and curl__
 
-Fake JSON Server is a __REST API__ which uses __JSON flat file__ as a data store, so it can return predefined data from the JSON file and it updates the data to that same file. FAKE JSON Server also has an experimental __GraphQL__ query support, so you can compare how REST requests would turn into GraphQL queries.
+Starting point is the official [Redux TodoMVC](https://github.com/reactjs/redux/tree/master/examples/todomvc) example. The modified code can be found from [todomvc-fake-server](https://github.com/ttu/todomvc-fake-server) repository.
 
-### Features
+## Fake JSON Server
 
-* No need to define types for resources. Types are handled dynamically
-* No database. Data is stored to a JSON file
-* CRUD operations (GET, PUT, POST, PATCH, DELETE)
-* Async versions of PUT, POST, PATCH and DELETE operations with long running jobs
-* Simulate delays and errors for requests
-* Token Authentication
-* WebSockets
-* Swagger
-* _Experimantal_ GraphQL query support
-* No configuration needed, start the Server and API is ready to be used with any data
+Fake JSON Server is a __REST API__ which uses __JSON flat file__ as a data store, so it can return predefined data from the JSON file and it updates the data to that same file. Data can be easily edited with any text editor. Fake JSON Server also has an experimental __GraphQL__ query support, so you can compare how REST requests would turn into GraphQL queries.
 
-There are some fake REST APIs for __node.js__, e.g. [Typicode's json-server](https://github.com/typicode/json-server), but none for __.NET__. Instead of adding more features to some existing node project, I decided to develop one using __C#__ / __.NET Core__.
+Fake JSON Server can be used as a simple Back End for prototyping or maybe as a Back End for some small project, when you don't want to use any extra setup time for the Back End.
 
-### Store for dynamic data
+Complete documentation and examples for [Fake JSON Server](https://github.com/ttu/dotnet-fake-json-server) can be found from Github. 
 
-First problem with this project was that I couldn't find any JSON flat file data store that would work well with dynamic data and with .NET Core, so I had to make one, [JSON Flat File Data Store](https://github.com/ttu/json-flatfile-datastore). It saves everything to a single JSON file. It can handle Typed Objects, Anonymous Types, ExpandoObjects and JSON Objects. It has a simple API, which is pretty much copied from MongoDB's C# API. JSON Flat File Data Store is also available as a [NuGet package](https://www.nuget.org/packages/JsonFlatFileDataStore/).
+## Getting started
 
-## Quick start
+This example can be tried quickly by running Fake JSON Server from executable, from code or with Docker and by cloning modified TodoMVC repository.
 
-This post shows how to:
-* __Use Fake JSON Server with an existing Front End prototype__
-* __Test API endpoints with Swagger and curl__
+##### 1) Start Fake JSON Server
 
-The prototype used as an example is the official [Redux TodoMVC](https://github.com/reactjs/redux/tree/master/examples/todomvc) example. The modified code can be found from [todomvc-fake-server](https://github.com/ttu/todomvc-fake-server) repository.
+__Option A:__ Start from the executable. This doesn't require any pre-installed frameworks or runtimes.
 
-Complete documentation and examples for [Fake JSON Server](https://github.com/ttu/dotnet-fake-json-server) and [JSON Flat File Datastore](https://github.com/ttu/json-flatfile-datastore) can be found from Github. 
+E.g. download latest version for _macOS 10.12 Sierra_. Check the correct file from your OS from the [README](https://github.com/ttu/dotnet-fake-json-server#self-contained-application)
 
-This example can be tried quickly by cloning Fake JSON Server and modified TodoMVC repositories.
+```sh
+$ mkdir FakeServer && cd FakeServer
+$ wget https://github.com/ttu/dotnet-fake-json-server/releases/download/0.4.0/fakeserver-osx.10.12-x64.tar.gz
+$ tar -zxvf fakeserver-osx.10.12-x64.tar.gz
+$ chmod +x FakeServer
+$ ./FakeServer
+```
 
-1) Start the Fake JSON Server
-  * Check [README](https://github.com/ttu/dotnet-fake-json-server#docker) if want to run Fake JSON Server with Docker
+__Option B:__ Start from code. This requies that _.NET Core_ is installed.
 
 ```sh
 $ git clone https://github.com/ttu/dotnet-fake-json-server.git
@@ -48,7 +44,16 @@ $ cd dotnet-fake-json-server/FakeServer
 $ dotnet run --file tododb.json --urls http://localhost:57602
 ```
 
-2) Start the modified Redux TodoMVC example
+__Option C:__ Start with Docker. This requires that _Docker_ is installed.
+
+```sh
+$ git clone https://github.com/ttu/dotnet-fake-json-server.git
+$ cd dotnet-fake-json-server
+$ docker build -t fakeapi .
+$ docker run -it -p 57602:57602 fakeapi
+```
+
+##### 2) Start the modified Redux TodoMVC example
 
 ```sh
 $ git clone https://github.com/ttu/todomvc-fake-server.git
