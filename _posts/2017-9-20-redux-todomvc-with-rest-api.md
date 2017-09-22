@@ -24,14 +24,14 @@ This example can be tried quickly by running Fake JSON Server from executable, f
 
 ##### 1) Start Fake JSON Server
 
-__Option A:__ Start from the executable. This doesn't require any pre-installed frameworks or runtimes.
+__Option A:__ Start from the executable. This doesn't require any pre-installed frameworks or prerequisites.
 
-E.g. download latest version for _macOS 10.12 Sierra_. Check the correct file from your OS from the [README](https://github.com/ttu/dotnet-fake-json-server#self-contained-application)
+E.g. download latest version for _macOS_. Check the correct file for your OS from the [README](https://github.com/ttu/dotnet-fake-json-server#self-contained-application).
 
 ```sh
 $ mkdir FakeServer && cd FakeServer
-$ wget https://github.com/ttu/dotnet-fake-json-server/releases/download/0.4.0/fakeserver-osx.10.12-x64.tar.gz
-$ tar -zxvf fakeserver-osx.10.12-x64.tar.gz
+$ wget https://github.com/ttu/dotnet-fake-json-server/releases/download/0.4.0/fakeserver-osx-x64.tar.gz
+$ tar -zxvf fakeserver-osx-x64.tar.gz
 $ chmod +x FakeServer
 $ ./FakeServer
 ```
