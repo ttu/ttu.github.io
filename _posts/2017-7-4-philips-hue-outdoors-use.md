@@ -11,7 +11,7 @@ __Installation date:__ 07/2016
 
 __Model:__ Philips Hue White E27
 
-__Status:__ ({{ 'now' | date: "%m" }}/2017) 7/7 working
+__Status:__ ({{ 'now' | date: "%m/%Y" }}) 7 working fine, 1 broke after abuse to humidity
 
 __Weather history:__ from 08/2016 (provided by _wunderground.com_)
 
@@ -25,4 +25,8 @@ __Weather history:__ from 08/2016 (provided by _wunderground.com_)
 
 Lights are automatized with [IFTTT](https://ifttt.com). Lights turn on at sunset and turn off at sunrise. IFTTT fetches sunset and sunrise times from _weather.com_. On darkest time lights are on 18 hours and on lightest time 5 hours in a day ([Sun Graph for Helsinki](https://www.timeanddate.com/sun/finland/helsinki)).
 
-(07/2017) There has been ~3 days when lights didn't turn on automatically when IFTTT was updating Hue integration and maybe 5 times when lights didn't turn on or off for unknown reason (problems with wifi etc.). Based on my experiences IFTTT's reliability is pretty good.
+(__07/2017__) There has been ~3 days when lights didn't turn on automatically when IFTTT was updating Hue integration and maybe 5 times when lights didn't turn on or off for unknown reason (problems with wifi etc.). Based on my experiences IFTTT's reliability is pretty good.
+
+(__08/2017__) The bulb that was in a sealed lamp which had gathered humidity for since 10/2016 finally malfunctioned. Sealed case had like 50ml of water inside and lots of moisture. Considering that, I would say that Hue bulbs work well in moist conditions.
+
+(__09/2017__) New bulb was installed in a new sealed lamp which has a proper IP rating for outdoors.
