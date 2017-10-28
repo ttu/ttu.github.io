@@ -5,7 +5,9 @@ excerpt: Step by step guide how to modify Redux TodoMVC example to use Fake JSON
 ---
 
 This post contains:
-* __Step by step guide how to modify React TodoMVC example to use Fake JSON Server as a REST API Back End to store the todo-data and use WebSockets for update notifications__
+* __Step by step guide how to modify React TodoMVC example to__
+  * __Use Fake JSON Server as a REST API Back End to store the todo-data__
+  * __Use WebSockets for update notifications__
 * __How to test Fake JSON Server endpoints with Swagger and curl__
 
 Starting point is the official [Redux TodoMVC](https://github.com/reactjs/redux/tree/master/examples/todomvc) example. The modified code can be found from [todomvc-fake-server](https://github.com/ttu/todomvc-fake-server) repository.
@@ -30,7 +32,7 @@ E.g. download latest version for _macOS_. Check the correct file for your OS fro
 
 ```sh
 $ mkdir FakeServer && cd FakeServer
-$ wget https://github.com/ttu/dotnet-fake-json-server/releases/download/0.4.0/fakeserver-osx-x64.tar.gz
+$ wget https://github.com/ttu/dotnet-fake-json-server/releases/download/0.5.0/fakeserver-osx-x64.tar.gz
 $ tar -zxvf fakeserver-osx-x64.tar.gz
 $ chmod +x FakeServer
 $ ./FakeServer
