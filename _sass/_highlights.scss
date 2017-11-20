@@ -1,11 +1,9 @@
 
-.highlight {
-  background-color: #efefef;
+pre.highlight {
+  background: #272822; 
+  color: #f8f8f2;
   padding: 7px 7px 7px 10px;
   border: 1px solid #ddd;
-  -moz-box-shadow: 3px 3px rgba(0,0,0,0.1);
-  -webkit-box-shadow: 3px 3px rgba(0,0,0,0.1);
-  box-shadow: 3px 3px rgba(0,0,0,0.1);
   margin: 20px 0 20px 0;
   overflow: auto;
   font-size: 14px;
@@ -16,7 +14,6 @@ code {
 }
 
 .highlight .hll { background-color: #49483e }
-.highlight  { background: #272822; color: #f8f8f2 }
 .highlight .c { color: #75715e } /* Comment */
 .highlight .err { color: #960050; background-color: #1e0010 } /* Error */
 .highlight .k { color: #66d9ef } /* Keyword */
