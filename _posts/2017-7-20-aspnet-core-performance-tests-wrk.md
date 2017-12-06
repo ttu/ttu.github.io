@@ -79,18 +79,18 @@ Specs: Dell XPS 13, i7-6560U, 16GB, wrk at the same computer
 
 Version|Req/sec
 ---|---:
-netcoreapp1.1|22834.69
-netcoreapp2.0|-
+netcoreapp2.0|29119.66
+netcoreapp1.1|no difference
 
 ```
 Running 10s test @ http://localhost:5000
   32 threads and 256 connections
   Thread Stats   Avg      Stdev     Max   +/- Stdev
-    Latency    10.96ms    5.27ms 149.41ms   89.69%
-    Req/Sec   722.56    194.31     4.22k    89.06%
-  230782 requests in 10.11s, 27.07MB read
-Requests/sec:  22834.69
-Transfer/sec:      2.68MB
+    Latency     8.24ms    4.49ms  78.99ms   81.82%
+    Req/Sec     0.93k   384.86     5.70k    91.43%
+  293768 requests in 10.09s, 34.46MB read
+Requests/sec:  29119.66
+Transfer/sec:      3.42MB
 ```
 
 ## Source
