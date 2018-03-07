@@ -30,3 +30,5 @@ Lights are automatized with [IFTTT](https://ifttt.com). Lights turn on at sunset
 (__08/2017__) The bulb that was in a sealed lamp which had gathered humidity for since 10/2016 finally malfunctioned. Sealed case had like 50ml of water inside and lots of moisture. Considering that, I would say that Hue bulbs work well in moist conditions.
 
 (__09/2017__) New bulb was installed in a new sealed lamp which has a proper IP rating for outdoors.
+
+(__02/2018__) Lights are automated with Home Assistant instead of IFTTT. Uses Home Assistant's [Sun component](https://home-assistant.io/components/sun/).
