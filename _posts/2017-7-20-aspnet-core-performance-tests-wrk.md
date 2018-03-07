@@ -73,9 +73,9 @@ Run benchmark with wrk. This run is using 256 connections across 32 client threa
 $ wrk -c 256 -t 32 -d 10 http://localhost:5000
 ```
 
-## Results
+### Results
 
-Specs: Dell XPS 13, i7-6560U, 16GB, wrk at the same computer
+Specs: Dell XPS 13, i7-6560U, 16GB. ASP.NET Core server and wrk running in the same computer
 
 Version|Req/sec
 ---|---:
@@ -93,6 +93,10 @@ Requests/sec:  29119.66
 Transfer/sec:      3.42MB
 ```
 
+## Execute benchmark for POST request with payload
+
+More complex benchamrks need to be defined with _lua_-scripts. Check a short example how to execute POST request benchmark from the [.NET Fake JSON Server's documentation](https://github.com/ttu/dotnet-fake-json-server/blob/master/BenchmarkWrk.md).
+
 ## Source
 
-GitHub: [aspnet-core-benchmark](https://github.com/ttu/aspnet-core-benchmark)
+Example benchamrking source code with with 3 different implementations (minimal, route with map, controller). GitHub repo: [aspnet-core-benchmark](https://github.com/ttu/aspnet-core-benchmark)
