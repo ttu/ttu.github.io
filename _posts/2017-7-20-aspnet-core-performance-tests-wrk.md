@@ -95,7 +95,7 @@ Transfer/sec:      3.42MB
 
 ## Execute benchmark for POST request with payload
 
-More complex benchamrks need to be defined with _lua_-scripts. Check a short example how to execute POST request benchmark from the [.NET Fake JSON Server's documentation](https://github.com/ttu/dotnet-fake-json-server/blob/master/BenchmarkWrk.md).
+More complex benchamrks need to be defined with _lua_-scripts. Check a short example how to execute POST request benchmark from the [.NET Fake JSON Server's documentation](https://github.com/ttu/dotnet-fake-json-server/blob/master/docs/BenchmarkWrk.md).
 
 ## Source
 
