@@ -15,6 +15,7 @@ $ dotnet new web
 Replace code in `Program.cs`
 
  ```cs
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -25,24 +26,22 @@ namespace AspNetCoreBenchmark
     {
         public static void Main(string[] args)
         {
-            var host = new WebHostBuilder()
-             .UseKestrel()
-             .UseStartup<Startup>()
-             .Build();
-
-            host.Run();
+            new WebHostBuilder()
+                .UseStartup<Startup>()
+                .Build()
+                .Run();
         }
     }
 
     public class Startup
     {
-        private static string response = "Hello World!";
+        private static string _response = "Hello World!";
 
         public void Configure(IApplicationBuilder app)
         {
             app.Run(async (context) =>
             {
-                await context.Response.WriteAsync(response);
+                await context.Response.WriteAsync(_response);
             });
         }
     }
@@ -75,23 +74,32 @@ $ wrk -c 256 -t 32 -d 10 http://localhost:5000
 
 ### Results
 
-Specs: Dell XPS 13, i7-6560U, 16GB. ASP.NET Core server and wrk running in the same computer
+ASP.NET Core server and wrk running in the same computer
+
+#### Specs: Surface Book 2, i7-8650U, 16GB
+
+Version|Req/sec
+---|---:
+netcoreapp2.1|no difference
+netcoreapp2.0|38149.68
+
+```
+Running 10s test @ http://localhost:61479
+  32 threads and 256 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     6.61ms  766.82us  32.12ms   91.43%
+    Req/Sec     1.20k   108.52     3.43k    93.65%
+  385289 requests in 10.10s, 45.20MB read
+Requests/sec:  38149.68
+Transfer/sec:      4.48MB
+```
+
+#### Specs: Dell XPS 13, i7-6560U, 16GB
 
 Version|Req/sec
 ---|---:
 netcoreapp2.0|29119.66
 netcoreapp1.1|no difference
-
-```
-Running 10s test @ http://localhost:5000
-  32 threads and 256 connections
-  Thread Stats   Avg      Stdev     Max   +/- Stdev
-    Latency     8.24ms    4.49ms  78.99ms   81.82%
-    Req/Sec     0.93k   384.86     5.70k    91.43%
-  293768 requests in 10.09s, 34.46MB read
-Requests/sec:  29119.66
-Transfer/sec:      3.42MB
-```
 
 ## Execute benchmark for POST request with payload
 
@@ -99,4 +107,8 @@ More complex benchamrks need to be defined with _lua_-scripts. Check a short exa
 
 ## Source
 
-Example benchamrking source code with with 3 different implementations (minimal, route with map, controller). GitHub repo: [aspnet-core-benchmark](https://github.com/ttu/aspnet-core-benchmark)
+Example benchamrking source code with with 4 different implementations (minimal, route with map, route with RouteBuilder and Controller). GitHub repo: [aspnet-core-benchmark](https://github.com/ttu/aspnet-core-benchmark)
+
+## Updates
+
+* 10/2018: Added performance results for Surface Book 2
