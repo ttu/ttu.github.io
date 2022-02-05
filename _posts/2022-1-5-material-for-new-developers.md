@@ -20,7 +20,7 @@ History of software field
 
 Understanding the decisions behind architecture decisions
 * [Software Architecture & Design -playlist](https://www.youtube.com/playlist?list=PL4JxLacgYgqTgS8qQPC17fM-NWMTr5GW6)
-* [Architecture Patterns with Python](https://learning.oreilly.com/library/view/architecture-patterns-with/9781492052197/)
+* [Architecture Patterns with Python](https://www.goodreads.com/book/show/50083115-architecture-patterns-with-python)
 
 Keep up with the latetes trends:
 * [Reddit programming](http://www.reddit.com/r/programming)
