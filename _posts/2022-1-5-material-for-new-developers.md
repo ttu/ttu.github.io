@@ -20,13 +20,20 @@ These can help you become better engineer, get better understanding of the softw
 
 Hard to find a single good book to recommend. It is good to remember that books are always someone's personal opinions and you do not need to agree with everything. On overall implementing these practices will help you to write better code.
 
-* [Clean Code](https://www.goodreads.com/book/show/3735293-clean-code)
-* [Refacotoring (2nd ed.)](https://www.goodreads.com/book/show/44936.Refactoring)
+Start with one of these:
+[JavaScript](https://github.com/ryanmcdermott/clean-code-javascript) | [TypeScript](https://github.com/labs42io/clean-code-typescript) | [Python](https://github.com/zedr/clean-code-python)
 
-#### Web developement / back end / distributed systems architectures
+and read more from books
+
+* [The Art of Readable Code](https://www.goodreads.com/book/show/8677004-the-art-of-readable-code)
+  * More approachable and lightweight than _Clean Code_ or _Refactoring_
+* [Clean Code](https://www.goodreads.com/book/show/3735293-clean-code)
+* [Refactoring (2nd ed.)](https://www.goodreads.com/book/show/44936.Refactoring)
+
+#### Architectures
 
 Understanding the decisions behind back end / web development / distributed architectures
-* [Software Architecture & Design -playlist](https://www.youtube.com/playlist?list=PL4JxLacgYgqTgS8qQPC17fM-NWMTr5GW6)
+* [Software Architecture & Design - YouTube playlist](https://www.youtube.com/playlist?list=PL4JxLacgYgqTgS8qQPC17fM-NWMTr5GW6)
 * [Architecture Patterns with Python](https://www.goodreads.com/book/show/50083115-architecture-patterns-with-python)
 
 #### Keep up with the latetes trends
