@@ -53,9 +53,10 @@ Understand the decisions behind architecture choices.
 
 #### History of software field
 
-* [Masters of Doom](https://www.goodreads.com/book/show/222146.Masters_of_Doom)
-* [Hackers: Heroes of the Computer Revolution](https://www.goodreads.com/book/show/56829.Hackers)
-* [Command Line Heroes -podcast](https://www.redhat.com/en/command-line-heroes)
+* [Masters of Doom](https://www.goodreads.com/book/show/222146.Masters_of_Doom) - book
+* [Hackers: Heroes of the Computer Revolution](https://www.goodreads.com/book/show/56829.Hackers) - book
+* [Command Line Heroes](https://www.redhat.com/en/command-line-heroes) - podcast
+* [Halt and Catch Fire](https://www.imdb.com/title/tt2543312/) - TV-series
 
 #### Modern product development
 
