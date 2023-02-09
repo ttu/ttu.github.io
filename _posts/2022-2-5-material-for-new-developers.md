@@ -1,29 +1,29 @@
 ---
 layout: post
 title: Material for (new) developers
-excerpt: Collection of books, links and videos that can be helpful for (new) developers. Seasoned programmers may already be familiar with these topics.
+excerpt: A collection of books, links and videos that can be helpful for (new) developers. Experienced programmers might already be knowledgeable about these subjects.
 ---
 
-Collection of books, links and videos that can be helpful for developers. Seasoned programmers may already be familiar with these topics.
+A collection of books, links and videos that can be helpful for (new) developers. Experienced programmers might already be knowledgeable about these subjects.
 
 ### Books, links and videos
 
-#### Technical and non technical tips and guides.
+#### Technical and non-technical tips and guides
 
-These can help you become better engineer, get better understanding of the software field and understand people better.
+These can help you become a better engineer, improve your knowledge of the software industry and ability to understand people.
 
 * [The Pragmatic Programmer](https://www.goodreads.com/book/show/4099.The_Pragmatic_Programmer)
   * Read 20th Anniversary Edition / 2nd edition
   * This book is filled with practical and technical advices, best approaches and major pitfalls
   * [Summary](https://github.com/HugoMatilla/The-Pragmatic-Programmer)
 * [Being Geek: The Software Developer's Career Handbook](https://www.goodreads.com/book/show/8473471-being-geek)
-  * Plenty of relevant information what it is like to work in a software field written in an easy way
+  * Easy to read material containing a lot of relevant information about what it's like to work in the software industry
 * [The Unicorn Project](https://www.goodreads.com/book/show/44333183-the-unicorn-project)
-  * Novel what it is to work in an non-tech centric enterprise company
+  * Novel about working in a non-tech centered enterprise company
 
 #### How to write good code
 
-Hard to find a single good book to recommend. It is good to remember that books are always someone's personal opinions and you do not need to agree with everything. On overall following practices will help you to write better code.
+Hard to find a single good book to recommend. It is good to keep in mind that books have always author's personal opinions and you do not need to agree with them all. Overall, following practices will help you to write better code.
 
 Start with one of these:
 [JavaScript](https://github.com/ryanmcdermott/clean-code-javascript) | [TypeScript](https://github.com/labs42io/clean-code-typescript) | [Python](https://github.com/zedr/clean-code-python)
@@ -36,7 +36,7 @@ and read more from books
 * [Refactoring](https://www.goodreads.com/book/show/44936.Refactoring)
   * 2nd edition has code examples in JavaScript
 
-And then write more code and repeat, repeat and repeat.
+After that, write more code. And repeat, repeat and repeat.
 
 #### Architectures
 
@@ -46,7 +46,7 @@ Understand the decisions behind architecture choices.
 * [Software Architecture & Design - YouTube playlist](https://www.youtube.com/playlist?list=PL4JxLacgYgqTgS8qQPC17fM-NWMTr5GW6)
   * Good under 1h introduction to distributed systems architectures
 
-#### Keep up with the latetes trends
+#### Keep up with the latest trends
 
 * [Reddit programming](http://www.reddit.com/r/programming)
 * [Hacker news](https://news.ycombinator.com/)
