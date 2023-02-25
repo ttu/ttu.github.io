@@ -117,7 +117,7 @@ class Starship:
         self.captain = captain 
 ```
 
-Data Classes use type annotations to annotate instance variables. 
+[Data Classes](https://docs.python.org/3/library/dataclasses.html) use type annotations to annotate instance variables. `__init__` is generated automatically with instance variable arguments. 
 
 ```py
 from dataclasses import dataclass
@@ -146,4 +146,4 @@ print(p2.name)
 print(p2.age)
 ```
 
-Good example: https://pynative.com/python-class-variables/
+Good Python Class Variables [example](https://pynative.com/python-class-variables/).
