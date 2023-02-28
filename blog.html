@@ -9,7 +9,7 @@ layout: default
       <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
       
       <div class="entry">
-        {{ post.date | date: "%m/%Y" }} - {{ post.excerpt }}
+        <b>{{ post.date | date: "%m/%Y" }}</b> - {{ post.excerpt }}
       </div>
 
       <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
