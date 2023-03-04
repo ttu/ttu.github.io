@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Understanding Python class and instance variables
+title: Python class and instance variables
 excerpt: Understanding Python class (static) and instance variables through examples with and without type annotations
 ---
 
