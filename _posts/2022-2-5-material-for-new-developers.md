@@ -18,8 +18,10 @@ These can help you become a better engineer, improve your knowledge of the softw
   * [Summary](https://github.com/HugoMatilla/The-Pragmatic-Programmer)
 * [Being Geek: The Software Developer's Career Handbook](https://www.goodreads.com/book/show/8473471-being-geek)
   * Easy to read material containing a lot of relevant information about what it's like to work in the software industry
+* [The Phoenix Project](https://www.goodreads.com/book/show/17255186-the-phoenix-project)
+  * A Novel About IT and DevOps
 * [The Unicorn Project](https://www.goodreads.com/book/show/44333183-the-unicorn-project)
-  * Novel about working in a non-tech centered enterprise company
+  * A Novel about working in software development in a non-tech centered enterprise company
 
 #### How to write good code
 
@@ -48,7 +50,7 @@ Understand the decisions behind architecture choices.
 
 #### Keep up with the latest trends
 
-* [Reddit programming](http://www.reddit.com/r/programming)
+* [Reddit programming](http://old.reddit.com/r/programming)
 * [Hacker news](https://news.ycombinator.com/)
 
 #### History of software field
