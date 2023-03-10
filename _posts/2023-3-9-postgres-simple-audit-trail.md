@@ -20,7 +20,7 @@ CREATE TABLE audit_trail
     table_name   text,
     row_pk       int,
     operation    text,
-    data         json
+    data         jsonb
 );
 
 CREATE INDEX audit_trail_time_stamp_table_name_index
