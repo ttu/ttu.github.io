@@ -3,18 +3,23 @@ layout: default
 ---
 
 <div class="posts">
-  <div>These posts are primarily intended to serve as my own personal notes.</div>
 
-  {% for post in site.posts %}
-    <article class="post">
+  <div style="margin-bottom: 10px">
+    These posts are primarily intended to serve as my own personal notes.
+  </div>
 
-      <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
-      
-      <div class="entry">
-        <b>{{ post.date | date: "%m/%Y" }}</b> - {{ post.excerpt }}
-      </div>
+  <div>
+    {% for post in site.posts %}
+      <article class="post" style="margin-bottom: 10px">
 
-      <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
-    </article>
-  {% endfor %}
+        <div class="entry">
+          <div>
+            <b><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></b> ({{ post.date | date: "%m/%Y" }})
+          </div>
+          {{ post.excerpt }}
+        </div>
+
+      </article>
+    {% endfor %}
+  </div>
 </div>
