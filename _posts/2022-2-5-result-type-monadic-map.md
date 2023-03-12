@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Result type, monadic type and why there is always a map-function?
-excerpt: What is a result type, what is a monadic type and why they always have a map-function
+excerpt: What is a result type, what is a monadic type and why they always have a map-function.
 ---
 
 Wikipedia definition: [https://en.wikipedia.org/wiki/Result_type](https://en.wikipedia.org/wiki/Result_type)

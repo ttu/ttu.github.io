@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Postgres simple audit trail with trigger
-excerpt: How to implement a simple audit trail with postgres trigger
+excerpt: How to implement a simple audit trail with postgres trigger.
 ---
 
 How to implement a simple audit trail with postgres trigger.

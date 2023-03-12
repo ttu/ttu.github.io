@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Python class and instance variables
-excerpt: Understanding Python class (static) and instance variables through examples with and without type annotations
+excerpt: Understanding Python class (static) and instance variables through examples with and without type annotations.
 ---
 
 - Class variables are shared by all instances of the class

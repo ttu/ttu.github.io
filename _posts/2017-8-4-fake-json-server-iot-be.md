@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Fake JSON Server as an IoT Back End
-excerpt: How to use Fake JSON Server as an IoT Back End
+excerpt: How to use Fake JSON Server as an IoT Back End.
 ---
 
 How to use Fake JSON Server as an IoT Back End.

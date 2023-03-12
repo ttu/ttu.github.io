@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Use Chocolatey to automate application installations on a Windows development machine
-excerpt: Automate application installations with Chocolatey package manager and make onboarding happier for new employees
+excerpt: Automate application installations with Chocolatey package manager and make onboarding happier for new employees.
 ---
 
 Do you need an easy way to improve your team's new employee onboarding or just a way to make your life easier? Use _a package manager with Windows_.

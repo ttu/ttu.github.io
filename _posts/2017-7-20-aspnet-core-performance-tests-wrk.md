@@ -1,7 +1,7 @@
 ---
 layout: post
 title: ASP.NET Core Performance Tests
-excerpt: How to execute performance tests for ASP.NET Core with wrk
+excerpt: How to execute performance tests for ASP.NET Core with wrk.
 ---
 
 How to execute performance tests for __ASP.NET Core__ with __wrk__.

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Philips Hue Outdoors Use
-excerpt: Outdoors test of Philips Hue White bulbs at South Finland
+excerpt: Outdoors test of Philips Hue White bulbs at South Finland.
 ---
 
 Outdoors test of Philips Hue White bulbs at South Finland.

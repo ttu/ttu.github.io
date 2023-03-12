@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Mountain biking skill guides
-excerpt: Collection of guides, tips and tricks to learn some mtb skills
+excerpt: Collection of guides, tips and tricks to learn some mtb skills.
 ---
 
 Compilation of mtb skills guides that I've found useful over the years. These basic and advanced skills will enhance the enjoyment on trails and on downhill routes.

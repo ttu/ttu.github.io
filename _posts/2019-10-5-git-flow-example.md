@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Git flow example with commands
-excerpt: Git flow example with commands
+excerpt: Git flow example with commands.
 ---
 
 NOTE: Git flow is often too complex, e.g. [GitHub flow](https://docs.github.com/en/get-started/quickstart/github-flow) might be enough. Keep it simple.
