@@ -30,7 +30,7 @@ CREATE INDEX audit_trail_time_stamp_table_name_index
 When data changes, store only changed data. For comparing new and old data, create a `jsonb` diff-function.
 
 ```sql
-CREATE OR REPLACE FUNCTION jsonb_diff_val(val1 JSONB,val2 JSONB)
+CREATE FUNCTION jsonb_diff_val(val1 JSONB,val2 JSONB)
 RETURNS JSONB AS $$
 DECLARE
   result JSONB;
@@ -53,7 +53,7 @@ $$ LANGUAGE plpgsql;
 Create function for logging database changes. On `INSERT` insert new data, on `UPDATE` insert changed data, on `DELETE` insert only id. 
 
 ```sql
-CREATE OR REPLACE FUNCTION log_audit_trail() RETURNS trigger AS
+CREATE FUNCTION log_audit_trail() RETURNS trigger AS
 $$
 BEGIN
     IF TG_OP = 'INSERT'
@@ -68,9 +68,8 @@ BEGIN
         RETURN NEW;
     ELSIF TG_OP = 'DELETE'
     THEN
-        INSERT INTO audit_trail
-            (table_name, row_pk, operation)
-        VALUES (TG_RELNAME, NEW.id, TG_OP);
+        INSERT INTO audit_trail (table_name, row_pk, operation, data)
+        VALUES (TG_RELNAME, OLD.id, TG_OP, to_jsonb(OLD));
         RETURN OLD;
     END IF;
 END;
