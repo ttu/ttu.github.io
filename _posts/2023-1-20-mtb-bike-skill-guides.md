@@ -97,7 +97,6 @@ Steep jumps, e.g. dirt jumps.
 
 1. Keep knees over the toes and body perpendicular to sea level (stand up straight all the time)
 
-
 <h2>Bunny hop</h2>
 
 Proper bunny hop is freaking hard. I know how to hop up the front and the rear at the same time, but doing a proper bunny hop seems to be an impossible feat.
@@ -136,10 +135,13 @@ Extremely nice skill on trails. Brings lots of extra fun.
 2. Small gear
 3. Start from curbs. Then to 20cm drop and progress on
 
-Good way to practice is also a mental practice. Look a mark on the ground and imagine that as the start of the drop.
+Good way to practice is a mental practice. Look a mark on the ground and imagine that as the start of the drop.
 
 <iframe width="99%" height="350" src="https://www.youtube.com/embed/FAw0VlMzS8k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
+Some people apparently think the motion as a pedal kick instead of wheelie. Half pedal kick technique "tutorial" start at ~3:00. Power wheelie mindset is easier for me, but main things is to find what works for you.
+
+<iframe width="99%" height="350" src="https://www.youtube.com/embed/tx49sX09O-U?start=181" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 <h2>Riding Berms</h2>
 
@@ -166,7 +168,6 @@ Interseting part of this was, that I actually had the realization that you do no
 Start with extemely small movement. To make things easier, turn handlebar towards where you are watching or where you want to turn bike next.
 
 <iframe width="99%" height="350" src="https://www.youtube.com/embed/lQP7HQlBtWI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
 
 <h2>Whip</h2>
 
