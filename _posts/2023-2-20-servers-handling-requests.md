@@ -1,17 +1,17 @@
 ---
 layout: post
-title: How server handle multiple requests at the same time (Python, WSGI, Gunicorn)
-excerpt: Understanding how different servers work.
+title: How do servers handle multiple requests simultaneously (Python, WSGI, Gunicorn)?
+excerpt: Understanding how different servers handle simultaneous requests.
 ---
-Different servers handle requests differently by utlizing threads or processes. Some examples:
+Servers can handle requests in different ways, utilizing threads or processes. Some examples include:
 
-- Server use a single thread to serve all request
-- Server assigns a thread for each request
-- Server runs in a single process
-- Server runs in a multiple processes
-- Multiple instances of server are running
+- Servers that use a single thread to serve all requests
+- Servers that assign a thread for each request
+- Servers that run in a single process
+- Servers that run in multiple processes
+- Multiple instances of the server can be deployed simultaneously
 
-Good thing to remember from threads is that creating, assigning and switching threads is slow → In some cases using __less__ threads is __faster__.
+Good thing to remember about threads is that creating, assigning and switching threads is slow → In some cases using __fewer__ threads can result in __better__ performance.
 
 
 __Node.js server handling requests with a single thread__
@@ -39,9 +39,9 @@ Internally Node.js server also uses thread pool. In Node, I/O operations are off
 
 [https://www.techempower.com/benchmarks/](https://www.techempower.com/benchmarks/)
 
-What is then really fast? More importantly, what is enough for our use case?
+What actually qualifies as 'fast' in real-life scenarios? More importantly, how can we determine what is sufficient for our specific use case?
 
-Things to concider:
+Things to consider:
 * How many simultaneous users our service has?
 * How many requests users create per second? 
 * How many of these requests are unique?
@@ -49,7 +49,6 @@ Things to concider:
 * ...?
 
 Basic web application requires quite a lot of simultaneous users that raw performance start to really matter. Especially if proper caching is used. If each customer request is e.g. customer specific, then common caching is not an option and performance is even more important.
-
 
 ## Do server handle reqeusts concurrently or parallel?
 
@@ -91,7 +90,7 @@ __Thread vs coroutine (async)__
 
 __Thread vs greenlets__
 
-- Greenlets are like application controlled threads.
+- Greenlets are like application controlled threads
 - Coroutine is same as greenlet
 
 Read more from: [https://medium.com/@nhudinhtuan/gunicorn-worker-types-practice-advice-for-better-performance-7a299bb8f929](https://medium.com/@nhudinhtuan/gunicorn-worker-types-practice-advice-for-better-performance-7a299bb8f929)
