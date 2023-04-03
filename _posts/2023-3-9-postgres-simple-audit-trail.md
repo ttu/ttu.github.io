@@ -12,10 +12,11 @@ Credit to:
 
 
 Create the `audit_trail` table.
+
 ```sql
 CREATE TABLE audit_trail
 (
-    id           serial NOT NULL,
+    id           serial PRIMARY KEY,
     time_stamp   timestamp DEFAULT NOW(),
     table_name   text,
     row_pk       int,
@@ -50,28 +51,34 @@ END;
 $$ LANGUAGE plpgsql;
 ```
 
-Create function for logging database changes. On `INSERT` insert new data, on `UPDATE` insert changed data, on `DELETE` insert only id. 
+Create function for logging database changes. On `INSERT` insert new data, on `UPDATE` insert changed data, on `DELETE` insert only id (primary key column). 
 
 ```sql
 CREATE FUNCTION log_audit_trail() RETURNS trigger AS
 $$
 BEGIN
-    IF TG_OP = 'INSERT'
-    THEN
-        INSERT INTO audit_trail (table_name, row_pk, operation, data)
-        VALUES (TG_RELNAME, NEW.id, TG_OP, to_jsonb(NEW));
-        RETURN NEW;
-    ELSIF TG_OP = 'UPDATE'
-    THEN
-        INSERT INTO audit_trail (table_name, row_pk, operation, data)
-        VALUES (TG_RELNAME, NEW.id, TG_OP, jsonb_diff_val(to_jsonb(NEW), to_jsonb(OLD)));
-        RETURN NEW;
-    ELSIF TG_OP = 'DELETE'
-    THEN
-        INSERT INTO audit_trail (table_name, row_pk, operation, data)
-        VALUES (TG_RELNAME, OLD.id, TG_OP, to_jsonb(OLD));
-        RETURN OLD;
-    END IF;
+    BEGIN
+        IF TG_OP = 'INSERT'
+        THEN
+            INSERT INTO audit_trail (table_name, row_pk, operation, data)
+            VALUES (TG_RELNAME, NEW.id, TG_OP, to_jsonb(NEW));
+            RETURN NEW;
+        ELSIF TG_OP = 'UPDATE'
+        THEN
+            INSERT INTO audit_trail (table_name, row_pk, operation, data)
+            VALUES (TG_RELNAME, NEW.id, TG_OP, jsonb_diff_val(to_jsonb(NEW), to_jsonb(OLD)));
+            RETURN NEW;
+        ELSIF TG_OP = 'DELETE'
+        THEN
+            INSERT INTO audit_trail (table_name, row_pk, operation, data)
+            VALUES (TG_RELNAME, OLD.id, TG_OP, to_jsonb(OLD));
+            RETURN OLD;
+        END IF;
+    EXCEPTION
+        WHEN OTHERS THEN
+            RAISE WARNING 'Error in log_audit_trail function: %', SQLERRM;
+            RETURN coalesce(NEW, OLD);
+    END;
 END;
 $$ LANGUAGE 'plpgsql' SECURITY DEFINER;
 ```
@@ -79,7 +86,7 @@ $$ LANGUAGE 'plpgsql' SECURITY DEFINER;
 Create trigger for table, e.g. `customer` in this example.
 
 ```sql
-CREATE TRIGGER customer_audit_trail
+CREATE TRIGGER log_customer_changes
     BEFORE INSERT OR UPDATE OR DELETE
     ON "customer"
     FOR EACH ROW
