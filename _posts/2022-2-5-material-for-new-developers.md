@@ -60,9 +60,13 @@ Understand the decisions behind architecture choices.
 * [Command Line Heroes](https://www.redhat.com/en/command-line-heroes) - podcast
 * [Halt and Catch Fire](https://www.imdb.com/title/tt2543312/) - TV-series
 
-#### Modern product development
+#### About product development
 
-* [What Silicon Valley "Gets" about Software Engineers that Traditional Companies Do Not](https://blog.pragmaticengineer.com/what-silicon-valley-gets-right-on-software-engineers/)
-  * In some companies engineering is not a feature factory. Engineers are expected to be creative problem solvers who also understand the business.
 * [Why coding isn't enough](https://www.youtube.com/watch?v=yzhnRt6ZDKM)
   * _"The job of a software engineer is not to code, at least not 100% of it is; it's to solve a technical problem. So have pride in solving that problem."_
+* [Things they didn’t teach you about Software Engineering](https://vadimkravcenko.com/shorts/things-they-didnt-teach-you/)
+  * Some important aspects of software engineering that are often overlooked in traditional education, e.g. self-leadership, collaboration, and continuously learning and improving technical skills.
+* [How "Engineering-driven" leads to "engineering-supremacy"](https://charity.wtf/2022/01/20/how-engineering-driven-leads-to-engineering-supremacy/)
+    * Focusing on engineering as the key driver of a company's success can lead to negative outcomes as it can lead to neglecting the importance of other roles, such as product, sales, and customer support.
+* [What Silicon Valley "Gets" about Software Engineers that Traditional Companies Do Not](https://blog.pragmaticengineer.com/what-silicon-valley-gets-right-on-software-engineers/)
+  * In some companies engineering is not a feature factory. Engineers are expected to be creative problem solvers who also understand the business.
