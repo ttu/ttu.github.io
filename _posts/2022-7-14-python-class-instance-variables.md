@@ -77,6 +77,9 @@ Type annotations change the behaviour a little: [pep-05269](https://peps.python.
 
 Example from [pep-05269](https://peps.python.org/pep-0526/#class-and-instance-variable-annotations):
 ```py
+from typing import ClassVar
+
+
 class Starship:
     captain: str = "Picard"               # instance variable with default 
     damage: int                           # instance variable without default
@@ -92,8 +95,8 @@ class Starship:
 
 
 # Note:
-# captain is actually class variable
-# damage is instance variable
+# captain is actually a class variable
+# damage is an instance variable
 enterprise_d = Starship(3000)
 enterprise_d.hit()
 
@@ -101,8 +104,10 @@ enterprise_d.stats = {}  # Flagged as error by a type checker
 # (NOTE: This makes enterprise_d.stas an instance variable)
 Starship.stats = {}  # This is OK
 
-Starship.captain = "Kirk"  # This is also OK
-enterprise_d.captain = "Sisko"  # This is also OK
+Starship.captain = "Kirk"  # This is also OK as captain is actually a class variable
+print(enterprise_d.captain)  # captain is "Kirk"
+
+enterprise_d.captain = "Sisko"
 
 print(Starship.captain)  # captain is "Kirk"
 print(enterprise_d.captain)  # captain in "Sisko"
