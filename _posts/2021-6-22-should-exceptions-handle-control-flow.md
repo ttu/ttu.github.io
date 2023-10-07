@@ -77,7 +77,7 @@ If there are expected errors, these conditions can be made clearer with a custom
 
 ```js
 // Service
-const returData = (id) => {
+const returnData = (id) => {
   const fromdb = getDataFromDb(id);
   if (!fromDb) return { succes: false, error: 'not_found', data: id };
   if (!fromDb.isValid) return { succes: false, error: 'not_valid', data: id };
@@ -87,7 +87,7 @@ const returData = (id) => {
 
 // Controller
 const endpoint = (req, res) => {
-  const result = service.returData(req.id);
+  const result = service.returnData(req.id);
   if (!result.success) return utils.getErrorResponseForResult(res, result);
   return res.send(result);
 }
@@ -105,7 +105,7 @@ Developing an additional result-type is unnecessary since ts-result already prov
 import { Ok, Err, Result } from 'ts-results';
 
 // Service
-const returData = (id) => {
+const returnData = (id) => {
   const fromdb = getDataFromDb(id);
   if (!fromDb) return Err({ error: 'not_found', data: id });
   if (!fromDb.isValid) return Err({ error: 'not_valid', data: id });
@@ -115,7 +115,7 @@ const returData = (id) => {
 
 // Controller
 const endpoint = (req, res) => {
-  const result = service.returData(req.id);
+  const result = service.returnData(req.id);
   if (result.err) return utils.getErrorResponseForResult(result);
   return res.send(result);
 }
