@@ -36,7 +36,7 @@ Getting over an obstacle doesn't require any advanced bunny hop technique. Basic
 
 <iframe width="99%" height="350" src="https://www.youtube.com/embed/KifLqlML6K8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-<h2>Pedal kick</h2>
+<h2>Pedal kick / punch</h2>
 
 Good technique to get on top of the obstacle.
 
@@ -45,6 +45,10 @@ Good technique to get on top of the obstacle.
 More instructions on how to get more power to that kick.
 
 <iframe width="99%" height="350" src="https://www.youtube.com/embed/fQ0NJI2s4ZA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+Another good video about the technique.
+
+<iframe width="99%" height="350" src="https://www.youtube.com/embed/PF68cmrLBKY?si=zG5L7ZjLBJ7Gi5mV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 <h2>Drops with speed</h2>
 
@@ -84,6 +88,9 @@ In reality, it is also possible to start little differently. Even kids jump with
 This takes you already far and you can pretty much enjoy any jump for the "normal" people.
 
 <iframe width="99%" height="350" src="https://www.youtube.com/embed/rKNGVTvSpUs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+Check good technique tips (in Finnish) and slow motion video in this Instagram post:
+<a href="https://www.instagram.com/p/CQOCy1KF9My/">https://www.instagram.com/p/CQOCy1KF9My/</a>
 
 When jumpst start to get bigger there is a big chance for so called "dead-sailor". To keep you occupied you can do a rowing motion in the air. Push bars forward and bend legs. Keep looking far ahead. Bar turn is also a good option to keep you occupied.
 
