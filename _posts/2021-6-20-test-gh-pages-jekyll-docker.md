@@ -24,7 +24,7 @@ Easier way is to use Docker image with a correct configuration: [starefossen/git
 Start image by going to your __github.io__-directory with Jekyll generated site and mount your directory in a volume under __/usr/src/app__.
 
 ```sh
-# Linux
+# Linux / macOS
 $ docker run --rm -v "$PWD":/usr/src/app -p 4000:4000 starefossen/github-pages
 
 # Windows
