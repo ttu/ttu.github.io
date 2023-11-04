@@ -8,6 +8,8 @@ Do you need an easy way to improve your team's new employee onboarding or just a
 
 Unfortunately Windows doesn't have an official package manager, so many Windows users install applications manually. That habit is rooted deep and for a long time I also used to install all my applications manually when using Windows. Even when I already knew of the existence of _Chocolatey_ and other package managers.
 
+**Update 2022:** Windows has also official package manager [Winget](https://github.com/microsoft/winget-cli). Chocolatey has still larger package repository, so it might still be better option in some cases.
+
 ## Chocolatey
 
 [Chocolatey](https://chocolatey.org/) is _a package managers for Windows_. Chocolatey works with all existing software installation technologies like _MSI_, _NSIS_, _InnoSetup_ etc. and also works with runtime binaries and zip archives. Pretty much any application can be installed with Chocolatey.
