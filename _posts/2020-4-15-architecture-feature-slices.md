@@ -4,12 +4,29 @@ title: Architectures - Feature Slices
 excerpt: Vertical aka feature slices structure the code around business aspects or features and not by the responsibility.
 ---
 
-Vertical (aka feature) slices structure the code around **business aspects or features** and **not by the responsibility**. In a larger project this enables to split the code into smaller parts which make the project structure easier to understand and more maintainable.
+Vertical (aka feature) slices structure the code around **business aspects or features** and **not by the responsibility**. In a larger project, this enables the code to be split into smaller parts, which makes the project structure easier to understand and more maintainable. 
 
 ![image monlith vs fetures](/images/posts/feature-slices/monolith-slices-microservices.png)
 Source: https://www.betterask.erni/news-room/slices-vs-layers/
 
-Features can also have their own APIs (routes) and database schemas, like microservices, as shown in the next example.
+In addition to what is shown in the previous image, features can also have their own APIs (routes) and database schemas, with each route being completely independent, much like a microservice, as illustrated in the next example.
+
+### Pros and cons
+
+Overall, organizing code using vertical slices can streamline development, improve collaboration, and make the codebase more manageable and adaptable to changes.
+
+__Pros__
+* __Improved Maintainability:__ Vertical slices make it easier to understand and modify the codebase, especially for larger projects. By grouping related code together, vertical slices reduce the amount of context switching required to make changes, and they make it easier to identify and isolate problems.
+* __Reduced Coupling:__ Vertical slices minimize coupling between different parts of the codebase, making it easier to make changes to a specific feature without affecting unrelated parts.
+* __Enhanced Feature Independence:__ Vertical slices promote feature independence, which means that teams can work on different features without interfering with each other. This can lead to faster development cycles and better overall project coordination.
+* __Improved Developer Productivity:__ Vertical slices can improve developer productivity by making it easier to find and understand the code relevant to a specific task. This can reduce the time spent searching for code and debugging issues, leading to more efficient development cycles.
+
+__Cons__
+* __Consisteny challenges:__ Maintaining consistent practices across slices can be challenging. It requires good communication and following on agreed-upon standards to ensure consistency.
+* __Potential for Duplication:__ Vertical slices may lead to code duplication, as similar functionality may be implemented in multiple features. This can increase the overall codebase size and make it more difficult to maintain consistency.
+* __Difficulty in Identifying Cross-Feature Dependencies:__ Identifying dependencies between features can be more difficult with vertical slices, as the code is organized around individual features rather than the overall system flow.
+* __Increased Complexity for Small Projects:__ For small projects with a limited codebase, vertical slices may introduce unnecessary complexity and overhead. In such cases, a simpler, flatter structure may be more suitable.
+
 
 ### Feature Slice example
 
