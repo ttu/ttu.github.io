@@ -10,18 +10,23 @@ A collection of books, links and videos that can be helpful for (new) developers
 
 #### Technical and non-technical tips and guides
 
-These can help you become a better engineer, improve your knowledge of the software industry and ability to understand people.
+These can help you become a better engineer, improve your knowledge of the software industry and your ability to understand people.
 
 * [The Pragmatic Programmer](https://www.goodreads.com/book/show/4099.The_Pragmatic_Programmer)
-  * Read 20th Anniversary Edition / 2nd edition
   * This book is filled with practical and technical advices, best approaches and major pitfalls
-  * [Summary](https://github.com/HugoMatilla/The-Pragmatic-Programmer)
-* [Being Geek: The Software Developer's Career Handbook](https://www.goodreads.com/book/show/8473471-being-geek)
-  * Easy to read material containing a lot of relevant information about what it's like to work in the software industry
+  * Read 20th Anniversary Edition / 2nd edition
+* [The Software Engineer's Guidebook](https://www.goodreads.com/book/show/201545491-the-software-engineer-s-guidebook)
+  * Lots of practical information from all areas of software engineer's work and career
+* [The Software Developer's Career Handbook](https://www.goodreads.com/book/show/64661326-the-software-developer-s-career-handbook)
+  * Easy to read material containing a lot of relevant information about what it’s like to work in the software industry
+* [The Goal: A Process of Ongoing Improvement](https://www.goodreads.com/book/show/113934.The_Goal)
+  * A novel about thoery and practices to achieve ongoing process improvement
+  * There is also a comic book version of this book, [The Goal: A Business Graphic Novel](https://www.goodreads.com/book/show/35528537-the-goal), which is fast to read and for most readers it is probably enough
 * [The Phoenix Project](https://www.goodreads.com/book/show/17255186-the-phoenix-project)
-  * A Novel About IT and DevOps
+  * A novel about transforming IT processes to better align with business goals and enhance overall organizational performance
+  * This book is a homage to _The Goal_, and it is recommended to read it first
 * [The Unicorn Project](https://www.goodreads.com/book/show/44333183-the-unicorn-project)
-  * A Novel about working in software development in a non-tech centered enterprise company
+  * A novel about working in software development in a non-tech centered enterprise company
 
 #### How to write good code
 
@@ -37,6 +42,8 @@ and read more from books
 * [Clean Code](https://www.goodreads.com/book/show/3735293-clean-code)
 * [Refactoring](https://www.goodreads.com/book/show/44936.Refactoring)
   * 2nd edition has code examples in JavaScript
+* [Philosophy of Software Design](https://www.goodreads.com/book/show/39996759-philosophy-of-software-design)
+  * How to design software while avoiding complexity
 
 After that, write more code. And repeat, repeat and repeat.
 
@@ -50,8 +57,8 @@ Understand the decisions behind architecture choices.
 
 #### Keep up with the latest trends
 
-* [Reddit programming](http://old.reddit.com/r/programming)
 * [Hacker news](https://news.ycombinator.com/)
+* [Reddit programming](http://old.reddit.com/r/programming)
 
 #### History of software field
 
