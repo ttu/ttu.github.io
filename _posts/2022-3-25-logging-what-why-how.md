@@ -4,20 +4,20 @@ title: Logging - What, why and how?
 excerpt: What is logging, why to use it and how to use it.
 ---
 
-**Logging** is a critical tool for debugging and troubleshooting applications. It tells you what happened, and gives you the raw data to track down the issue. 
+**Logging** is a critical tool for debugging and troubleshooting applications. It tells you what happened, and gives you the raw data to track down the issue.
 By capturing relevant information at various stages of the application's execution, logging enables developers **to pinpoint the root cause of errors** and **resolve them efficiently**.
 
 **Monitoring** is an essential practice for **ensuring the reliability and performance of applications**. It tells you how your application is behaving by continuously gathering and analyzing data about its behavior and health. With monitoring, you can **detect issues early**, prevent downtime, and optimize resource utilization.
 
-Logging is also an useful tool for tracking application behavior and collecting statistics, but it's important to note that it only covers a limited range of functionality. To achieve comprehensive monitoring and analytics, it's recommended to use additional services such as Datadog, New Relic, or Google Analytics.
+Logging is also an useful tool for tracking application behavior and collecting statistics, but it's important to note that it only covers a limited range of functionality. E.g. Logs (formerly LogTail) has functionality to provide [alerts](https://betterstack.com/docs/logs/dashboards/alerts/) from specific log conditions.
 
-TODO: Add link to Logtail Alerts with log queris
+To achieve comprehensive monitoring and analytics, it's recommended to use additional services such as Datadog, New Relic, or Google Analytics.
 
 ### What to log?
 
 Collecting a sufficient amount of logs is essential for identifying when errors occur and determining what was happening prior to the occurrence of an error. In addition to identifying errors and their causes, logs can also aid in investigating the root cause of an issue. This is why it's important to include info logging in the logging process.
 
-Thorough investigations into application failures, it's important to focus on the "5 W"s: 
+Thorough investigations into application failures, it's important to focus on the "5 W"s:
 
 Who, What, When, Where and Why
 
@@ -52,8 +52,8 @@ In some cases it is hard to define what is an error and what is not. For example
           - Or log, if we expect that data should be there
         - Data not valid -> No logging
           - Or log, if we expect that data should be valid
-        - Bad request -> Logging 
-            - Depends on additional info, what went wrong? 
+        - Bad request -> Logging
+            - Depends on additional info, what went wrong?
             - Maybe something was missing from request data?
 2. Data is fetched from external service -> Data is returned -> Exception in our code
     - Log, as this is something that needs to be fixed immediately
@@ -64,17 +64,21 @@ In some cases it is hard to define what is an error and what is not. For example
 1. Log in machine parseable format
 2. Make the logs human readable as well
 
-Do not use variables in error description/message. Services like Sentry, will then consider those as a  different errors. It is also easier to find similar messages from logs when description is always same.
+Separating log messages from variable information by passing variables as parameters to a logging function is often a good practice to follow.
+
+Having variables in error descriptions or messages can make it more challenging for services to parse information from logged data. For example, monitoring services may struggle to create event data from logged messages, as it is difficult to extract significant information from changing message text. Similarly, error tracking services may face challenges in identifying unique issues when, for instance, user IDs change within the message text.
+
+From security point of view, it is easier to filter out sensitive information from additional data, than from error message.
 
 ```js
 // Not good
 log.error('Order ${order.id} creation failed for user ${user.id}: ' + ex.message);
 
 // Good
-log.error('Order creation failed for user', { order, userId: user.id, ex });
+log.error('Order creation failed for user', { orderId: order.id, userId: user.id, ex });
 ```
 
-Additional data should be an object. This way services know how to serialize it nicely to additional data fields.¨
+Additional data should be an object. This way services know how to serialize it nicely to additional data fields.
 
 ```js
 log.error('this is the message and it should always be same', { all data, exceptions and variables in additional data });
@@ -95,11 +99,41 @@ log.error('Order creation failed', { order });
 
 // Additional data in e.g. Sentry:
 {
-  order: { 
+  order: {
     id: 'aaaa',
     description: 'asdasfdasdf'
   }
 }
+```
+
+It is important to provide additional information to services, e.g. if only an error message is logged, sentry can't display additional information about logged data.
+
+```py
+log.error("Some error (%s) happened: %s", error_code, error_message)
+```
+
+Sentry displays data in following format:
+
+```
+Message:
+Some error (1234) happened: Total failure
+
+#0 1234
+#1 Total failure
+```
+
+If additional data is passed as an object, services are able to parse it and display field names etc.
+
+```py
+log.error("Some error happened", {"error_code"=error_code, "error_message"=error_message})
+```
+
+```
+Message:
+Some error happened
+
+error_code: 1234
+error_message: Total failure
 ```
 
 Exceptions should also not have variables in description. It is advicable to use custom exceptions where we can pass additional information.
@@ -111,11 +145,19 @@ throw new OrderCreationError('Order creation failed for user', { order, userId: 
 
 ### Personally identifiable information (PII)
 
-Never log any perfoally identifiable information. Some services clean up the PII from the logged data (e.g. Sentry), but all services do not do this automatically.
+Do not log any personally identifiable information (PII). While some services, such as Sentry, attempt to clean up PII from logged data, not all services do this automatically.
+
+When additional data is passed as an object, it is more straightforward to incorporate filtering logic for removing PII information.
 
 > PII (Personally Identifiable Information) data is any information that can be used to identify a particular individual. This can include a person's name, address, phone number, email address, social security number, driver's license number, passport number, financial account numbers, and any other information that can be used to uniquely identify a person. PII data is sensitive and should be protected to prevent identity theft, fraud, or other types of misuse.
 
 ### Logging in Python
+
+Python has slightly different recommendations for logging compared to most other languages. Interpolation of logged messages is often recommended when using logging.
+
+Services employ mappers and parsers to address this "issue" giving them the capability to use passed arguments to extract logged data.
+
+For new projects, it might be advisable to pass all variables in arguments (args). However, it's important to bear in mind that if libraries include logging code, they likely use interpolation.
 
 **Adding exception info to log**
 
@@ -130,6 +172,14 @@ logger.error("Error message", {"data": data, "error": str(e)}, exc_info=True)
 ```
 
 NOTE: `traceback.print_exc()` can be used to print the exception to the console.
+
+**Formatting**
+
+When message doesn't include any arguments, then arguments must be defined in the format.
+
+```py
+format = "%(asctime)s - %(name)s -  %(levelname)s - %(message)s - %(args)s"
+```
 
 **Python log message interpolation**
 
@@ -152,6 +202,10 @@ logger.info("test %s", "new_field")
 
 ### Python and extra-object
 
-In some examples, additional data is passed as an extra object, but this is not recommended. It is important to note that certain property names, such as `message` and `asctime`, are reserved in the extra object and should not be used.
+In some examples, additional data is passed as [an extra object](https://docs.python.org/3/library/logging.html#logrecord-attributes), but this is not recommended for all cases. The use of an extra object is beneficial in scenarios where specific information must be included in all application logs, and these details depend on the execution context (e.g., session_id, request_user_id).
 
-TODO: Link to sentry example.
+It is important to note that certain property names, such as `message` and `asctime`, are reserved in the extra-object and should not be used.
+
+[extra in Sentry](https://docs.sentry.io/platforms/python/integrations/logging/)
+
+[extra in DataDog](https://www.datadoghq.com/blog/python-logging-best-practices/#add-custom-attributes-to-your-json-logs)
