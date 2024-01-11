@@ -19,12 +19,13 @@ These can help you become a better engineer, improve your knowledge of the softw
   * Lots of practical information from all areas of software engineer's work and career
 * [The Software Developer's Career Handbook](https://www.goodreads.com/book/show/64661326-the-software-developer-s-career-handbook)
   * Easy to read material containing a lot of relevant information about what it’s like to work in the software industry
-* [The Goal: A Process of Ongoing Improvement](https://www.goodreads.com/book/show/113934.The_Goal)
+* [The Goal: A Business Graphic Novel](https://www.goodreads.com/book/show/35528537-the-goal)
   * A novel about thoery and practices to achieve ongoing process improvement
-  * There is also a comic book version of this book, [The Goal: A Business Graphic Novel](https://www.goodreads.com/book/show/35528537-the-goal), which is fast to read and for most readers it is probably enough
+  * The comic version is quick to read and for most readers, it is likely enough
+    * Full novel: [The Goal: A Process of Ongoing Improvement](https://www.goodreads.com/book/show/113934.The_Goal)
 * [The Phoenix Project](https://www.goodreads.com/book/show/17255186-the-phoenix-project)
   * A novel about transforming IT processes to better align with business goals and enhance overall organizational performance
-  * This book is a homage to _The Goal_, and it is recommended to read it first
+  * This book is a homage to _The Goal_, and it is recommended to read it (comic) first
 * [The Unicorn Project](https://www.goodreads.com/book/show/44333183-the-unicorn-project)
   * A novel about working in software development in a non-tech centered enterprise company
 

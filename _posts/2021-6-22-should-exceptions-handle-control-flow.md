@@ -159,3 +159,7 @@ Sometimes, following established practices is worthwhile even if it leads to mor
 ## Links etc.
 
 [https://fsharpforfunandprofit.com/posts/exceptions/#the-error-code-based-approach](https://fsharpforfunandprofit.com/posts/exceptions/#the-error-code-based-approach)
+
+[https://fsharpforfunandprofit.com/rop/](https://fsharpforfunandprofit.com/rop/)
+
+[https://fsharpforfunandprofit.com/posts/against-railway-oriented-programming/](https://fsharpforfunandprofit.com/posts/against-railway-oriented-programming/)
