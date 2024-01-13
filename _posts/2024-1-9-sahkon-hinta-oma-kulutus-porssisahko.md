@@ -4,12 +4,14 @@ title: Laske oman sähkön vuosikulutuksen hinta pörssisähköllä
 excerpt: Avoimista datalähteistä saatavilla tiedoilla on mahdollista laskea paljonko oma sähkönkulutus tulisi maksamaan pörssisähköllä. Artikkelissa on ohjeet, miten laskenta tehdään.
 ---
 
-Avoimista datalähteistä saatavilla tiedoilla on mahdollista laskea paljonko oma sähkönkulutus tulisi maksamaan pörssisähköllä. Tässä artikkelissa on ohjeet, miten laskenta tehdään.
+Avoimista datalähteistä saatavilla tiedoilla on mahdollista laskea paljonko oma sähkönkulutus tulisi maksamaan pörssisähköllä. Tässä artikkelissa on ohjeet, miten laskenta tehdään. Esimerkissä käytetään taulukkolaskentaan Google Sheets-palvelua, mutta laskenta voidaan tehdä myös muilla taulukkolaskentaohjelmilla.
 
 1. Ladataan kulutustiedot Fingridin Datahub-palvelusta
 2. Ladataan pörssisähkön tuntikohtaiset hintatiedot porssisahko.net palvelusta
 3. Tuodaan ladatut tiedot Google Sheets-taulukkolaskentaan
 4. Lasketaan kulutukselle hinta pörssisähköllä
+
+Mikäli et halua itse taulukkolaskennalla tehdä laskutoimitusta, esim. [liukuri.fi](https://liukuri.fi/laskuri)-palvelussa on hinnan laskenta toiminnallisuus. Toiminnallisuus vaatii Fingridin Datahub:sta ladattujen kulutustietojen lataamisen palveluun.
 
 ### 1. Lataa kulutustiedot Fingridin Datahub-pavelusta
 
