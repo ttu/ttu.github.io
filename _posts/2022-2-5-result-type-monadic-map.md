@@ -8,8 +8,7 @@ Wikipedia definition: [https://en.wikipedia.org/wiki/Result_type](https://en.wik
 
 > a result type is a Monadic type holding a returned value or an error code. They provide an elegant way of handling errors, without resorting to exception handling; when a function that may fail returns a result type, the programmer is forced to consider success or failure paths, before getting access to the expected result; this eliminates the possibility of an erroneous programmer assumption
 
-**NOTE:** Not only FP-fanboy type. Some languages support result types out of the box and some with packages
-
+**NOTE:** Result types are widely used in functional languages, and some other languages provide support for them out of the box, while others require additional packages.
 - [Swift - Result](https://developer.apple.com/documentation/swift/result)
 - [Rust - Result](https://doc.rust-lang.org/std/result/)
 
@@ -18,6 +17,10 @@ Wikipedia definition: [https://en.wikipedia.org/wiki/Result_type](https://en.wik
 - We want to explicitly define types that function can return
 - Easy to define if the return value is a success or error
 - No need to design our own custom return types, we get what we need out of the box
+
+> Result should only be used as part of the domain modeling process, to document expected return values. And then to ensure at compile-time that you handle all the possible expected error cases.
+
+[Against Railway-Oriented Programming](https://fsharpforfunandprofit.com/posts/against-railway-oriented-programming/)
 
 ## Result type example with ts-result
 

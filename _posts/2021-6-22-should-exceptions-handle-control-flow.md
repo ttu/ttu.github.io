@@ -99,7 +99,7 @@ const getErrorResponseForResult = (res, result) =>
 
 Example with typed results: [https://github.com/vultix/ts-results#result-example](https://github.com/vultix/ts-results#result-example)
 
-Developing an additional result-type is unnecessary since ts-result already provides the required functionality.
+Developing an additional result-type is unnecessary since e.g. _ts-result_ already provides the required functionality.
 
 ```js
 import { Ok, Err, Result } from 'ts-results';
@@ -121,11 +121,17 @@ const endpoint = (req, res) => {
 }
 ```
 
+[Against Railway-Oriented Programming](https://fsharpforfunandprofit.com/posts/against-railway-oriented-programming/) article defines well, on which cases result-types should be used.
+
+> Result should only be used as part of the domain modeling process, to document expected return values. And then to ensure at compile-time that you handle all the possible expected error cases.
+
+
+
 Read more: [https://en.wikipedia.org/wiki/Result_type](https://en.wikipedia.org/wiki/Result_type)
 
 > a result type is a Monadic type holding a returned value or an error code. They provide an elegant way of handling errors, without resorting to exception handling; when a function that may fail returns a result type, the programmer is forced to consider success or failure paths, before getting access to the expected result; this eliminates the possibility of an erroneous programmer assumption
 
-__NOTE:__ Result is not only FP-fanboy type. Some languages support result types out of the box and some with additional packages
+__NOTE:__ Result types are widely used in functional languages, and some other languages provide support for them out of the box, while others require additional packages.
 * [Swift - Result](https://developer.apple.com/documentation/swift/result)
 * [Rust - Result](https://doc.rust-lang.org/std/result/)
 
