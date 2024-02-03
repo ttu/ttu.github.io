@@ -9,7 +9,7 @@ By capturing relevant information at various stages of the application's executi
 
 **Monitoring** is an essential practice for **ensuring the reliability and performance of applications**. It tells you how your application is behaving by continuously gathering and analyzing data about its behavior and health. With monitoring, you can **detect issues early**, prevent downtime, and optimize resource utilization.
 
-Logging is also an useful tool for tracking application behavior and collecting statistics, but it's important to note that it only covers a limited range of functionality. E.g. Logs (formerly LogTail) has functionality to provide [alerts](https://betterstack.com/docs/logs/dashboards/alerts/) from specific log conditions.
+Logging is also a useful tool for tracking application behavior and collecting statistics, but it's important to note that it only covers a limited range of functionality. E.g. Logs (formerly LogTail) has functionality to provide [alerts](https://betterstack.com/docs/logs/dashboards/alerts/) from specific log conditions.
 
 To achieve comprehensive monitoring and analytics, it's recommended to use additional services such as Datadog, New Relic, or Google Analytics.
 
@@ -17,7 +17,7 @@ To achieve comprehensive monitoring and analytics, it's recommended to use addit
 
 Collecting a sufficient amount of logs is essential for identifying when errors occur and determining what was happening prior to the occurrence of an error. In addition to identifying errors and their causes, logs can also aid in investigating the root cause of an issue. This is why it's important to include info logging in the logging process.
 
-Thorough investigations into application failures, it's important to focus on the "5 W"s:
+For thorough investigations into application failures, it's important to focus on the "5 W"s:
 
 Who, What, When, Where and Why
 
@@ -29,11 +29,11 @@ Who, What, When, Where and Why
 
 ### What kind of errors to log?
 
-Logging can be used to **alert when issues arise**. Logging framworks can be configure to automatically send alerts through external services when certain errors occur.
+Logging can be used to **alert when issues arise**. Logging frameworks can be configure to automatically send alerts through external services when certain errors occur.
 
 Therefore it is important to **log only cases as errors where we need to act immediately**. This is not always easy to specify. So iteration is also good with logging. If we do not do anything about this case, lower error to info. It is better to log too much in the beginning, than too little.
 
-Do not log normal application beheviour as errors, e.g. business logic rule failures, input validation failures or item is not found cases. If everything is working correctly, these are not cases where engineers need to act on immediately.
+Do not log normal application beheviour as errors, e.g. business logic rule failures, input validation failures or 'item not found' cases. If everything is working correctly, these are not cases where engineers need to act on immediately.
 
 Errors should be logged only once and when it happens:
 
@@ -68,7 +68,7 @@ Separating log messages from variable information by passing variables as parame
 
 Having variables in error descriptions or messages can make it more challenging for services to parse information from logged data. For example, monitoring services may struggle to create event data from logged messages, as it is difficult to extract significant information from changing message text. Similarly, error tracking services may face challenges in identifying unique issues when, for instance, user IDs change within the message text.
 
-From security point of view, it is easier to filter out sensitive information from additional data, than from error message.
+From a security point of view, it is easier to filter out sensitive information from additional data than from an error message.
 
 ```js
 // Not good
@@ -85,7 +85,7 @@ log.error('this is the message and it should always be same', { all data, except
 ```
 
 ```js
-// Additinal data passed straight as meta data
+// Additinal data passed straight as metadata
 log.error('Order creation failed', order);
 
 // Additional data in e.g. Sentry:
@@ -106,7 +106,7 @@ log.error('Order creation failed', { order });
 }
 ```
 
-It is important to provide additional information to services, e.g. if only an error message is logged, sentry can't display additional information about logged data.
+It is important to provide additional information to services, e.g. if only an error message is logged, Sentry can't display additional information about logged data.
 
 ```py
 log.error("Some error (%s) happened: %s", error_code, error_message)
@@ -136,7 +136,7 @@ error_code: 1234
 error_message: Total failure
 ```
 
-Exceptions should also not have variables in description. It is advicable to use custom exceptions where we can pass additional information.
+Exceptions should also not have variables in their description. It is advicable to use custom exceptions where we can pass additional information.
 
 ```js
 throw new Error('Order ${order.id} creation failed for user ${user.id}');
@@ -163,7 +163,7 @@ For new projects, it might be advisable to pass all variables in arguments (args
 
 In Javascript error includes the stack, but in Python it does not. In Python it needs to be added manually.
 
-In Python we often log exceptions with other errors on error-level. Add `exc_info=True` if the error is logged in an exception handler. It includes information about an exception that occurred in the log record.
+In Python we often log exceptions with other errors at the error level. Add `exc_info=True` if the error is logged in an exception handler. It includes information about an exception that occurred in the log record.
 
 `logger.exception()` is equivalent to calling `logger.error()` with `exc_info=True`. It is advisable to use it instead of error if possible.
 
@@ -202,7 +202,7 @@ logger.info("test %s", "new_field")
 
 ### Python and extra-object
 
-In some examples, additional data is passed as [an extra object](https://docs.python.org/3/library/logging.html#logrecord-attributes), but this is not recommended for all cases. The use of an extra object is beneficial in scenarios where specific information must be included in all application logs, and these details depend on the execution context (e.g., session_id, request_user_id).
+In some examples, additional data is passed as [an extra object](https://docs.python.org/3/library/logging.html#logrecord-attributes) and using it can be beneficial in some cases. The use of an extra object is beneficial in scenarios where specific information must be included in all application logs, and these details depend on the execution context (e.g., session_id, request_user_id).
 
 It is important to note that certain property names, such as `message` and `asctime`, are reserved in the extra-object and should not be used.
 
