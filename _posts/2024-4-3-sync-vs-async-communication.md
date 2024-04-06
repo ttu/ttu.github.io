@@ -80,7 +80,7 @@ If new to events, check e.g.: [RabbitMQ Tutorials](https://www.rabbitmq.com/tuto
 * Potential complexity increase if events trigger new events, etc.
 * Complicated debugging.
 
-## Common(-ish) problems
+## Common(-ish) problem cases
 
 ### Case: Additional data is required for processing event
 
@@ -94,7 +94,9 @@ If this is not possible for some reason, then fetching the data is acceptable.
 
 ### Case: Need to wait for the response before can continue execution
 
-Synchronous calls are necessary when an immediate response is required, and proceeding without it is impossible.
+> NOTE: This is an example, so often moving from a single sync request to async without a good reason is simply overengineering.
+
+Synchronous calls are necessary when an immediate response is required, and proceeding without it is impossible. 
 
 ![Sync required](/images/posts/sync-async/sync-required.png){: width="450" }
 
@@ -104,6 +106,34 @@ This can be achieved with an asynchronous request/reply event wrapper, where the
 
 Consider whether processing could be divided into multiple parts, allowing event handling to continue once the initial event is processed. This approach might be easier to implement for background tasks rather than for immediate user requests.
 
+With this approach, it doesn't matter how long the processing takes, as the user request is handled immediately.
+
 ![Async tasks](/images/posts/sync-async/async-tasks.png){: width="600" }
 
 For immediate user requests, it might be beneficial to separate the actual processing from the request and for the client to poll if the task has been completed.
+
+One option is to replace polling with some event-driven mechanism, e.g. WebSockets, where the client is notified when the processing is completed.
+
+![Async websocket](/images/posts/sync-async/async-websocket.png){: width="600" }
+
+### Case: Complex call chains
+
+Synchronous calls would block the user or system for an unacceptable duration. Errors in each call can cause the entire process to fail.
+
+![Sync chain](/images/posts/sync-async/sync-chain.png){: width="700" }
+
+By using asynchronous calls, the user can continue using the application while the processing is ongoing. Process execution is less error prona ad each step can be retried if it fails, and the process can continue from the last successful step.
+
+![Choreography](/images/posts/sync-async/choreography.png){: width="700" }
+
+### Case: Complex flow and transactional operations across services
+
+Asynchronous communication can involve multiple services, with each service responding to events triggered by others. Each service should know what to do upon receiving an event and how to respond to it. The flow is complex, and control of the flow is distributed among the services.
+
+![Choreography](/images/posts/sync-async/choreography.png){: width="700" }
+
+In scenarios where a transaction spans multiple services, using asynchronous operations can make it hard to ensure that all steps either succeed or fail together, which is necessary for keeping data consistent. For example, when placing an order that requires both inventory management and payment processing, both steps must work in sync to maintain accuracy.
+
+![Saga](/images/posts/sync-async/saga.png){: width="650" }
+
+By using a Saga pattern where the control of the flow is handled by a single entity (Service A in this example). Each step of the transaction publishes an event upon completion and control entity decides what to do next.
