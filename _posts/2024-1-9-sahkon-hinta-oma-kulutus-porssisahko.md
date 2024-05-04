@@ -73,9 +73,9 @@ Tuotujen tietojen aikaleimat osuvat automaattisesti kohdalleen, joten tuntikohta
 
 Kulutusdata on ei ole kilowatteina, joten laskelmat pitää jakaa 1000000:lla
 
-Syötä kaava kenttään __K2__ joka laskee hinnan kyseiselle tunnille
+Syötä kaava kenttään __K2__ joka laskee hinnan kyseiselle tunnille. Tuntihintaan __J2__ lisätään sähköyhtiön marginaali (senttiä).
 ```
-=G2 / 1000000 * J2
+=G2 / 1000000 * (J2 + 0.42)
 ```
 
 Paina vihreää hyväksyntä merkkiä esille tulleesta "Suggested auto fill"-kehortuksesta, joka kopioi kaavan oikein jokaiselle riville.
@@ -94,7 +94,7 @@ Allaolevalla kaavalla saat datasta pörssisähköllä maksamasi summan euroina
 
 Kaavalla missä x on sopimuksesi senttihinta, saat summan jonka maksat kiinteällä sopimuksellasi
 ```
-=SUM(G:G) / 1000000 * 0.0x
+=SUM(G:G) / 1000000 * 0.0xx
 ```
 
 Esimerkkitaulukko satunnaisella kulutusdatalla:
