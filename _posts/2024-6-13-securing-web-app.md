@@ -4,7 +4,7 @@ title: Efficiently Securing Web Applications Against Denial-of-Service Attacks
 excerpt: How to improve the security of your customer-facing APIs and prevent malicious users from crashing your system with multiple requests.
 ---
 
-Security is a large topic. This post is aimed at __developers__ and focuses on the security of customer-facing APIs. This post gives tips how to prevent malicious users from crashing the system by sending multiple requests (denial-of-service attack). Executing this kind of attack is easy and can be done by almost anyone.
+Security is a large topic. This post is aimed at __developers__ and focuses on the security of customer-facing APIs. This post gives tips on how to prevent malicious users from crashing the system by sending multiple requests (denial-of-service attack). Executing this kind of attack is easy and can be done by almost anyone.
 
 Every web application that exposes APIs to the public is at risk of denial-of-service attacks. These attacks can overwhelm your servers, causing them to crash or become unresponsive. This can lead to data loss, service downtime and reputational damage.
 
@@ -31,13 +31,13 @@ __Checklist:__
 
 ## Do Not Leave Open Endpoints
 
-There shouldn't be any open customer facing endpoints, unless it is really required that anyone can use those. 
+There shouldn't be any open customer-facing endpoints, unless it is really required that anyone can use those. 
 
 Ensure that all endpoints in your APIs have proper authorization mechanisms in place. This can help prevent unauthorized access to sensitive data and prevent unnecessary load on the system.
 
 ![Forbidden](/images/posts/securing-web-app/auth-forbidden.png){: width="650" }
 
-Remember that authenticated user can still be a threat. If a customer is allowed to have unlimited access after the authentication, it will leave a door open for attackers to try to crash the system by creating multiple accounts and sending multiple requests.
+Remember that authenticated users can still be threats. If a customer is allowed to have unlimited access after the authentication, it will leave a door open for attackers to try to crash the system by creating multiple accounts and sending multiple requests.
 
 
 ## Cache As Much As Possible
@@ -48,17 +48,17 @@ Cache can be implemented in various ways, but good practice is to implement it a
 
 ![Cache locations](/images/posts/securing-web-app/cache-location.png){: width="800" }
 
-Cache can cache data by craeting a cache key from e.g. HTTP headers, cookies, or other application-level data.
+Cache can store data by creating a cache key from HTTP headers, cookies, or other application-level data, for example.
 
-### 1. Cache In CND
+### 1. Cache In CDN
 
-Content Delivery Network (CDN) can cache the responses and serve them to the users. Request will never hit own infrastructure, if the response is in the cache.
+Content Delivery Network (CDN) can cache the responses and serve them to the users. Request will never hit your own infrastructure, if the response is in the cache.
 
 ![Cache CDN](/images/posts/securing-web-app/cache-cdn.png){: width="650" }
 
 ### 2. Cache In Load Balancer
 
-Load Blancer can cache the responses and serve them to the users. Request will never hit the service, if the response is in the cache.
+Load Balancer can cache the responses and serve them to the users. Request will never hit the service, if the response is in the cache.
 
 ![Cache Load Balancer](/images/posts/securing-web-app/cache-lb.png){: width="650" }
 
@@ -72,9 +72,9 @@ Middleware can cache the responses and serve them to the users. Request will nev
 
 Application logic can cache data from DB or external services. Request will never hit the DB, external services or slow business logic, if the response is in the cache.
 
-![Cache part of servcice](/images/posts/securing-web-app/cache-service.png){: width="650" }
+![Cache part of service](/images/posts/securing-web-app/cache-service.png){: width="650" }
 
-#### Risks With Cached data
+### Risks With Cached data
 
 
 > There are only two hard things in Computer Science: cache invalidation and naming things.
@@ -82,17 +82,37 @@ Application logic can cache data from DB or external services. Request will neve
 > 
 > -- Phil Karlton
 
-When using cached data, there is always a higher risk of serving incorrect data. This can be either e.g. old data or data that belongs to some other user.
+When using cached data, there is always a higher risk of serving incorrect data. Risks can be e.g.:
 
-Serving old data can be avoided with cache invalidation. Invalidation can be done by time, by event, or by some other mechanism.
+* __Stale Data__: Cached data may become outdated, leading to users receiving incorrect information.
+* __Inconsistent Data__: Changes in the backend might not reflect immediately in the cache, causing discrepancies.
+* __Security Risks__: Sensitive data might be cached and wrongly exposed to incorrect or unauthorized users.
 
-Set the cache duration based on the data that is being cached. This is often done with cache headers or in the code-level. Cache duration should be either __as long as possible__ or __as short as necessary__. For static and rarely updated content, cache duration can be longer, but for dynamic and frequently updated content, cache duration should be shorter. For authenticated requests cache can be shorter than for public requests, but it will still help to reduce the load on the server, especially if users are making the same requests multiple times.
+#### Stale data mitigation
 
-Invalidating cache by event is often done in code-level. When functionality changes the data, the caches that are related to that data should be invalidated..
+Serving stale data can be avoided with cache invalidation. Invalidation can be done e.g. by:
 
-Have also a plan how to invalidate the cached data manually. Common case can be that wrong data is inserted to DB and that is served to customers. Event when data is fixed from the DB, the cache still serves the wrong data. In these cases there needs to be a way to invalidate the cache.
+* __Time-based Expiry__: Set expiration times for cached data to ensure it is periodically refreshed.
+* __Event-based Invalidation__: Invalidate the cache when specific events occur, like data updates or user actions.
+* __Manual Invalidation__: Provide mechanisms for administrators to manually clear the cache when needed.
 
-Serving data that belongs to another users happens most likely due to a humane error, e.g. by faultly changing cache configurations, e.g. by removing cache user specifc header from cache key and then caching the first users response and serving that to all sequential requests. This kind of incidents happen also to a bigger companies [https://www.klarna.com/us/blog/may-27-incident-report/](https://www.klarna.com/us/blog/may-27-incident-report/).
+Cache duration should be always be set based on the data that is being cached. This is often done with cache headers or in the code-level.  Cache duration should be either:
+*  __As long as possible__: For e.g. static content and for data that is rarely updated.
+* __As short as necessary__: For dynamic and frequently updated content.
+
+For authenticated requests cache can be shorter than for public requests, but it will still help to reduce the load on the server, especially if users are making the same requests multiple times.
+
+#### Inconsistent data mitigation
+
+Invalidating cache by event is often done in code-level. When functionality changes the data, the caches that are related to that data should be invalidated.
+
+Having a plan how to invalidate the cached data manually is critical. Common case can be e.g. that wrong data is inserted to DB and which is then served to customers. Even when data is fixed from the DB, the cache still serves the wrong data. In these cases there needs to be a way to invalidate the cache.
+
+#### Security risks mitigation
+
+Serving data that belongs to another users happens most likely due to a human error, e.g. by faulty cache configurations, for example by removing user-specifc header from used caching key, which would then cache the first users response and serving that to all sequential requests. This kind of incidents happen also to a larger companies.
+
+[Klarna incident: users saw a subset of their information exposed to other app users](https://www.klarna.com/us/blog/may-27-incident-report/).
 
 
 ## Rate Limiting
@@ -175,7 +195,7 @@ This doesn't only protect the site from external attacks, but also from internal
 
 ## Web Application Firewall (WAF)
 
-Web Application Firewall (WAF) should probably be first in the list as it should be the first line of defense for your APIs. The core feature of all WAFs is that they make it easier to block web requests. Lot's of this functionality could be handled in web server or applicaiton code, but WAF provides this functionality out of the box. Likely also more efficiently.
+Web Application Firewall (WAF) should probably be first in the list as it should be the first line of defense for your APIs. The core feature of all WAFs is that they make it easier to block web requests. Lot's of this functionality could be handled in web server or application code, but WAF provides this functionality out of the box. Likely also more efficiently.
 
 Already out of the box those can provide a good protection against common attacks, including SQL injection, cross-site scripting (XSS), reputational blocking, geoblocking, rate limiting, bot protection and more.
 
@@ -208,9 +228,9 @@ CORS protects users by ensuring that a malicious third party cannot create a sit
 
 ![CORS](/images/posts/securing-web-app/cors.png){: width="650" }
 
-CORS restrictions apply only to web browsers to protect users from malicious websites. CORS does not apply to server-to-server communications or scripts.
+CORS restrictions apply only to web browsers, protecting users from malicious websites. CORS does not apply to server-to-server communications or scripts.
 
-Malicious site owner can have own server that calls the API and then sends the data to the malicious site.
+A malicious site owner can have their own server that calls the API and then sends the data to the malicious site.
 
 As attackers can still create scripts that directly call the API; therefore, CORS is not a standalone security feature. 
 
