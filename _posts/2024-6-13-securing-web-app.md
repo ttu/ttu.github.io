@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Efficiently Securing Web Applications Against Denial-of-Service Attacks
-excerpt: How to improve the security of your customer-facing APIs and prevent malicious users from crashing your system with multiple requests.
+excerpt: Learn strategies to improve the security of your customer-facing APIs and protect against Denial-of-Service attacks. These steps not only safeguard your system from malicious traffic but also support scalability to handle large amount of users.
 ---
 
 Security is a large topic. This post is aimed at __developers__ and focuses on the security of customer-facing APIs. This post gives tips on how to prevent malicious users from crashing the system by sending multiple requests (denial-of-service attack). Executing this kind of attack is easy and can be done by almost anyone.
@@ -17,6 +17,8 @@ These measures can be implemented rather easily on top of your existing API infr
 Some of these measures can be implemented in the application code and some can be implemented in the different parts of the infrastructure.
 
 ![Infrastructure](/images/posts/securing-web-app/infrastructure.png){: width="800" }
+
+This kind of setup also provides a good foundation for scaling the application to serve as many users as needed.
 
 __Checklist:__
 
@@ -44,9 +46,11 @@ Remember that authenticated users can still be threats. If a customer is allowed
 
 Implement caching to protect your APIs from denial-of-service attacks. It also reduces the load on your servers and improves response times for users. Multiple benefits in one!
 
-Cache can be implemented in various ways, but good practice is to implement it as close to customer as possible. Less load on the server and faster response times for the users.
+Cache can be implemented in various ways, but good practice is to implement it as close to customer as possible. This means less load on the server and faster response times for the users.
 
 ![Cache locations](/images/posts/securing-web-app/cache-location.png){: width="800" }
+
+Decision on the cache implementation can also vary depending on the infrastucture or developer's access to it. No access to CDN or Load Balancer? Cache in the application code. No access to the application code? Cache in the Load Balancer.
 
 Cache can store data by creating a cache key from HTTP headers, cookies, or other application-level data, for example.
 
@@ -211,7 +215,6 @@ WAF can be implemented in various ways:
 * __Application-level WAF:__ An application-level WAF can provide additional security for your APIs by inspecting traffic at the application layer.
   * __Middleware:__ Middleware can provide WAF functionality.
 
-
 ## Helping the users
 
 There are some steps that do not directly affect the security of the API, but can help the users to use the API in a secure way and improve performance.
@@ -254,10 +257,21 @@ Prevent account hijacking, clickjacking, and other attacks by implementing secur
 * Referrer-Policy
 * Permissions-Policys
 
+## Bonus: How to scale application to millions of users
+
+When you need to be able to serve millions of users, the application should be able to scale horizontally and vertically. With the setup described above, the application can be scaled horizontally by adding more instances of the application and load balancers.
+
+* Horizontal scaling
+  * Add automatic scaling for the application instances (or add enough instances).
+* Vertical scaling
+  * Add more resources to the systems.
+  * Add read replica for DB for reporting and alaytics.
+
 
 # Links
 
-* CDN (Traffic Control): https://traffic-control-cdn.readthedocs.io/en/latest/index.html
-* Load Balancer (HAProxy): https://www.haproxy.com/
-* Load Balancer (nginx): https://medium.com/@aedemirsen/load-balancing-with-docker-compose-and-nginx-b9077696f624
-* WAF: https://wafris.org/guides/developers-guide-to-web-application-firewalls
+* [CDN (Traffic Control)](https://traffic-control-cdn.readthedocs.io/en/latest/index.html)
+* [CDN (nginx)](https://dev.to/janreges/how-to-build-a-cdn-23-server-and-reverse-proxy-configuration-16md)
+* [Load Balancer (nginx)](https://medium.com/@aedemirsen/load-balancing-with-docker-compose-and-nginx-b9077696f624)
+* [Load Balancer (HAProxy)](https://www.haproxy.com/)
+* [WAF](https://wafris.org/guides/developers-guide-to-web-application-firewalls)
