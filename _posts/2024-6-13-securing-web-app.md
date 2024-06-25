@@ -33,7 +33,7 @@ __Checklist:__
 
 ## Do Not Leave Open Endpoints
 
-There shouldn't be any open customer-facing endpoints, unless it is really required that anyone can use those. 
+As customer-facing APIs can't be hidden from the public, it is important to ensure that only authorized users can access them. Open endpoints should be avoided unless absolutely necessary.
 
 Ensure that all endpoints in your APIs have proper authorization mechanisms in place. This can help prevent unauthorized access to sensitive data and prevent unnecessary load on the system.
 
@@ -46,17 +46,17 @@ Remember that authenticated users can still be threats. If a customer is allowed
 
 Implement caching to protect your APIs from denial-of-service attacks. It also reduces the load on your servers and improves response times for users. Multiple benefits in one!
 
-Cache can be implemented in various ways, but good practice is to implement it as close to customer as possible. This means less load on the server and faster response times for the users.
+Cache can be implemented in various ways, but good practice is to implement it as close to customer as possible. This means less load on the servers and faster response times for the users.
 
 ![Cache locations](/images/posts/securing-web-app/cache-location.png){: width="800" }
 
-Decision on the cache implementation can also vary depending on the infrastucture or developer's access to it. No access to CDN or Load Balancer? Cache in the application code. No access to the application code? Cache in the Load Balancer.
-
-Cache can store data by creating a cache key from HTTP headers, cookies, or other application-level data, for example.
+Common factors to consider when deciding where to cache data include:
+* __Access to Infrastructure__: Where can you implement caching? Do you have access to the CDN, Load Balancer, or application code?
+* __Fine-grained Control__: How much control do you need over the cache? Do you need to cache based on HTTP headers, cookies, or other application-level data?
 
 ### 1. Cache In CDN
 
-Content Delivery Network (CDN) can cache the responses and serve them to the users. Request will never hit your own infrastructure, if the response is in the cache.
+Content Delivery Networks (CDN) are often geographically located close to the user and can cache the responses. If the CDN is outside your own infrastructure and the response is served from cache, the request will never hit your own infrastructure.
 
 ![Cache CDN](/images/posts/securing-web-app/cache-cdn.png){: width="650" }
 
@@ -259,13 +259,14 @@ Prevent account hijacking, clickjacking, and other attacks by implementing secur
 
 ## Bonus: How to scale application to millions of users
 
-When you need to be able to serve millions of users, the application should be able to scale horizontally and vertically. With the setup described above, the application can be scaled horizontally by adding more instances of the application and load balancers.
+When you need to be able to serve millions of users, the application should be able to scale horizontally and vertically. Described setup fulfills the requirements for horizontal scaling, but vertical scaling is also needed.
 
 * Horizontal scaling
-  * Add automatic scaling for the application instances (or add enough instances).
+  * __Auto-scaling__: Automatically add or remove application instances based on demand.
+
 * Vertical scaling
-  * Add more resources to the systems.
-  * Add read replica for DB for reporting and alaytics.
+  * __Increase Resources__: Add more CPU, memory, or storage to existing servers.
+  * __Database Optimization__: Use read replicas for reporting and analytics to reduce the load on the main database.
 
 
 # Links
