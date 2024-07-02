@@ -1,14 +1,16 @@
 ---
 layout: post
-title: Efficiently Securing Web Applications Against Denial-of-Service Attacks
+title: Efficiently Securing Web Applications Against High User Peaks and Denial-of-Service Attacks
 excerpt: Learn strategies to improve the security of your customer-facing APIs and protect against Denial-of-Service attacks. These steps not only safeguard your system from malicious traffic but also support scalability to handle large amount of users.
 ---
 
-Security is a large topic. This post is aimed at __developers__ and focuses on the security of customer-facing APIs. This post gives tips on how to prevent malicious users from crashing the system by sending multiple requests (denial-of-service attack). Executing this kind of attack is easy and can be done by almost anyone.
+Security is a large topic. This post is aimed at __developers__ and focuses on the security of customer-facing APIs. This post gives tips on how to make sure the system can handle large user peaks and how to prevent malicious users from crashing the system by sending multiple requests (denial-of-service attack). Executing this kind of attack is easy and can be done by almost anyone.
 
 Every web application that exposes APIs to the public is at risk of denial-of-service attacks. These attacks can overwhelm your servers, causing them to crash or become unresponsive. This can lead to data loss, service downtime and reputational damage.
 
-With these simple yet effective methods, you can enhance the security of your APIs and improve performance at the same time.
+High user peaks can occur with almost any service, often triggered by a marketing campaign, a viral post, or a sudden surge in demand for your service. If the application is not adequately prepared, these peaks can result in consequences similar to those of a denial-of-service attack.
+
+With these simple yet effective methods, you can enhance the security of your APIs and improve performance at the same time, ensuring that the application can handle any amount of users.
 
 These measures can be implemented rather easily on top of your existing API infrastructure, regardless of the technology stack and size of your application.
 
@@ -29,6 +31,7 @@ __Checklist:__
 - [x] Duplicate Identical Request Detection and Prevention
 - [x] Idempotency
 - [x] Web Application Firewall
+- [x] Documented Plan for When the System is Under Attack
 
 
 ## Do Not Leave Open Endpoints
@@ -215,6 +218,12 @@ WAF can be implemented in various ways:
 * __Application-level WAF:__ An application-level WAF can provide additional security for your APIs by inspecting traffic at the application layer.
   * __Middleware:__ Middleware can provide WAF functionality.
 
+
+##  Documented Plan for When the System is Under Attack
+
+Regardless of the measures taken, it is crucial to have a documented plan in place for when the system is under attack. This plan should include __step-by-step instructions__ detailing actions to take during an attack. The plan should be clear and easy to follow, enabling engineers without much expertise on the topic to take appropriate action effectively.
+
+
 ## Helping the users
 
 There are some steps that do not directly affect the security of the API, but can help the users to use the API in a secure way and improve performance.
@@ -243,7 +252,25 @@ Set cache headers correctly to help the users browser to cache the data. This wi
 
 ![Browser cache](/images/posts/securing-web-app/browser-cache.png){: width="400" }
 
+Cache-Control headers can work differently with REST API responses compared to static content, primarily because the nature of the content and the typical usage patterns differ.
+
 CDN may also use these cache headers to decide how it will cache and serve the content to the users without hitting the server.
+
+Cache-Control header directives include:
+* __no-store__: The browser must not store the data in the cache.
+* __no-cache__: The browser stores the data, but it must revalidate the cache with the server before using the cached data. If caced data matches to the server data, the cached data is used.
+* __public__: The data can be cached by any cache, including CDNs.
+* __private__: The data can be cached only by the browser and not by CDNs.
+* __max-age__: The maximum time the data can be cached. During this time content is fresh and after max-age has expired, data is stale.
+* __must-revalidate__: The browser must revalidate the cache with the server before using the cached data.
+
+Directives can be combined:
+
+```txt
+Cache-Control: max-age=3600, must-revalidate
+```
+
+E.g. this combination ensures that a resource is considered fresh for 3600 seconds. After this period, any subsequent request must revalidate the resource with the origin server before serving it, ensuring the client always gets the most up-to-date version after the max-age period.
 
 ### Security headers
 
