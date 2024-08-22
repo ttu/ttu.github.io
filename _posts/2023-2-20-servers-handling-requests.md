@@ -67,6 +67,8 @@ Image from: [https://luis-sena.medium.com/gunicorn-vs-python-gil-221e673d692](ht
 
 > WSGI is Web Socket Gateway Interface. its purpose is to relay HTTP requests from the webserver to the Django application, as well as to relay responses from the application back to the webserver. WSGI is described by the PEP 3333 standard, and partially serves to decouple your Python application from a webserver, making it more platform-agnostic
 
+![Gunicorn communication](/images/posts/servers-requests/gunicorn-communication.png)
+
 __Workers:__
 
 Worker is a new process. Each worker can run parallel.
