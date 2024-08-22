@@ -68,7 +68,7 @@ Understand the decisions behind architecture choices.
 * [Command Line Heroes](https://www.redhat.com/en/command-line-heroes) - podcast
 * [Halt and Catch Fire](https://www.imdb.com/title/tt2543312/) - TV-series
 
-#### About product development
+#### About engineering and product development
 
 * [Why coding isn't enough](https://www.youtube.com/watch?v=yzhnRt6ZDKM)
   * _"The job of a software engineer is not to code, at least not 100% of it is; it's to solve a technical problem. So have pride in solving that problem."_
@@ -78,3 +78,5 @@ Understand the decisions behind architecture choices.
     * Focusing on engineering as the key driver of a company's success can lead to negative outcomes as it can lead to neglecting the importance of other roles, such as product, sales, and customer support.
 * [What Silicon Valley "Gets" about Software Engineers that Traditional Companies Do Not](https://blog.pragmaticengineer.com/what-silicon-valley-gets-right-on-software-engineers/)
   * In some companies engineering is not a feature factory. Engineers are expected to be creative problem solvers who also understand the business.
+* [On Being A Senior Engineer](https://www.kitchensoap.com/2012/10/25/on-being-a-senior-engineer/)
+  * A good summary of what is expected from a senior engineer. Spoiler: technical excellence alone isn't enough for seniority.
