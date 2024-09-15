@@ -219,12 +219,24 @@ WAF can be implemented in various ways:
   * __Middleware:__ Middleware can provide WAF functionality.
 
 
-##  Documented Plan for When the System is Under Attack
+##  Documented Plan for When the System Is Under Attack
 
 Regardless of the measures taken, it is crucial to have a documented plan in place for when the system is under attack. This plan should include __step-by-step instructions__ detailing actions to take during an attack. The plan should be clear and easy to follow, enabling engineers without much expertise on the topic to take appropriate action effectively.
 
 
-## Helping the users
+## Bonus: How to Scale an Application to Millions of Users
+
+When you need to be able to serve millions of users, the application should be able to scale horizontally and vertically. Described setup fulfills the requirements for horizontal scaling, but vertical scaling is also needed.
+
+* Horizontal scaling
+  * __Auto-scaling__: Automatically add or remove application instances based on demand.
+
+* Vertical scaling
+  * __Increase Resources__: Add more CPU, memory, or storage to existing servers.
+  * __Database Optimization__: Use read replicas for reporting and analytics to reduce the load on the main database.
+
+
+## Client-Side Security and Helping the Users
 
 There are some steps that do not directly affect the security of the API, but can help the users to use the API in a secure way and improve performance.
 
@@ -242,15 +254,27 @@ CORS protects users by ensuring that a malicious third party cannot create a sit
 
 CORS restrictions apply only to web browsers, protecting users from malicious websites. CORS does not apply to server-to-server communications or scripts.
 
-A malicious site owner can have their own server that calls the API and then sends the data to the malicious site.
+* A malicious site owner can have their own server that calls the API and then sends the data to the malicious site.
+* As attackers can still create scripts that directly call the API; therefore, CORS is not a standalone security feature. 
 
-As attackers can still create scripts that directly call the API; therefore, CORS is not a standalone security feature. 
+
+### CRFS
+
+Cross-Site Request Forgery (CSRF) is an attack that tricks the user into executing unwanted actions on a website where they are authenticated.
+
+![CRFS](/images/posts/securing-web-app/crfs.png){: width="650" }
+
+Depending of authentication method, CRFS can be mitigated with e.g.
+* __SameSite Cookies__: Configures cookies to only be sent on requests from the same origin.
+* __CSRF tokens__: A unique token is generated for each user session and included in the request. The server validates the token to ensure the request is legitimate.
+* __CORS__
+
 
 ### Browser caching
 
 Set cache headers correctly to help the users browser to cache the data. This will help the users to get the data faster and reduce the load on the server. 
 
-![Browser cache](/images/posts/securing-web-app/browser-cache.png){: width="400" }
+![Browser cache](/images/posts/securing-web-app/browser-cache.png){: width="450" }
 
 Cache-Control headers can work differently with REST API responses compared to static content, primarily because the nature of the content and the typical usage patterns differ.
 
@@ -274,27 +298,29 @@ E.g. this combination ensures that a resource is considered fresh for 3600 secon
 
 ### Security headers
 
-Prevent account hijacking, clickjacking, and other attacks by implementing security headers in your APIs. These headers can help to protect your APIs from various types of attacks and vulnerabilities.
+Prevent account hijacking, clickjacking, and other attacks by implementing security headers in your APIs. These headers can help to protect your APIs from various types of attacks and vulnerabilities. WAF can provide these headers, but they can also be implemented in the application code.
 
-* Content-Security-Policy (CSP)
-* Strict-Transport-Security (HSTS)
-* X-Content-Type-Options
-* X-Frame-Options
-* X-XSS-Protection
-* Referrer-Policy
-* Permissions-Policys
-
-## Bonus: How to scale application to millions of users
-
-When you need to be able to serve millions of users, the application should be able to scale horizontally and vertically. Described setup fulfills the requirements for horizontal scaling, but vertical scaling is also needed.
-
-* Horizontal scaling
-  * __Auto-scaling__: Automatically add or remove application instances based on demand.
-
-* Vertical scaling
-  * __Increase Resources__: Add more CPU, memory, or storage to existing servers.
-  * __Database Optimization__: Use read replicas for reporting and analytics to reduce the load on the main database.
-
+* __Content-Security-Policy (CSP)__
+  * For example, a hacker tries to inject a malicious script, that would send data from browser to malicious.sit, into your site through a comment section. With CSP, you can restrict the sources from which scripts are allowed to load, blocking this attack.
+  * Prevents cross-site scripting (XSS) by controlling which resources the browser is allowed to load.
+* __Strict-Transport-Security (HSTS)__
+  * If a user accidentally types `http://` instead of `https://` when accessing your site, HSTS forces the browser to use HTTPS, ensuring data is encrypted during transmission.
+  * Protects against man-in-the-middle attacks by enforcing secure connections.
+* __X-Content-Type-Options__
+  * Prevents the browser from interpreting files as a different MIME type than what is specified, avoiding potential execution of malicious scripts. Mitigates MIME type sniffing attacks.
+  * Mitigates MIME type sniffing attacks.
+* __X-Frame-Options__
+  * Prevents your site from being embedded in an iframe on another site, which can protect against clickjacking attacks where users are tricked into clicking on something they didn’t intend to.
+  * Protects against UI redressing attacks.
+* __X-XSS-Protection__
+  * Enables the browser's built-in XSS filtering mechanism. If an XSS attack is detected, the browser will prevent the page from rendering.
+  * Adds an extra layer of XSS protection, especially for older browsers.
+* __Referrer-Policy__
+  * Controls the information sent in the HTTP referrer header when navigating from your site to another. For instance, limiting sensitive data exposure by only sending the origin part of the URL.
+  * Enhances user privacy and reduces the risk of leaking sensitive URLs.
+* __Permissions-Policys__
+  * Limits the use of certain browser features like camera, microphone, or geolocation. For example, you can restrict access to the geolocation API so only specific pages can request location data.
+  * Reduces the potential attack surface by restricting access to potentially sensitive APIs.
 
 # Links
 
