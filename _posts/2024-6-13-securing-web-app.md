@@ -223,6 +223,18 @@ WAF can be implemented in various ways:
 
 Regardless of the measures taken, it is crucial to have a documented plan in place for when the system is under attack. This plan should include __step-by-step instructions__ detailing actions to take during an attack. The plan should be clear and easy to follow, enabling engineers without much expertise on the topic to take appropriate action effectively.
 
+## Database Read Replicas
+
+Read replicas are copies of the main database that handle read queries, improving performance and reducing the load on the primary database.
+
+Benefits of Read Replicas:
+
+* __Improved Performance:__ Offload read queries from the main database.
+* __High Availability:__ Serve as backups in case the main database fails.
+* __Reporting and Analytics:__ Run complex queries without affecting the primary database.
+* __Audit Logs:__ Store audit logs separately, preserving main database resources.
+
+High availability and reporting/analytics are common use cases for read replicas. Many services offer the setup of read replicas out of the box, but it can also be implemented manually.
 
 ## Bonus: How to Scale an Application to Millions of Users
 
