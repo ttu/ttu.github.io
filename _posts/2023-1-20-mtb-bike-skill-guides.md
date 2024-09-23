@@ -6,13 +6,13 @@ excerpt: Collection of guides, tips and tricks to learn some mtb skills.
 
 Compilation of mtb skills guides that I've found useful over the years. These basic and advanced skills will enhance the enjoyment on trails and on downhill routes.
 
-Mountain (or trail) biking is not easy. Even with a cycling background, it can take a while to get used to the difficult terrain as required skills are quite different than on the road.
+Mountain biking (or trail riding) isn’t easy. Even with a cycling background, it can take a while to get used to the difficult terrain as required skills are quite different than on the road.
 
 A good example of difficulty is shown in this video, where former professional road cyclists try out mountain biking for the first time is. It is not easy for them either.
 
 <iframe width="99%" height="350" src="https://www.youtube.com/embed/XchKSsdqIEQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-Good guidance is to start with simple steps. Complexity is the enemy of the execution. When first simple actions come automatically without thinking too much, add next steps. If I try to execute too many new steps, everything will break apart. 
+It’s advisable to start with simple steps. Complexity is the enemy of the execution. When first simple actions come automatically without thinking too much, add next steps. If I try to execute too many new steps, everything will break apart. 
 
 <h2>Pedal and body position</h2>
 
@@ -82,7 +82,7 @@ In reality, it is also possible to start little differently. Even kids jump with
 <iframe width="99%" height="350" src="https://www.youtube.com/embed/c_STkFZDP5Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 1. Enough speed
-2. Good posture
+2. Maintain good posture
 3. Relax
 
 This takes you already far and you can pretty much enjoy any jump for the "normal" people.
@@ -181,3 +181,9 @@ Start with extemely small movement. To make things easier, turn handlebar toward
 Small whip comes with a bar turn. Don't worry if back wheel is not completely staight when landing.
 
 <iframe width="99%" height="350" src="https://www.youtube.com/embed/WHK4xjMr9Zk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+<h2>Skateparks</h2>
+
+Skatepark is a good place to learn some bike handling skills. Check the survival guide video below for some tips.
+
+<iframe width="99%" height="350" src="https://www.youtube.com/embed/MFqgUTEuUlI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
