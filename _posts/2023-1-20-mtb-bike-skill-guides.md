@@ -187,3 +187,7 @@ Small whip comes with a bar turn. Don't worry if back wheel is not completely st
 Skatepark is a good place to learn some bike handling skills. Check the survival guide video below for some tips.
 
 <iframe width="99%" height="350" src="https://www.youtube.com/embed/MFqgUTEuUlI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+Dropping in is an important skill to learn. It is not that hard, but it is scary.
+
+<iframe width="99%" height="350" src="https://www.youtube.com/embed/_Xc2tCGWv54" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
