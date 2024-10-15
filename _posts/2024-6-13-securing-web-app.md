@@ -10,19 +10,32 @@ Every web application that exposes APIs to the public is at risk of denial-of-se
 
 High user peaks can occur with almost any service, often triggered by a marketing campaign, a viral post, or a sudden surge in demand for your service. If the application is not adequately prepared, these peaks can result in consequences similar to those of a denial-of-service attack.
 
-With these simple yet effective methods, you can enhance the security of your APIs and improve performance at the same time, ensuring that the application can handle any amount of users.
-
-These measures can be implemented rather easily on top of your existing API infrastructure, regardless of the technology stack and size of your application.
-
 ![No protection](/images/posts/securing-web-app/no-protection.png){: width="650" }
+
+With these simple yet effective methods, you can enhance the security of your APIs while improving performance, ensuring the application can handle any number of users. This setup also lays a solid foundation for scaling the application to meet growing user demand.
+
+These measures can be implemented rather easily on top of your existing API infrastructure, regardless of the technology stack, service provider or size of your application.
 
 Some of these measures can be implemented in the application code and some can be implemented in the different parts of the infrastructure.
 
 ![Infrastructure](/images/posts/securing-web-app/infrastructure.png){: width="800" }
 
-This kind of setup also provides a good foundation for scaling the application to serve as many users as needed.
+Different providers offer various services that can be used to implement the infrastructure, and these services can be mixed and matched based on availability and requirements.
 
-__Checklist:__
+
+| Solution      | WAF               | CDN              | Storage                | API Gateway           | Compute                | Database        |
+|---------------|-------------------|------------------|------------------------|-----------------------|------------------------|-----------------|
+| **AWS**       | CloudFront WAF    | CloudFront       | S3                     | API Gateway / ELB     | Elastic Beanstalk / EC2| RDS             |
+| **Azure**     | Azure WAF         | Azure CDN        | Azure Blob Storage     | Azure API Management  | Azure App Service      | Azure SQL       |
+| **Mixed**     | CloudFlare WAF    | CloudFlare       | Heroku Static Assets   | Heroku API Routing    | Heroku                 | Aiven           |
+| **Kubernetes**| Akamai WAF        | Akamai           | MinIO  / Static files  | Ingress               | Nodes & Pods           | Postgres        |
+
+Refer to the example project for instructions on how to run the infrastructure locally using Docker: [Example project](https://github.com/ttu/securing-web-api)
+
+
+## Checklist
+
+This post covers some key areas you should focus on to improve the security posture of your application while ensuring its performance and scalability. This checklist is not a complete list, but it provides a solid foundation for securing your APIs.
 
 - [x] Do Not Leave Open Endpoints
 - [x] Cache As Much As Possible
