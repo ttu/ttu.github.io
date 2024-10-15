@@ -4,7 +4,20 @@ title: Scaling Databases - A Guide to Sharding and Partitioning
 excerpt: Learn how to implement sharding and partitioning in PostgreSQL using the Citus extension to improve database performance and scalability.
 ---
 
-In today’s data-driven world, applications generate and handle enormous volumes of data. When datasets grow to hundreds of millions or even billions of rows, traditional database architectures can struggle to maintain performance and scalability. To efficiently manage and distribute such massive datasets, it’s essential to implement techniques like sharding and partitioning. In this post, we’ll explore these concepts and demonstrate how to implement them using __PostgreSQL__ and the __Citus__ extension.
+In today’s data-driven world, applications generate and handle enormous volumes of data. When datasets grow to hundreds of millions or even billions of rows, traditional database architectures can struggle to maintain performance and scalability.
+
+To efficiently manage and distribute such massive datasets, it’s essential to implement techniques like sharding and partitioning.
+
+![Database Sharding and Partitioning](/images/posts/database-sharding-partitioning/partition-shard.png){: width="650" }
+
+
+In this post, we’ll explore these concepts and demonstrate how to implement them using __PostgreSQL__ and the __Citus__ extension.
+
+## Partitioning
+
+__Partitioning:__ Is the division of a database table into smaller, more manageable segments or partitions, based on specific criteria such as range, list, or hash, to improve performance and management.
+
+__Why?__ Partitioning is used to improve query performance, reduce index size, and optimize data management by dividing large tables into smaller, more manageable partitions.
 
 ## Sharding
 
@@ -20,12 +33,6 @@ For example, distributed database system (e.g. Citus), allows you to shard (spli
 
 __Why?__ Sharding is used to improve performance and scalability by distributing data across multiple servers. It allows you to scale out your database horizontally by adding more servers to the cluster.
 
-
-## Partitioning
-
-__Partitioning:__ Is the division of a database table into smaller, more manageable segments or partitions, based on specific criteria such as range, list, or hash, to improve performance and management.
-
-__Why?__ Partitioning is used to improve query performance, reduce index size, and optimize data management by dividing large tables into smaller, more manageable partitions.
 
 ## PostgreSQL and Citus
 
@@ -240,3 +247,9 @@ PGPASSWORD=password psql -h localhost -p <worker_node_port> -U citus -d events_d
 ## Conclusion
 
 By implementing sharding and partitioning using PostgreSQL and the Citus extension, you can significantly improve your database’s performance and scalability. This approach allows your application to handle larger datasets and higher traffic without compromising on speed.
+
+## Links
+
+* Citus has extensive and understandable documentation with good tutorials: [Citus Documentation](https://docs.citusdata.com/en)
+* Postgres documentation: [Postgres Documentation](https://www.postgresql.org/docs/current/index.html)
+* [How a Transportation Company Improved Traffic Monitoring with Citus](https://web.archive.org/web/20221004142527/https://customers.microsoft.com/en-us/story/845146-transit-authority-improves-traffic-monitoring-with-azure-database-for-postgresql-hyperscale)
