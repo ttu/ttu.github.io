@@ -54,22 +54,18 @@ $$ LANGUAGE plpgsql;
 Create function for logging database changes. On `INSERT` insert new data, on `UPDATE` insert changed data, on `DELETE` insert only id (primary key column). 
 
 ```sql
-CREATE FUNCTION log_audit_trail() RETURNS trigger AS
-$$
+CREATE FUNCTION log_audit_trail() RETURNS TRIGGER AS $$
 BEGIN
     BEGIN
-        IF TG_OP = 'INSERT'
-        THEN
+        IF (TG_OP = 'INSERT') THEN
             INSERT INTO audit_trail (table_name, row_pk, operation, data)
             VALUES (TG_RELNAME, NEW.id, TG_OP, to_jsonb(NEW));
             RETURN NEW;
-        ELSIF TG_OP = 'UPDATE'
-        THEN
+        ELSIF (TG_OP = 'UPDATE') THEN
             INSERT INTO audit_trail (table_name, row_pk, operation, data)
             VALUES (TG_RELNAME, NEW.id, TG_OP, jsonb_diff_val(to_jsonb(NEW), to_jsonb(OLD)));
             RETURN NEW;
-        ELSIF TG_OP = 'DELETE'
-        THEN
+        ELSIF (TG_OP = 'DELETE') THEN
             INSERT INTO audit_trail (table_name, row_pk, operation, data)
             VALUES (TG_RELNAME, OLD.id, TG_OP, to_jsonb(OLD));
             RETURN OLD;
