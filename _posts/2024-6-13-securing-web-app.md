@@ -1,12 +1,12 @@
 ---
 layout: post
 title: Efficiently Securing Web Applications Against High User Peaks and Denial-of-Service Attacks
-excerpt: Learn strategies to improve the security of your customer-facing APIs and protect against Denial-of-Service attacks. These steps not only safeguard your system from malicious traffic but also support scalability to handle large amount of users.
+excerpt: Learn strategies to improve the security of your customer-facing APIs and protect against Denial-of-Service attacks. These steps not only safeguard your system from malicious traffic but also support scalability to handle large number of users.
 ---
 
 Security is a large topic. This post is aimed at __developers__ and focuses on the security of customer-facing APIs. This post gives tips on how to make sure the system can handle large user peaks and how to prevent malicious users from crashing the system by sending multiple requests (denial-of-service attack). Executing this kind of attack is easy and can be done by almost anyone.
 
-Every web application that exposes APIs to the public is at risk of denial-of-service attacks. These attacks can overwhelm your servers, causing them to crash or become unresponsive. This can lead to data loss, service downtime and reputational damage.
+Every web application that exposes APIs to the public is at risk of denial-of-service attacks. These attacks can overwhelm your servers, causing them to crash or become unresponsive. This can lead to data loss, service downtime, and reputational damage.
 
 High user peaks can occur with almost any service, often triggered by a marketing campaign, a viral post, or a sudden surge in demand for your service. If the application is not adequately prepared, these peaks can result in consequences similar to those of a denial-of-service attack.
 
@@ -116,7 +116,7 @@ Serving stale data can be avoided with cache invalidation. Invalidation can be d
 * __Event-based Invalidation__: Invalidate the cache when specific events occur, like data updates or user actions.
 * __Manual Invalidation__: Provide mechanisms for administrators to manually clear the cache when needed.
 
-Cache duration should be always be set based on the data that is being cached. This is often done with cache headers or in the code-level.  Cache duration should be either:
+Cache duration should always be set based on the data that is being cached. This is often done with cache headers or in the code-level.  Cache duration should be either:
 *  __As long as possible__: For e.g. static content and for data that is rarely updated.
 * __As short as necessary__: For dynamic and frequently updated content.
 
@@ -130,7 +130,7 @@ Having a plan how to invalidate the cached data manually is critical. Common cas
 
 #### Security risks mitigation
 
-Serving data that belongs to another users happens most likely due to a human error, e.g. by faulty cache configurations, for example by removing user-specifc header from used caching key, which would then cache the first users response and serving that to all sequential requests. This kind of incidents happen also to a larger companies.
+Serving data that belongs to another users happens most likely due to a human error, e.g. by faulty cache configurations, for example by removing user-specific header from used caching key, which would then cache the first users response and serving that to all sequential requests. This kind of incidents happen also to a larger companies.
 
 [Klarna incident: users saw a subset of their information exposed to other app users](https://www.klarna.com/us/blog/may-27-incident-report/).
 
@@ -283,13 +283,13 @@ CORS restrictions apply only to web browsers, protecting users from malicious we
 * As attackers can still create scripts that directly call the API; therefore, CORS is not a standalone security feature. 
 
 
-### CRFS
+### CSRF
 
 Cross-Site Request Forgery (CSRF) is an attack that tricks the user into executing unwanted actions on a website where they are authenticated.
 
-![CRFS](/images/posts/securing-web-app/crfs.png){: width="650" }
+![CSRF](/images/posts/securing-web-app/csrf.png){: width="650" }
 
-Depending of authentication method, CRFS can be mitigated with e.g.
+Depending of authentication method, CSRF can be mitigated with e.g.
 * __SameSite Cookies__: Configures cookies to only be sent on requests from the same origin.
 * __CSRF tokens__: A unique token is generated for each user session and included in the request. The server validates the token to ensure the request is legitimate.
 * __CORS__
@@ -307,7 +307,7 @@ CDN may also use these cache headers to decide how it will cache and serve the c
 
 Cache-Control header directives include:
 * __no-store__: The browser must not store the data in the cache.
-* __no-cache__: The browser stores the data, but it must revalidate the cache with the server before using the cached data. If caced data matches to the server data, the cached data is used.
+* __no-cache__: The browser stores the data, but it must revalidate the cache with the server before using the cached data. If cached data matches to the server data, the cached data is used.
 * __public__: The data can be cached by any cache, including CDNs.
 * __private__: The data can be cached only by the browser and not by CDNs.
 * __max-age__: The maximum time the data can be cached. During this time content is fresh and after max-age has expired, data is stale.
@@ -326,7 +326,7 @@ E.g. this combination ensures that a resource is considered fresh for 3600 secon
 Prevent account hijacking, clickjacking, and other attacks by implementing security headers in your APIs. These headers can help to protect your APIs from various types of attacks and vulnerabilities. WAF can provide these headers, but they can also be implemented in the application code.
 
 * __Content-Security-Policy (CSP)__
-  * For example, a hacker tries to inject a malicious script, that would send data from browser to malicious.sit, into your site through a comment section. With CSP, you can restrict the sources from which scripts are allowed to load, blocking this attack.
+  * For example, a hacker tries to inject a malicious script, that would send data from browser to malicious.site, into your site through a comment section. With CSP, you can restrict the sources from which scripts are allowed to load, blocking this attack.
   * Prevents cross-site scripting (XSS) by controlling which resources the browser is allowed to load.
 * __Strict-Transport-Security (HSTS)__
   * If a user accidentally types `http://` instead of `https://` when accessing your site, HSTS forces the browser to use HTTPS, ensuring data is encrypted during transmission.
