@@ -58,7 +58,7 @@ Ensure that all endpoints in your APIs have proper authorization mechanisms in p
 Remember that authenticated users can still be threats. If a customer is allowed to have unlimited access after the authentication, it will leave a door open for attackers to try to crash the system by creating multiple accounts and sending multiple requests.
 
 
-## Cache As Much As Possible
+## Cache as Much as Possible
 
 Implement caching to protect your APIs from denial-of-service attacks. It also reduces the load on your servers and improves response times for users. Multiple benefits in one!
 
@@ -94,7 +94,7 @@ Application logic can cache data from DB or external services. Request will neve
 
 ![Cache part of service](/images/posts/securing-web-app/cache-service.png){: width="650" }
 
-### Risks With Cached data
+### Risks with Cached Data
 
 
 > There are only two hard things in Computer Science: cache invalidation and naming things.
@@ -108,7 +108,7 @@ When using cached data, there is always a higher risk of serving incorrect data.
 * __Inconsistent Data__: Changes in the backend might not reflect immediately in the cache, causing discrepancies.
 * __Security Risks__: Sensitive data might be cached and wrongly exposed to incorrect or unauthorized users.
 
-#### Stale data mitigation
+#### Stale Data Mitigation
 
 Serving stale data can be avoided with cache invalidation. Invalidation can be done e.g. by:
 
@@ -122,13 +122,13 @@ Cache duration should always be set based on the data that is being cached. This
 
 For authenticated requests cache can be shorter than for public requests, but it will still help to reduce the load on the server, especially if users are making the same requests multiple times.
 
-#### Inconsistent data mitigation
+#### Inconsistent Data Mitigation
 
 Invalidating cache by event is often done in code-level. When functionality changes the data, the caches that are related to that data should be invalidated.
 
 Having a plan how to invalidate the cached data manually is critical. Common case can be e.g. that wrong data is inserted to DB and which is then served to customers. Even when data is fixed from the DB, the cache still serves the wrong data. In these cases there needs to be a way to invalidate the cache.
 
-#### Security risks mitigation
+#### Security Risks Mitigation
 
 Serving data that belongs to another users happens most likely due to a human error, e.g. by faulty cache configurations, for example by removing user-specific header from used caching key, which would then cache the first users response and serving that to all sequential requests. This kind of incidents happen also to a larger companies.
 
@@ -155,7 +155,7 @@ Rate limiting can be implemented at multiple points in the network stack, includ
 
 Be cautious when applying rate limits based on IP addresses since users behind Network Address Translation (NAT) may share a single public IP address. This can lead to legitimate users being blocked unintentionally.
 
-## Blocking A User
+## Blocking a User
 
 Implement mechanisms to block users who violate your API usage policies. This can help protect your APIs from abuse and unauthorized access.
 
@@ -170,7 +170,7 @@ Blocking a user by IP address can be done in the CDN, WAF, load balancer, or mid
 When applications use JWT tokens for authentication, it is important to have the ability to invalidate tokens when they are no longer needed. This can help when a long-lived token is used to attack the service. The recommendation is to use short-lived access tokens and long-lived refresh tokens. This way, the refresh token can be invalidated if needed and there is no need to check validity of authentication token on every request. The refresh token should also be tied to a specific device so that if the token is stolen, it can't be used on another device.
 
 
-## Duplicate Identical Request Detection And Prevention
+## Duplicate Request Detection and Prevention
 
 Sites should strive to prevent duplicate (identical) requests. This helps protect your APIs from replay attacks and, for example, prevents users from posting the same comment multiple times.
 
@@ -295,7 +295,7 @@ Depending of authentication method, CSRF can be mitigated with e.g.
 * __CORS__
 
 
-### Browser caching
+### Browser Caching
 
 Set cache headers correctly to help the users browser to cache the data. This will help the users to get the data faster and reduce the load on the server. 
 
@@ -321,7 +321,7 @@ Cache-Control: max-age=3600, must-revalidate
 
 E.g. this combination ensures that a resource is considered fresh for 3600 seconds. After this period, any subsequent request must revalidate the resource with the origin server before serving it, ensuring the client always gets the most up-to-date version after the max-age period.
 
-### Security headers
+### Security Headers
 
 Prevent account hijacking, clickjacking, and other attacks by implementing security headers in your APIs. These headers can help to protect your APIs from various types of attacks and vulnerabilities. WAF can provide these headers, but they can also be implemented in the application code.
 
