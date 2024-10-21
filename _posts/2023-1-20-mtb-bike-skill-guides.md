@@ -176,9 +176,13 @@ Start with extemely small movement. To make things easier, turn handlebar toward
 
 <iframe width="99%" height="350" src="https://www.youtube.com/embed/lQP7HQlBtWI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
+The easiest way to look good jumping a bike. Turn the bar all the way to the hip, which help to lean the bike and you will look like a pro.
+
+<iframe width="99%" height="350" src="https://www.youtube.com/embed/qVRKoeYoxRE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 <h2>Whip</h2>
 
-Small whip comes with a bar turn. Don't worry if back wheel is not completely staight when landing.
+Small whip comes with a bar turn. Don't worry if back wheel is not completely straight when landing.
 
 <iframe width="99%" height="350" src="https://www.youtube.com/embed/WHK4xjMr9Zk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
