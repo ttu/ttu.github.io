@@ -23,12 +23,12 @@ Some of these measures can be implemented in the application code and some can b
 Different providers offer various services that can be used to implement the infrastructure, and these services can be mixed and matched based on availability and requirements.
 
 
-| Solution      | WAF               | CDN              | Storage                | API Gateway           | Compute                | Database        |
-|---------------|-------------------|------------------|------------------------|-----------------------|------------------------|-----------------|
-| **AWS**       | CloudFront WAF    | CloudFront       | S3                     | API Gateway / ELB     | Elastic Beanstalk / EC2| RDS             |
-| **Azure**     | Azure WAF         | Azure CDN        | Azure Blob Storage     | Azure API Management  | Azure App Service      | Azure SQL       |
-| **Mixed**     | CloudFlare WAF    | CloudFlare       | Heroku Static Assets   | Heroku API Routing    | Heroku                 | Aiven           |
-| **Kubernetes**| Akamai WAF        | Akamai           | MinIO  / Static files  | Ingress               | Nodes & Pods           | Postgres        |
+| Solution      | WAF               | CDN              | Storage                | Load Balancer         | Compute            | Database        |
+|---------------|-------------------|------------------|------------------------|-----------------------|--------------------|-----------------|
+| **AWS**       | CloudFront WAF    | CloudFront       | S3                     | API Gateway / ELB     | Elastic Beanstalk  | RDS             |
+| **Azure**     | Azure WAF         | Azure CDN        | Azure Blob Storage     | Azure API Management  | Azure App Service  | Azure SQL       |
+| **Mixed**     | CloudFlare WAF    | CloudFlare       | Heroku Static Assets   | Heroku API Routing    | Heroku             | Aiven           |
+| **Kubernetes**| Akamai WAF        | Akamai           | MinIO  / Static files  | Ingress               | Nodes & Pods       | Postgres        |
 
 Refer to the example project for instructions on how to run the infrastructure locally using Docker: [Example project](https://github.com/ttu/securing-web-api)
 
@@ -104,8 +104,10 @@ Application logic can cache data from DB or external services. Request will neve
 
 When using cached data, there is always a higher risk of serving incorrect data. Risks can be e.g.:
 
-* __Stale Data__: Cached data may become outdated, leading to users receiving incorrect information.
-* __Inconsistent Data__: Changes in the backend might not reflect immediately in the cache, causing discrepancies.
+* __Stale Data__: Cached data may become outdated, leading to users receiving incorrect information. Data my still be the same across the system.
+  * E.g. The system still shows 10 items available for several minutes even though a customer just bought 5, because the cached data hasn’t been updated.
+* __Inconsistent Data__: Different copies of the data have conflicting values. Changes in the backend might not reflect immediately in the cached data, causing discrepancies.
+  * E.g. The stock quantity for a product is 10 in one system but 5 in another, meaning some customers see the wrong availability.
 * __Security Risks__: Sensitive data might be cached and wrongly exposed to incorrect or unauthorized users.
 
 #### Stale Data Mitigation
@@ -117,22 +119,25 @@ Serving stale data can be avoided with cache invalidation. Invalidation can be d
 * __Manual Invalidation__: Provide mechanisms for administrators to manually clear the cache when needed.
 
 Cache duration should always be set based on the data that is being cached. This is often done with cache headers or in the code-level.  Cache duration should be either:
-*  __As long as possible__: For e.g. static content and for data that is rarely updated.
+* __As long as possible__: For e.g. static content and for data that is rarely updated.
 * __As short as necessary__: For dynamic and frequently updated content.
 
 For authenticated requests cache can be shorter than for public requests, but it will still help to reduce the load on the server, especially if users are making the same requests multiple times.
 
 #### Inconsistent Data Mitigation
 
-Invalidating cache by event is often done in code-level. When functionality changes the data, the caches that are related to that data should be invalidated.
+Invalidating cache by event is often done in code-level. When functionality changes the data, all caches that are related to that data should be invalidated.
 
 Having a plan how to invalidate the cached data manually is critical. Common case can be e.g. that wrong data is inserted to DB and which is then served to customers. Even when data is fixed from the DB, the cache still serves the wrong data. In these cases there needs to be a way to invalidate the cache.
 
 #### Security Risks Mitigation
 
-Serving data that belongs to another users happens most likely due to a human error, e.g. by faulty cache configurations, for example by removing user-specific header from used caching key, which would then cache the first users response and serving that to all sequential requests. This kind of incidents happen also to a larger companies.
+Serving data that belongs to another users happens most likely due to a human error, e.g. by faulty cache configurations, for example by removing user-specific header from used caching key, which would then cache the first users response and serving that to all sequential requests. This kind of incidents happen also to a larger companies. [Klarna incident: users saw a subset of their information exposed to other app users](https://www.klarna.com/us/blog/may-27-incident-report/).
 
-[Klarna incident: users saw a subset of their information exposed to other app users](https://www.klarna.com/us/blog/may-27-incident-report/).
+* __Avoid caching user-specific data__: Do not cache data that is sensitive or specific to individual users.
+* __Use short cache duration__: Set short cache durations for user-specific data to minimize the risk of serving inconsistent or stale information.
+* __Use token-based caching__: Incorporate user information and expiration details from tokens as part of your caching strategy.
+* __Avoid caching sensitive data on CDNs__: Your own server offers better control over caching based on user information and actions. Storing sensitive data on a CDN can also violate privacy regulations.
 
 
 ## Rate Limiting
@@ -240,14 +245,18 @@ Regardless of the measures taken, it is crucial to have a documented plan in pla
 
 Read replicas are copies of the main database that handle read queries, improving performance and reducing the load on the primary database.
 
+![Read Replicas](/images/posts/securing-web-app/db-read-replica.png){: width="700" }
+
 Benefits of Read Replicas:
 
 * __Improved Performance:__ Offload read queries from the main database.
-* __High Availability:__ Serve as backups in case the main database fails.
+* __High Availability:__ Serve as backups in case the main database fails or during maintenance.
 * __Reporting and Analytics:__ Run complex queries without affecting the primary database.
 * __Audit Logs:__ Store audit logs separately, preserving main database resources.
 
 High availability and reporting/analytics are common use cases for read replicas. Many services offer the setup of read replicas out of the box, but it can also be implemented manually.
+
+From security point of view, overloading the main database can lead to denial-of-service attacks, and read replicas can help to prevent this. 
 
 ## Bonus: How to Scale an Application to Millions of Users
 
@@ -320,6 +329,24 @@ Cache-Control: max-age=3600, must-revalidate
 ```
 
 E.g. this combination ensures that a resource is considered fresh for 3600 seconds. After this period, any subsequent request must revalidate the resource with the origin server before serving it, ensuring the client always gets the most up-to-date version after the max-age period.
+
+#### Browser Cache Revalidate
+
+If client has `ETag` or `Last-Modified` headers, the server can use these to decide if the data has changed and if the client can use the cached data.
+
+![Browser cache revalidate](/images/posts/securing-web-app/browser-cache-revalidate.png){: width="500" }
+
+If data is not changed, the server can return `304 Not Modified` status code and the client can use the cached data.
+
+#### Store Different Versions of Data with Vary Header
+
+Vary-header can be used to tell the CDN or browser that the response is different based on the request headers. This can be used to cache the same URL with different headers.
+
+```txt
+Vary: Accept-Encoding Authorization
+```
+
+E.g. this combination tells the CDN or browser that the response is different based on the Accept-Encoding and Authorization headers.
 
 ### Security Headers
 
