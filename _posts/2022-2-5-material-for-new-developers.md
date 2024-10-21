@@ -53,6 +53,7 @@ After that, write more code. And repeat, repeat and repeat.
 Understand the decisions behind architecture choices.
 
 * [Architecture Patterns with Python](https://www.goodreads.com/book/show/50083115-architecture-patterns-with-python)
+  * Official free online version of the book: [Cosmic Python](https://www.cosmicpython.com/book/preface.html)
 * [Software Architecture & Design - YouTube playlist](https://www.youtube.com/playlist?list=PL4JxLacgYgqTgS8qQPC17fM-NWMTr5GW6)
   * Good under 1h introduction to distributed systems architectures
 
