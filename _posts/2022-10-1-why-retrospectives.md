@@ -41,7 +41,7 @@ Not all improvements should wait for a retrospective. Some things can be fixed r
 
 Depending on the team size and the time available, retrospectives can be done in different formats.
 
-- Intro (5 min)
+- **Intro** (5 min)
   - Review last week's action items
   - Discuss the chosen topic for the week
   - Explain the board
@@ -49,19 +49,35 @@ Depending on the team size and the time available, retrospectives can be done in
 
 ### Small Team (60 min):
 
+- **Gather data**
+  - Filling the board (10 min)
+  - Discussing the board (15 min)
+- **Identify themes**
+  - Group similar comments to themes and voting on the most important topics (10 min)
+- **Generate insights**
+  - Discussion on most voted topics (10 min)
+- **Create action items** (5 min)
+- **Wrap-up** and closing (5 min)
+
 - Filling the board (10 min)
 - Discussing the board (20 min)
-- Deciding on actions (20 min)
+- Grouping themes and voting on the most important topics (5 min)
+- Discussion on most voted topics (10 min)
+- Creating action items (5 min)
 - Closing (5 min)
 
 ### Larger Team (90 min):
 
-- Filling the board (10 min)
-- Group discussions (20 min)
-- Summaries of the group discussion for the full-team (10 min)
-- Group discussions on potential actions (15 min)
-- Deciding on actions (25 min)
-- Closing (5 min)
+- **Gather data**
+  - Filling the board (10 min)
+  - Group discussions (20 min)
+  - Summaries of the group discussion for the full-team (10 min)
+- **Identify themes**
+  - Grouping themes and voting on the most important topics (10 min)
+- **Generate insights**
+  - Discussion on most voted topics (20 min)
+- **Create action items** (10 min)
+- **Wrap-up** and closing (5 min)
 
 ### Retro Topics
 
