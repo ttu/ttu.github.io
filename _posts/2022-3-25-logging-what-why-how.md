@@ -46,8 +46,8 @@ Errors should be logged only once and when it happens:
 In some cases it is hard to define what is an error and what is not. For example, if we are fetching data from external service, we can have following cases:
 
 ```
-1. Data is fetched from external service -> Error from return service
-    - Log depending on response
+1. Data is fetched from external service -> Error is returned
+    - Log depending on response status
         - Data not found -> No logging
           - Or log, if we expect that data should be there
         - Data not valid -> No logging
@@ -64,11 +64,11 @@ In some cases it is hard to define what is an error and what is not. For example
 1. Log in machine parseable format
 2. Make the logs human readable as well
 
-Separating log messages from variable information by passing variables as parameters to a logging function is often a good practice to follow.
+Separating the log message from variable information by passing variables as parameters to a logging function is a recommended best practice. This approach, known as **structured logging**, records additional data as separate fields, making logs easier to search, filter, and analyze.
 
-Having variables in error descriptions or messages can make it more challenging for services to parse information from logged data. For example, monitoring services may struggle to create event data from logged messages, as it is difficult to extract significant information from changing message text. Similarly, error tracking services may face challenges in identifying unique issues when, for instance, user IDs change within the message text.
+Embedding variables directly in log messages makes it difficult for monitoring and error tracking services to parse meaningful data. Dynamic information, like user IDs, complicates event data generation and error grouping. Structured logging resolves this by isolating variable data, allowing services to process log data more reliably.
 
-From a security point of view, it is easier to filter out sensitive information from additional data than from an error message.
+From a security perspective, it’s easier to filter out sensitive information when it’s recorded as additional data fields rather than embedded within the error message itself.
 
 ```js
 // Not good
@@ -78,7 +78,7 @@ log.error('Order ${order.id} creation failed for user ${user.id}: ' + ex.message
 log.error('Order creation failed for user', { orderId: order.id, userId: user.id, ex });
 ```
 
-Additional data should be an object. This way services know how to serialize it nicely to additional data fields.
+Additional data should be structured as an object, allowing services to efficiently serialize it into distinct data fields.
 
 ```js
 log.error('this is the message and it should always be same', { all data, exceptions and variables in additional data });
@@ -153,11 +153,11 @@ When additional data is passed as an object, it is more straightforward to incor
 
 ### Logging in Python
 
-Python has slightly different recommendations for logging compared to most other languages. Interpolation of logged messages is often recommended when using logging.
+Python has slightly different recommendations for logging compared to most other languages. Interpolation of logged messages is often recommended when using logging rather than structured logging.
 
 Services employ mappers and parsers to address this "issue" giving them the capability to use passed arguments to extract logged data.
 
-For new projects, it might be advisable to pass all variables in arguments (args). However, it's important to bear in mind that if libraries include logging code, they likely use interpolation.
+For new projects, it might be advisable to pass all variables in structured format. However, it's important to bear in mind that if libraries include logging code, they likely use interpolation.
 
 **Adding exception info to log**
 
@@ -200,12 +200,18 @@ logger.info("test %s", "new_field")
 # In this case args doesn't need to be an object as it is interpolated to message
 ```
 
-### Python and extra-object
+### Python, extra-object and structured logging
 
-In some examples, additional data is passed as [an extra object](https://docs.python.org/3/library/logging.html#logrecord-attributes) and using it can be beneficial in some cases. The use of an extra object is beneficial in scenarios where specific information must be included in all application logs, and these details depend on the execution context (e.g., session_id, request_user_id).
+In some examples, additional structured data is passed as [an extra object](https://docs.python.org/3/library/logging.html#logrecord-attributes) and using it can be beneficial in some cases. The use of an extra object is beneficial in scenarios where specific information must be included in all application logs, and these details depend on the execution context (e.g., session_id, request_user_id).
 
 It is important to note that certain property names, such as `message` and `asctime`, are reserved in the extra-object and should not be used.
 
-[extra in Sentry](https://docs.sentry.io/platforms/python/integrations/logging/)
+Example of using extra in [Sentry](https://docs.sentry.io/platforms/python/integrations/logging/) and in [DataDog](https://www.datadoghq.com/blog/python-logging-best-practices/#add-custom-attributes-to-your-json-logs).
 
-[extra in DataDog](https://www.datadoghq.com/blog/python-logging-best-practices/#add-custom-attributes-to-your-json-logs)
+Structured logging can be implemented with [Python standard library](https://docs.python.org/3/howto/logging-cookbook.html#implementing-structured-logging), but it might be worth considering using a library like [structlog](https://www.structlog.org/en/stable/).
+
+## Conclusion
+
+Incorporating logging best practices is crucial for maintaining reliable and easily debuggable applications. Logging provides insights into an application’s behavior and helps identify issues effectively. Structured logging, where log messages and variable data are separated, enables monitoring and error tracking services to parse information more accurately and enhances the security of log data by simplifying sensitive information filtering.
+
+Careful consideration of what to log, how to log it, and using appropriate logging tools will help ensure the logs are both informative and help to identify issues and their root causes.
