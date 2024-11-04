@@ -106,36 +106,6 @@ log.error('Order creation failed', { order });
 }
 ```
 
-It is important to provide additional information to services, e.g. if only an error message is logged, Sentry can't display additional information about logged data.
-
-```py
-log.error("Some error (%s) happened: %s", error_code, error_message)
-```
-
-Sentry displays data in following format:
-
-```
-Message:
-Some error (1234) happened: Total failure
-
-#0 1234
-#1 Total failure
-```
-
-If additional data is passed as an object, services are able to parse it and display field names etc.
-
-```py
-log.error("Some error happened", {"error_code"=error_code, "error_message"=error_message})
-```
-
-```
-Message:
-Some error happened
-
-error_code: 1234
-error_message: Total failure
-```
-
 Exceptions should also not have variables in their description. It is advicable to use custom exceptions where we can pass additional information.
 
 ```js
@@ -153,11 +123,45 @@ When additional data is passed as an object, it is more straightforward to incor
 
 ### Logging in Python
 
-Python has slightly different recommendations for logging compared to most other languages. Interpolation of logged messages is often recommended when using logging rather than structured logging.
+Python has slightly different recommendations for logging compared to some other languages, as message interpolation is commonly recommended in Python logging instead of structured logging.
 
-Services employ mappers and parsers to address this "issue" giving them the capability to use passed arguments to extract logged data.
+As variables as passed as arguments, services can pick those from the logged data.
 
-For new projects, it might be advisable to pass all variables in structured format. However, it's important to bear in mind that if libraries include logging code, they likely use interpolation.
+```py
+log.error("Some error (%s) happened: %s", error_code, error_message)
+```
+
+Sentry displays data in following format:
+
+```sh
+Message:
+Some error (1234) happened: Total failure
+
+0 1234
+1 Total failure
+```
+
+However, with string interpolation, variable names are lost, which can limit context. Using `extra`-parameter or structured logging preserves variable names, providing more detailed and accessible information.
+
+```py
+log.error("Some error happened", {"error_code": error_code, "error_message": error_message})
+```
+
+```sh
+Message:
+Some error happened
+
+error_code: 1234
+error_message: Total failure
+```
+
+How arguments should be passed and are handled depends on the library used and decided conventions. E.g. `structlog` supports passing keyword arguments as well.
+
+```py
+log.error("Some error happened", error_code=error_code, error_message=error_message)
+```
+
+For new projects, adopting structured logging (using third-party libraries or the `extra`-parameter) may be beneficial. However, it’s important to keep in mind that many Python libraries rely on interpolation-based logging, so mixing approaches could lead to inconsistent log formats.
 
 **Adding exception info to log**
 
@@ -202,7 +206,7 @@ logger.info("test %s", "new_field")
 
 ### Python, extra-object and structured logging
 
-In some examples, additional structured data is passed as [an extra object](https://docs.python.org/3/library/logging.html#logrecord-attributes) and using it can be beneficial in some cases. The use of an extra object is beneficial in scenarios where specific information must be included in all application logs, and these details depend on the execution context (e.g., session_id, request_user_id).
+In some examples, additional structured data is passed as [an extra-object](https://docs.python.org/3/library/logging.html#logrecord-attributes) and using it can be beneficial in some cases. The use of an extra object is beneficial in scenarios where specific information must be included in all application logs, and these details depend on the execution context (e.g., session_id, request_user_id).
 
 It is important to note that certain property names, such as `message` and `asctime`, are reserved in the extra-object and should not be used.
 
