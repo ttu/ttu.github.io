@@ -25,7 +25,7 @@ Different providers offer various services that can be used to implement the inf
 
 | Solution      | WAF               | CDN              | Storage                | Load Balancer         | Compute            | Database        |
 |---------------|-------------------|------------------|------------------------|-----------------------|--------------------|-----------------|
-| **AWS**       | CloudFront WAF    | CloudFront       | S3                     | API Gateway / ELB     | Elastic Beanstalk  | RDS             |
+| **AWS**       | AWS WAF           | CloudFront       | S3                     | API Gateway / ELB     | Elastic Beanstalk  | RDS             |
 | **Azure**     | Azure WAF         | Azure CDN        | Azure Blob Storage     | Azure API Management  | Azure App Service  | Azure SQL       |
 | **Mixed**     | CloudFlare WAF    | CloudFlare       | Heroku Static Assets   | Heroku API Routing    | Heroku             | Aiven           |
 | **Kubernetes**| Akamai WAF        | Akamai           | MinIO  / Static files  | Ingress               | Nodes & Pods       | Postgres        |
@@ -88,11 +88,21 @@ Middleware can cache the responses and serve them to the users. Request will nev
 
 ![Cache Middleware](/images/posts/securing-web-app/cache-middleware.png){: width="650" }
 
-###  4. Cache In The Application Logic
+### 4. Cache In The Application Logic
 
 Application logic can cache data from DB or external services. Request will never hit the DB, external services or slow business logic, if the response is in the cache.
 
 ![Cache part of service](/images/posts/securing-web-app/cache-service.png){: width="650" }
+
+### (5. Cache in the Database)
+
+Databases leverage internal caching mechanisms to accelerate response times.
+
+When a database processes a request, it first checks if the requested data is already stored in the __shared buffer cache__, a memory area that allows for quicker access than disk storage. If the data is in this cache, it can be read directly from memory, resulting in faster response times. If the data is not cached, the database reads it from disk and adds it to the cache for future access.
+
+In addition to data caching, databases also cache __query execution plans__. Storing these plans in memory can significantly speed up query processing by reusing optimized execution paths for repeated queries.
+
+NOTE: This is especially important to keep in mind when measuring database performance. To obtain accurate performance metrics, always measure after the cache has been warmed up.
 
 ### Risks with Cached Data
 
