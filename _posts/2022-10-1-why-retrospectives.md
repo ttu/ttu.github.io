@@ -59,13 +59,6 @@ Depending on the team size and the time available, retrospectives can be done in
 - **Create action items** (5 min)
 - **Wrap-up** and closing (5 min)
 
-- Filling the board (10 min)
-- Discussing the board (20 min)
-- Grouping themes and voting on the most important topics (5 min)
-- Discussion on most voted topics (10 min)
-- Creating action items (5 min)
-- Closing (5 min)
-
 ### Larger Team (90 min):
 
 - **Gather data**
