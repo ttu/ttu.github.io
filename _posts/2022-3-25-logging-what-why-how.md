@@ -1,8 +1,10 @@
 ---
 layout: post
-title: Logging - What, why and how?
+title: Logging - What, Why and How?
 excerpt: What is logging, why to use it and how to use it.
 ---
+
+## Logging vs Monitoring vs Analytics
 
 **Logging** is a critical tool for debugging and troubleshooting applications. It tells you what happened, and gives you the raw data to track down the issue.
 By capturing relevant information at various stages of the application's execution, logging enables developers **to pinpoint the root cause of errors** and **resolve them efficiently**.
@@ -13,7 +15,7 @@ Logging is also a useful tool for tracking application behavior and collecting s
 
 To achieve comprehensive monitoring and analytics, it's recommended to use additional services such as Datadog, New Relic, or Google Analytics.
 
-### What to log?
+## What to Log?
 
 Collecting a sufficient amount of logs is essential for identifying when errors occur and determining what was happening prior to the occurrence of an error. In addition to identifying errors and their causes, logs can also aid in investigating the root cause of an issue. This is why it's important to include info logging in the logging process.
 
@@ -27,7 +29,7 @@ Who, What, When, Where and Why
 - When did the failure occur?
 - Why did the application fail?
 
-### What kind of errors to log?
+### What Kind of Errors to Log?
 
 Logging can be used to **alert when issues arise**. Logging frameworks can be configure to automatically send alerts through external services when certain errors occur.
 
@@ -59,7 +61,7 @@ In some cases it is hard to define what is an error and what is not. For example
     - Log, as this is something that needs to be fixed immediately
 ```
 
-## How to log?
+## How to Log?
 
 1. Log in machine parseable format
 2. Make the logs human readable as well
@@ -113,7 +115,7 @@ throw new Error('Order ${order.id} creation failed for user ${user.id}');
 throw new OrderCreationError('Order creation failed for user', { order, userId: user.id});
 ```
 
-### Personally identifiable information (PII)
+### Personally Identifiable Information (PII)
 
 Do not log any personally identifiable information (PII). While some services, such as Sentry, attempt to clean up PII from logged data, not all services do this automatically.
 
@@ -121,7 +123,7 @@ When additional data is passed as an object, it is more straightforward to incor
 
 > PII (Personally Identifiable Information) data is any information that can be used to identify a particular individual. This can include a person's name, address, phone number, email address, social security number, driver's license number, passport number, financial account numbers, and any other information that can be used to uniquely identify a person. PII data is sensitive and should be protected to prevent identity theft, fraud, or other types of misuse.
 
-### Logging in Python
+## Logging in Python
 
 Python has slightly different recommendations for logging compared to some other languages, as message interpolation is commonly recommended in Python logging instead of structured logging.
 
@@ -163,7 +165,7 @@ log.error("Some error happened", error_code=error_code, error_message=error_mess
 
 For new projects, adopting structured logging (using third-party libraries or the `extra`-parameter) may be beneficial. However, it’s important to keep in mind that many Python libraries rely on interpolation-based logging, so mixing approaches could lead to inconsistent log formats.
 
-**Adding exception info to log**
+**Adding Exception Info to Log**
 
 In Javascript error includes the stack, but in Python it does not. In Python it needs to be added manually.
 
@@ -185,7 +187,7 @@ When message doesn't include any arguments, then arguments must be defined in th
 format = "%(asctime)s - %(name)s -  %(levelname)s - %(message)s - %(args)s"
 ```
 
-**Python log message interpolation**
+**Python Log Message Interpolation**
 
 Message should not contain variables, so avoid interpolation.
 
@@ -204,11 +206,11 @@ logger.info("test %s", "new_field")
 # In this case args doesn't need to be an object as it is interpolated to message
 ```
 
-### Python, extra-object and structured logging
+### Python, Extra-parameter and Structured Logging
 
-In some examples, additional structured data is passed as [an extra-object](https://docs.python.org/3/library/logging.html#logrecord-attributes) and using it can be beneficial in some cases. The use of an extra object is beneficial in scenarios where specific information must be included in all application logs, and these details depend on the execution context (e.g., session_id, request_user_id).
+In some examples, additional structured data is passed as [an extra-parameter](https://docs.python.org/3/library/logging.html#logrecord-attributes) and using it can be beneficial in some cases. The use of an extra-parameter is beneficial in scenarios where specific information must be included in all application logs, and these details depend on the execution context (e.g., session_id, request_user_id).
 
-It is important to note that certain property names, such as `message` and `asctime`, are reserved in the extra-object and should not be used.
+It is important to note that certain property names, such as `message` and `asctime`, are reserved in the extra-parameter and should not be used.
 
 Example of using extra in [Sentry](https://docs.sentry.io/platforms/python/integrations/logging/) and in [DataDog](https://www.datadoghq.com/blog/python-logging-best-practices/#add-custom-attributes-to-your-json-logs).
 
