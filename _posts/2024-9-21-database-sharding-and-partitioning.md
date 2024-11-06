@@ -36,13 +36,13 @@ __Why?__ Sharding is used to improve performance and scalability by distributing
 
 ## PostgreSQL and Citus
 
-Sharding and distributed table require a database that supports it. In this example PostgreSQL with Citus extension are used.
+Sharding and distributed table require a database that supports them. In this example, PostgreSQL with Citus extension is used.
 
 __Postgres__ is a relational database that supports SQL. __Citus__ is an extension that transforms Postgres into a distributed database. Citus is a horizontally scalable extension for PostgreSQL that distributes data and queries across multiple nodes.
 
 Data is sharded and distributed among the worker nodes based on the sharding key. Each shard is stored on one or more worker nodes, depending on the replication factor. This means that each worker node holds a subset of the data, not a full copy of the entire distributed table.
 
-Sharding the data always depends on the use case and what is the most likely way that data is queried.
+Sharding data always depends on the use case and the most likely way the data will be queried
 
 In Citus, you can't explicitly define which specific keys go to which shard or worker. Citus distributes data using a hash-based sharding mechanism on the specified sharding key.
 
@@ -50,16 +50,16 @@ In Citus, you can't explicitly define which specific keys go to which shard or w
 * __Shard Assignment:__ The hash value determines which shard the data belongs to.
 * __Shard Placement:__ The shard is then placed on one of the worker nodes, distributing data evenly across workers based on the hash values.
 
-## Example with Payment Service Provider events
+## Example with Payment Service Provider Events
 
-In the example we have a simple payment service provider event data. Events are different types of events in a payment workflow, such as _AUTHORISATION_, _CAPTURE_, _CANCELLATION_, and _REFUND_.
+In the example, we have a simple payment service provider event data. Events are different types of events in a payment workflow, such as _AUTHORISATION_, _CAPTURE_, _CANCELLATION_, and _REFUND_.
 
 In this example the data is sharded by the event's `psp_name` and partitioned by the event's `event_timestamp`. This means that events from the same payment service provider are stored together, and events are partitioned by year.
 
-Queries can be done over cross-shards, but is slower than querying data from a single shard. If queries are done across many partitions, the performance is slower than querying data from a single unpartitioned table.
+Queries can be done over cross-shards, but they are slower than querying data from a single shard. If queries are performed across many partitions, performance is slower than querying data from a single unpartitioned table.
 
 
-#### SQL Example (PostgreSQL + Citus extension)
+#### SQL Example (PostgreSQL + Citus Extension)
 
 We’ll use Docker Compose to set up a local Citus cluster with one master and two worker nodes.
 
@@ -109,7 +109,7 @@ docker compose up
 
 Connect to the master node with `psql -h localhost -U citus -d events_db` or use an IDE for databases.
 
-Exexute SQL commands:
+Execute SQL commands:
 ```sql
 SET citus.shard_count = 32;
 SET citus.shard_replication_factor = 1;
@@ -139,7 +139,7 @@ CREATE TABLE psp_events_2023 PARTITION OF psp_events
 CREATE TABLE psp_events_2024 PARTITION OF psp_events
     FOR VALUES FROM ('2024-01-01') TO ('2024-12-31');
 
--- Create a default partition for orders that don't fit into the other partitions
+-- Create a default partition for events that don't fit into the other partitions
 CREATE TABLE psp_events_default PARTITION OF psp_events DEFAULT;
 
 -- Distribute the table by the sharding key `psp_name`
@@ -179,7 +179,7 @@ VALUES
     ('Square', 22, 'FR', 130.00, 'EUR', 'CANCELLATION', '2025-05-21');
 ```
 
-### Verify the data distribution
+### Verify the Data Distribution
 
 Check how the data is distributed across shards, nodes, and partitions.
 
@@ -237,9 +237,9 @@ Query through docker:
 docker exec -it <container_name_or_id_of_citus_worker> psql -U citus -d events_db -c "SELECT * FROM psp_events_<shard_id>;"
 ```
 
-Check the container name with `docker ps`.
+Check the container name using `docker ps`.
 
-Query the data through psql:
+Query the data using psql:
 ```sh
 PGPASSWORD=password psql -h localhost -p <worker_node_port> -U citus -d events_db -c "SELECT * FROM psp_events_<shard_id>;"
 ```
