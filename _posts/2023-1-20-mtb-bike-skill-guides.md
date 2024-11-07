@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Mountain biking skill guides
+title: Mountain Biking Skill Guides
 excerpt: Collection of guides, tips and tricks to learn some mtb skills.
 ---
 
@@ -14,13 +14,13 @@ A good example of difficulty is shown in this video, where former professional r
 
 It’s advisable to start with simple steps. Complexity is the enemy of the execution. When first simple actions come automatically without thinking too much, add next steps. If I try to execute too many new steps, everything will break apart. 
 
-<h2>Pedal and body position</h2>
+<h2>Pedal and Body Position</h2>
 
 Heels down and ass back is a pretty good first advice. These guides recommend that it might be actually easier to keep a good position while having front heel down and back heel up.
 
 <iframe width="99%" height="350" src="https://www.youtube.com/embed/VgddegvDvzU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-<h2>How to get off and on steep sections</h2>
+<h2>How to Get Off and On Steep Sections</h2>
 
 How to dismount on a steep section of the trail is a lifesaver and reduces the amount of panic.
 
@@ -30,13 +30,13 @@ After dismounting it is also good to learn how to resume, so then there is no ne
 
 <iframe width="99%" height="350" src="https://www.youtube.com/embed/3fhpCpEmSwc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-<h2>Get over an obstacle</h2>
+<h2>Get Over an Obstacle</h2>
 
 Getting over an obstacle doesn't require any advanced bunny hop technique. Basically lift the front wheel on top of the logde and lift the back wheel up. Speed is required as back wheel will need to land at least on top of the lodge.
 
 <iframe width="99%" height="350" src="https://www.youtube.com/embed/KifLqlML6K8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-<h2>Pedal kick / punch</h2>
+<h2>Pedal Kick / Punch</h2>
 
 Good technique to get on top of the obstacle.
 
@@ -50,7 +50,7 @@ Another good video about the technique.
 
 <iframe width="99%" height="350" src="https://www.youtube.com/embed/PF68cmrLBKY?si=zG5L7ZjLBJ7Gi5mV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-<h2>Drops with speed</h2>
+<h2>Drops with Speed</h2>
 
 Small drops are common on trails. It is easy enough to learn the basic skills and gain some confidence, so drops won't stop the good flow.
 
@@ -98,13 +98,13 @@ When jumpst start to get bigger there is a big chance for so called "dead-sailor
 
 There are many steps to do. Mostly I have noticed that when I start to do too many things, everything breaks down and I can't do even most simple jumps nicely.
 
-<h2>Steep jumps</h2>
+<h2>Steep Jumps</h2>
 
 Steep jumps, e.g. dirt jumps.
 
 1. Keep knees over the toes and body perpendicular to sea level (stand up straight all the time)
 
-<h2>Bunny hop</h2>
+<h2>Bunny Hop</h2>
 
 Proper bunny hop is freaking hard. I know how to hop up the front and the rear at the same time, but doing a proper bunny hop seems to be an impossible feat.
 
@@ -134,7 +134,7 @@ Normal wheelie is a nice trick. "Power" wheelie required by drops is actually an
 
 Rear brake is your friend and will save you if you are going to go over.
 
-<h2>Drops with a slow speed / power wheelie</h2>
+<h2>Drops with a Slow Speed / Power Wheelie</h2>
 
 Extremely nice skill on trails. Brings lots of extra fun. 
 
@@ -170,7 +170,7 @@ Keep the pedals flat. Less things to think while approaching the corner. Keep pe
 
 Interseting part of this was, that I actually had the realization that you do not need to steer the bike with handlebars/arms, but you can steer with hips.
 
-<h2>Bar turn</h2>
+<h2>Bar Turn</h2>
 
 Start with extemely small movement. To make things easier, turn handlebar towards where you are watching or where you want to turn bike next.
 

@@ -14,12 +14,12 @@ A tenant is a group of users who share a common access with specific privileges 
 
 E.g. each customer company is an own tenant, and each customer has multiple users (users/consumers and company staff members).
 
-## Multi-user vs multi-tenant?
+## Multi-User vs Multi-Tenant?
 
 - In a multi-user system, multiple users can use the application
 - Multi-tenancy tells us something about the architecture of the system
 
-## Single-tenant vs multi-tenant
+## Single-Tenant vs Multi-Tenant
 
 In Single tenant each customer has own application instance.
 
@@ -57,7 +57,7 @@ Tenants may be given the ability to customize some parts of the application, suc
 - Reliability
     - If the system is down, it is down for every tenant
 
-## Database level tenancy
+## Database Level Tenancy
 
 If a single instance serves multiple customers, how do we isolate the customer data?
 
@@ -69,7 +69,7 @@ If a single instance serves multiple customers, how do we isolate the customer d
     - *Shared database, separate schema:* Each tenant has own tables
     
 
-**Shared schema, shared tables, identifier column**
+### 1: Shared Schema, Shared Tables, Identifier Column
 
 ![multitenancy2.png](/images/posts/multi-tenancy/multitenancy2.png)
 
@@ -83,7 +83,7 @@ If a single instance serves multiple customers, how do we isolate the customer d
     - Limited performance tuning options
     
 
-**Shared database, separate schema**
+### 2: Shared Database, Separate Schema
 
 ![multitenancy3.png](/images/posts/multi-tenancy/multitenancy3.png)
 
@@ -97,7 +97,7 @@ If a single instance serves multiple customers, how do we isolate the customer d
     - Migrations to multiple schemas
     - One tenant can reduce the performance of all tenants
 
-**Database per tenant**
+### 3: Database per Tenant
 
 ![multitenancy4.png](/images/posts/multi-tenancy/multitenancy4.png)
 
@@ -110,7 +110,7 @@ If a single instance serves multiple customers, how do we isolate the customer d
     - Create new databases, migrations etc.
     - Connection registry for each tenant
 
-### Which to choose?
+### Which to Choose?
 
 - If security and data isolation is your number one concern, database per tenant might be best for you
 - If you are expecting a smaller number of tenants, smaller growth of data and scalability requirements, approach #1 or #2 might be for you
@@ -124,7 +124,7 @@ If a single instance serves multiple customers, how do we isolate the customer d
 1. ~~Separate application~~
 2. Shared application
 
-### Database tenancy level
+### Database Tenancy Level
 
 Tenancly level should depend on data model complexity, data amount, performance and security requirements.
 
@@ -132,7 +132,7 @@ Tenancly level should depend on data model complexity, data amount, performance 
 2. Shared database, separate schema
 3. Database per tenant
 
-### How to identify tenant
+### How to Identify Tenant
 
 Options:
 - Identify from URL

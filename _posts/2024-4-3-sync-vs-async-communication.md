@@ -60,7 +60,7 @@ __Event Sourcing__ is a data modeling approach where the state of an application
 
 If new to events, check e.g.: [RabbitMQ Tutorials](https://www.rabbitmq.com/tutorials)
 
-## Problems with sync
+## Problems with Sync
 
 * __Resilience__: A single failed call can cause the entire process or operation to fail, and by default there is no way to retry failed calls.
     * Error recovery: “Unnecessary” failures when other system is unresponsive. In such cases, recovering from the error may require manual actions.
@@ -68,21 +68,21 @@ If new to events, check e.g.: [RabbitMQ Tutorials](https://www.rabbitmq.com/tuto
 * __Blocking__: Performance bottlenecks when a service is slow or unresponsive.
 * __Scalability__: Too many simultaneous requests can result in slow or unresponsive service.
 
-## Why async?
+## Why Async?
 
 * __Resilience__: Retrying failed tasks and calling the next operation only after the previous one has succeeded. Link operations, so process can be continued from the next step.
 * __Loose coupling of services__: Each service relies on events, and there is no direct connection between services.
 * __Scalability__: Messages are executed one by one, and it is possible to add more consumers.
 
-## Problems with async
+## Problems with Async
 
 * Infrastructure setup is more complex as it often requires some intermediary service to handle the events.
 * Potential complexity increase if events trigger new events, etc.
 * Complicated debugging.
 
-## Common(-ish) problem cases
+## Common(-ish) Problem Cases
 
-### Case: Additional data is required for processing event
+### Case: Additional Data Is Required for Processing Event
 
 Event processing requires additional data from the service sending the event, necessitating a call to the original service.
 
@@ -92,7 +92,7 @@ The event should contain all necessary data to execute the action.
 
 If this is not possible for some reason, then fetching the data is acceptable.
 
-### Case: Need to wait for the response before can continue execution
+### Case: Need to Wait for the Response Before Continuing Execution
 
 > NOTE: This is an example, so often moving from a single sync request to async without a good reason is simply overengineering.
 
@@ -116,7 +116,7 @@ One option is to replace polling with some event-driven mechanism, e.g. WebSocke
 
 ![Async websocket](/images/posts/sync-async/async-websocket.png){: width="600" }
 
-### Case: Complex call chains
+### Case: Complex Call Chains
 
 Synchronous calls would block the user or system for an unacceptable duration. Errors in each call can cause the entire process to fail.
 
@@ -126,7 +126,7 @@ By using asynchronous calls, the user can continue using the application while t
 
 ![Choreography](/images/posts/sync-async/choreography.png){: width="700" }
 
-### Case: Complex flow and transactional operations across services
+### Case: Complex Flow and Transactional Operations Across Services
 
 Asynchronous communication can involve multiple services, with each service responding to events triggered by others. Each service should know what to do upon receiving an event and how to respond to it. The flow is complex, and control of the flow is distributed among the services.
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Debugging the performance of Django Application (DRF)
+title: Debugging the Performance of Django Application (DRF)
 excerpt: Investigation the root cause of poor performance of Django application and Django REST Framework (DRF).
 ---
 
@@ -10,7 +10,7 @@ According to a [Python REST frameworks performance comparison](https://www.grand
 
 However, in some cases, the performance of a Django application and DRF may fall short of expectations. If you're experiencing poor performance with an authenticated Django DRF application, here's a guide on how to investigate the root cause of the issue.
 
-### Create new Django project
+### Create New Django Project
 
 Create new DRF project (`todo`) and app (`todo_api`)
 
@@ -104,7 +104,7 @@ Path to authentication-file with `BasicAuthentication` implementation.
 
 e.g `/.venv/lib/python3.9/site-packages/rest_framework/authentication.py`or in [GitHub](https://github.com/encode/django-rest-framework/blob/4abfa28e0879e2df45937ac8c7a9ffa161561955/rest_framework/authentication.py#L53).
 
-### Solution 1: Remove authentication from endpoint if not required
+### Solution 1: Remove Authentication from Endpoint If Not Required
 
 If authentication is not required for the endpoint, remove authentication by setting `authentication_classes` to an empty list.
 
@@ -119,7 +119,7 @@ def hello_world_drf(request):
 
 Now unnecessary authentication is not done.
 
-### Solution 2: Force DRF to use lazy object for request.user
+### Solution 2: Force DRF to Use Lazy Object for request.user
 
 Check example from this GitHub issue on how to override DRF's `request.user` to return a lazy-object.
 
@@ -136,7 +136,7 @@ def hello_world_drf(request):
     return HttpResponse({"message": "Hello world from DRF!"})
 ```
 
-### Solution 3: Something else?
+### Solution 3: Something Else?
 
 Let’s dig into authentication a figure out why is so slow.
 
@@ -237,13 +237,13 @@ From the response we can see that `_hashlib.pbkdf2_hmac` takes 85ms.
 
 Read more about `cprofile`-output: [https://medium.com/kami-people/profiling-in-django-9f4d403a394f](https://medium.com/kami-people/profiling-in-django-9f4d403a394f)
 
-### Solution 3.1: Changing password hasher may increase the performance
+### Solution 3.1: Changing Password Hasher May Increase the Performance
 
 [https://docs.djangoproject.com/en/4.1/topics/auth/passwords/](https://docs.djangoproject.com/en/4.1/topics/auth/passwords/)
 
 [https://github.com/django-tastypie/django-tastypie/issues/371#issuecomment-5739426](https://github.com/django-tastypie/django-tastypie/issues/371#issuecomment-5739426)
 
-### Solution 3.2: Cache authenticated user
+### Solution 3.2: Cache Authenticated User
 
 It is highly unlikely that authentication is required for every request. We can cache the authenticated user for a short period of time.
 
@@ -282,7 +282,7 @@ REST_FRAMEWORK = {
 }
 ```
 
-## Performance using API key
+## Performance Using API Key
 
 Performance with `API key` should be around same as with `BasicAuthentication`.
 
@@ -355,7 +355,7 @@ curl -H "Authorization: Api-Key YxpSOq1c.vF1iFFpXDcPGY92qIXg3sQkfwvBmWa6g" -w '\
 ...
 ```
 
-### Performance using OAuth
+### Performance Using OAuth
 
 TODO
 
