@@ -86,8 +86,9 @@ Additional data should be structured as an object, allowing services to efficien
 log.error('this is the message and it should always be same', { all data, exceptions and variables in additional data });
 ```
 
+Additinal data passed straight as metadata:
+
 ```js
-// Additinal data passed straight as metadata
 log.error('Order creation failed', order);
 
 // Additional data in e.g. Sentry:
@@ -95,8 +96,11 @@ log.error('Order creation failed', order);
   id: 'aaaa',
   description: 'asdasfdasdf'
 }
+```
 
-// Additional data wrapped in object
+Additional data wrapped in object:
+  
+```js
 log.error('Order creation failed', { order });
 
 // Additional data in e.g. Sentry:
@@ -108,7 +112,15 @@ log.error('Order creation failed', { order });
 }
 ```
 
-Exceptions should also not have variables in their description. It is advicable to use custom exceptions where we can pass additional information.
+One additional benefit of using structured logging is that it is often easier for developers to structure error messages and data consistently when messages do not contain variables and additional data is passed as an object.
+
+```js
+log.error('Payment (id: ${payment.id}) failed - User: ${user.id}', { payment, user });
+// More consistent
+log.error('Payment failed', { paymentId: payment.id, userId: user.id });
+```
+
+Exceptions should not contain variables in their descriptions. It is advisable to use custom exceptions where additional information can be passed.
 
 ```js
 throw new Error('Order ${order.id} creation failed for user ${user.id}');
