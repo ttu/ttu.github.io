@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Git flow example with commands
+title: Git Flow Example with Commands
 excerpt: Git flow example with commands.
 ---
 

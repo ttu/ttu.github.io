@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Run C# scripts with .NET Core
+title: Run C# Scripts with .NET Core
 excerpt: Use dotnet script to run C# scripts with .NET Core. Compare script and execution with JS, Python and Kotlin implementations.
 ---
 
@@ -15,7 +15,7 @@ Different scripting environmets exists for different runtimes:
 
 C# 9.0 will add support for top level statements and functions, so it is likely that some future release of .NET will have support for scripting.
 
-## dotnet script
+## Dotnet Script
 
 Dotnet script brings scripting support for .NET Core and it can be used from command line with .NET Core global tool. As .NET Core brings .NET to all platforms, this seems like to be a good way to handle scripting with C#.
 
@@ -41,7 +41,7 @@ $ sudo apt-get update
 $ sudo apt-get install dotnet-sdk-3.1
 ```
 
-#### Install dotnet script
+#### Install Dotnet Script
 
 Install Dotnet script as a .NET Core global tool:
 
@@ -53,7 +53,7 @@ Other installations methods and full installation instructions are in [GitHub](h
 
 ## Usage
 
-### Create a script file
+### Create a Script File
 
 Create a new script file e.g. _github.csx_. Example script will fetch start and fork count from selected repositories.
 

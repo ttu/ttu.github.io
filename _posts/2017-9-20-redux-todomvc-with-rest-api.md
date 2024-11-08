@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How to modify React TodoMVC example to use a REST API and WebSockets
+title: How to Modify the React TodoMVC Example to Use a REST API and WebSockets
 excerpt: Step by step guide how to modify Redux TodoMVC example to use Fake JSON Server as a REST API Back End to store the todo-data and use WebSockets for update notifications.
 ---
 
@@ -20,7 +20,7 @@ Fake JSON Server can be used as a simple Back End for prototyping or maybe as a 
 
 Complete documentation and examples for [Fake JSON Server](https://github.com/ttu/dotnet-fake-json-server) can be found from Github. 
 
-## Getting started
+## Getting Started
 
 This example can be tried quickly by running Fake JSON Server from executable, from code or with Docker and by cloning modified TodoMVC repository.
 
@@ -55,7 +55,7 @@ $ docker build -t fakeapi .
 $ docker run -it -p 57602:57602 fakeapi
 ```
 
-##### 2) Start the modified Redux TodoMVC example
+##### 2) Start the Modified Redux TodoMVC Example
 
 ```sh
 $ git clone https://github.com/ttu/todomvc-fake-server.git
@@ -64,7 +64,7 @@ $ npm install
 $ npm start
 ```
 
-## Redux recap
+## Redux Recap
 
 To follow this example it is good to understand the basics of Redux. 
 
@@ -81,7 +81,7 @@ _Redux data flow diagram. Credit to [jenyaterpil](http://slides.com/jenyaterpil/
   * Actions are called through dispatch and this is the only way to trigger state change. `bindActionCreators` binds actions to dispatch for convenience.
 * Components get needed props from the parent, and is updated only when the state is changes ([components/MainSection.js](https://github.com/ttu/todomvc-fake-server/blob/master/src/components/MainSection.js#L87))
 
-## How to get the original version of Redux TodoMVC to use Fake JSON Server.
+## How to Get the Original Version of Redux TodoMVC to Use Fake JSON Server
 
 <img src="https://image.ibb.co/j92Uv5/todos_front.jpg" width="50%" />
 
@@ -416,7 +416,7 @@ Stored JSON will look like this:
 }
 ```
 
-## Test API endpoints with Swagger and curl
+## Test API Endpoints with Swagger and Curl
 
 The best way to edit your data is of course manually. Open the JSON file with any editor and save your changes. 
 
@@ -424,7 +424,7 @@ _NOTE: By default data store will reload data from the JSON with every request. 
 
 You can test requests with [Swagger: http://localhost:57602/swagger](http://localhost:57602/swagger/), curl, Postman etc.
 
-#### Get items
+#### Get Items
 
 [Open Swagger](http://localhost:57602/swagger/#!/Dynamic/ApiByCollectionIdGet)
 
@@ -459,7 +459,7 @@ query {
 $ curl -H "Content-type: application/graphql" -X POST -d 'query { todos(completed: true) { id text completed } }' http://localhost:57602/graphql
 ```
 
-### Create new items
+### Create New Items
 
 [Open Swagger](http://localhost:57602/swagger/#!/Dynamic/ApiByCollectionIdPost)
 
@@ -475,7 +475,7 @@ __curl__
 $ curl -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{ "text": "New item from curl", "completed": false }' http://localhost:57602/api/todos/
 ```
 
-### Update items
+### Update Items
 
 Update the item state to completed. This can be done by replacing the whole item with `PUT` or by providing only the updated attributes with `PATCH`.
 
@@ -496,7 +496,7 @@ __curl__
 $ curl -H "Accept: application/json" -H "Content-type: application/json" -X PATCH -d '{ "completed": true }' http://localhost:57602/api/todos/1
 ```
 
-### Async jobs
+### Async Jobs
 
 Fake JSON Server can simulate [long running jobs](https://github.com/ttu/dotnet-fake-json-server#async-operations). To create a new Todo item with a long running job, use the `async` endpoint instead of the `api` endpoint.
 
@@ -527,7 +527,7 @@ Curl will show all headers with vebose argument.
 <img src="https://lh3.googleusercontent.com/V80dUZEZSuoq2uU-g2VqHue1HiIIrSKmtZ5D-6UnJt6yOXH2t1XOogJakB2VA9Es_rwwKpZ66-Idegspuny-mSuLWMnXbPtDYaGsAy6rtbFk_Qir6GpL1TNwsjJeE-bImxMPerMsJWTy-y1Zj8Z8uNpaN-wH328IHY1PeC0pnBbK5x_4c9whPDH60dOYzh2nU_AhU6o2VzRKaxv8EA6uKfTfGcYsosmjsI5_79vUZIVBLknqPJ3OfJDn48N0-AJW-LtG3XT7do2gz_XRGDphXvl10qi4TrPuvxVGY90U4u7Pe-QCZcD0zk-etiVUuAp0c6FmTzLs4bY31mkugfWGF3knku6jPk016qo8AAnLyHu4JFEG1ngF3pnijxKqHiio9lFTjn9nelwyQHhTqn3zn4NgsyJ4moU4q9V2PUaGaoXIx9LFNrcJDVOc_Bhc0717H5f-TdZhhe_YpSGOvs3ODcudIr5oXLRgjjj9vMUde5SqTtV0O4cfZ_b959Jj4rCpmIsF-mctxw3ZcPTe2O9_KW3OC-4DHc-1-go6lotYcO4oqDr5tA-4gRg5_Bh4tJBXHC0v45J73XsUIQ59pTLKvZBIXg-yk7LVrCC_BxbSgmXtrRqUNZ4IVVqJ3sXWMuEpeLJDCBnpjk-41OFaGlytagWpeXyr_DxTqjGNYwzYAv2e-TM=w1066-h611-no" />
 
 
-### Final words
+### Final Words
 
 There are many uses cases for Fake JSON Server, this article shows how to use it as [an IoT backend](/fake-json-server-iot-be). Fake JSON Server is used to collect data from sensors for validation and to provide a way to observe sensor statuses real-time.
 

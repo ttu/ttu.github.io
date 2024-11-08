@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Result type, monadic type and why there is always a map-function?
+title: Result Type, Monadic Type, and Why There Is Always a Map Function
 excerpt: What is a result type, what is a monadic type and why they always have a map-function.
 ---
 
@@ -12,7 +12,7 @@ Wikipedia definition: [https://en.wikipedia.org/wiki/Result_type](https://en.wik
 - [Swift - Result](https://developer.apple.com/documentation/swift/result)
 - [Rust - Result](https://doc.rust-lang.org/std/result/)
 
-## Why would we like to use the result type
+## Why Would We Like to Use the Result Type
 
 - We want to explicitly define types that function can return
 - Easy to define if the return value is a success or error
@@ -22,7 +22,7 @@ Wikipedia definition: [https://en.wikipedia.org/wiki/Result_type](https://en.wik
 
 [Against Railway-Oriented Programming](https://fsharpforfunandprofit.com/posts/against-railway-oriented-programming/)
 
-## Result type example with ts-result
+## Result Type Example with ts-result
 
 Hi! This is the Result...
 
@@ -108,13 +108,13 @@ console.log("resultAsString values type", typeof resultAsString.val);
 ```
 __Summary:__ map applies a function to contained value and returns a new value
 
-# So what is that monadic data type?
+## So What Is That Monadic Data Type?
 
 > Monadic (being or relating to a monad)
 
 Not important in real life, but let's try to get some idea of what the monad is
 
-### Normal functions
+## Normal Functions
 
 ![Normal functions](/images/posts/result-type/result_type_2.png)
 
@@ -126,7 +126,7 @@ const sum = addThree(value);
 console.log("Result:", result);
 ```
 
-## Monadic data types
+## Monadic Data Types
 
 Some monad examples. These are not true monads, but close enough. True monads can be found only from Haskell-land.
 

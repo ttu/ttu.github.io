@@ -102,7 +102,7 @@ Version|Req/sec
 netcoreapp2.0|29119.66
 netcoreapp1.1|no difference
 
-## Execute benchmark for POST request with payload
+## Execute Benchmark for POST Request with Payload
 
 More complex benchamrks need to be defined with _lua_-scripts. Check a short example how to execute POST request benchmark from the [.NET Fake JSON Server's documentation](https://github.com/ttu/dotnet-fake-json-server/blob/master/docs/BenchmarkWrk.md).
 

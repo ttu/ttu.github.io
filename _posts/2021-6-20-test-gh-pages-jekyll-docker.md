@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Test Jekyll generated GitHub Pages locally using Docker
+title: Test Jekyll Generated GitHub Pages Locally Using Docker
 excerpt: Use Docker to test locally GitHub Pages generated with static site generator Jekyll.
 ---
 
@@ -8,7 +8,7 @@ excerpt: Use Docker to test locally GitHub Pages generated with static site gene
 
 You can create a website directly from a [GitHub repository](https://docs.github.com/en/pages). GitHub Pages have a built in support for a static site generator, [Jekyll](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll).
 
-## Test locally with Docker
+## Test Locally with Docker
 
 Testing generated pages locally before deploying to GitHub is possible, but [installation of Jekyll](https://jekyllrb.com/docs/installation/) is not extremely simple.
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How to distribute a .NET Core application to users who don't have .NET Core installed
+title: How to Distribute a .NET Core Application to Users Who Don’t Have .NET Core Installed
 excerpt: Use .NET Core self-contained deployments to distribute a .NET Core application to as wide user base as possible.
 ---
 

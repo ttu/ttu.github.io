@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Should exceptions be used for handling the control flow?
+title: Should Exceptions Be Used for Handling the Control Flow?
 excerpt: Should control flow be handled with exceptions, and what are the arguments for and against this approach?
 ---
 
@@ -9,7 +9,7 @@ Two different approaches to concider for handling the control flow:
 1. Use Exception to handle control flow
 2. Use Exceptions only for unexpected behavior
 
-## 1. Use Exceptions to handle control flow
+## 1. Use Exceptions to Handle Control Flow
 
 ```js
 // Service
@@ -42,7 +42,7 @@ __\-__ Disadvantage
     * Will `returnData` return something or will it throw exception in some case?
   * Developers should document possible exceptions
 
-## 2. Use Exceptions only for unexpected behavior
+## 2. Use Exceptions Only for Unexpected Behavior
 
 ```js
 // Service
@@ -136,7 +136,7 @@ __NOTE:__ Result types are widely used in functional languages, and some other l
 * [Rust - Result](https://doc.rust-lang.org/std/result/)
 
 
-## Control flow from a Separation of Concern perspective
+## Control Flow from a Separation of Concern Perspective
 
 General practice for a layered web architecture / "Controller -> Service -> Repository"-pattern is, that each layer has its own responsibility.
 
@@ -162,7 +162,7 @@ However, using exceptions to handle control flow breaks the flow where the reque
 
 Sometimes, following established practices is worthwhile even if it leads to more code.
 
-## Links etc.
+## Links, Etc.
 
 [https://fsharpforfunandprofit.com/posts/exceptions/#the-error-code-based-approach](https://fsharpforfunandprofit.com/posts/exceptions/#the-error-code-based-approach)
 

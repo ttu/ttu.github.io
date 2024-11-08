@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Fake JSON Server as an IoT Back End
+title: Fake JSON Server as an IoT Backend
 excerpt: How to use Fake JSON Server as an IoT Back End.
 ---
 
@@ -15,7 +15,7 @@ RuuviTag Sensor <- Raspberry PI -> PC with Fake JSON Server
 
 Raspberry Pi is scanning RuuviTag sensors and when the updated data for the sensor is found, it sends new data to Fake JSON Server.
 
-## Running the setup
+## Running the Setup
 
 #### Start Fake JSON Server
 
@@ -35,11 +35,11 @@ $ dotnet run --file iot.json --urls http://0.0.0.0:57602
 ```
 5. Open [http://localhost:57602/sensors.html](http://localhost:57602/sensors.html)
 
-#### Install RuuviTag package to Raspberry Pi (Raspbian) or to PC with Linux
+#### Install RuuviTag Package on Raspberry Pi (Raspbian) or on a PC with Linux
 
 RuuviTag Python package [Installation Guide](https://github.com/ttu/ruuvitag-sensor#installation)
 
-#### Execute Python script
+#### Execute Python Script
 
 IP address of PC with Fake JSON Server is _192.168.2.22_.
 
@@ -75,7 +75,7 @@ POST /api/sensordatas    : sensordatas has all sent datas
 PUT  /api/sensors/{mac}  : sensors has latest data for each sensor
 ```
 
-#### Saved data
+#### Saved Data
 
 Data in `iot.json`. Sensors have different fields depending on the sensor's firmware.
 
@@ -155,7 +155,7 @@ Data in `iot.json`. Sensors have different fields depending on the sensor's firm
 }
 ```
 
-### Sensors HTML page
+### Sensors HTML Page
 
 HTML page has a component for each sensor:
 

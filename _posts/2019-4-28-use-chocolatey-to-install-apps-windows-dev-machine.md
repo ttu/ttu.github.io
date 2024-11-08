@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Use Chocolatey to automate application installations on a Windows development machine
+title: Use Chocolatey to Automate Application Installations on a Windows Development Machine
 excerpt: Automate application installations with Chocolatey package manager and make onboarding happier for new employees.
 ---
 
@@ -29,7 +29,7 @@ $ @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -Inp
 
 Check full installation instructions from Chocolatey [installation instructions page](https://chocolatey.org/install#installing-chocolatey).
 
-## Install packages with Chocolatey
+## Install Packages with Chocolatey
 
 Before installing the packages it is recommended to install all Windows updates, especially if using older computers with factory installation. Some installations (e.g. _Docker_) might fail if there is too old _Windows_ version.
 
@@ -84,7 +84,7 @@ Installed packages can be later viewed with list command. (_--idonly_ will print
 $ choco list --local-only --idonly
 ```
 
-## Export installed packages to another computer
+## Export Installed Packages to Another Computer
 
 Chocolatey supports installing applications with [packages.config](https://chocolatey.org/docs/commands-install#packagesconfig) file, but unfortunately Chocolatey doesn't have a command to create the config file from local packages.
 
@@ -96,7 +96,7 @@ PS> choco list --local-only --idonly | % { "choco install -y " + $_ } > Install.
 
 Hopefully some day Chocolatey will have a functionality to export packages.config file.
 
-## Upgrade applications with Chocolatey
+## Upgrade Applications with Chocolatey
 
 Besides installing an important feature is upgrading. All applications installed with Chocolatey can be upgraded with a single command:
 
@@ -137,7 +137,7 @@ Failures
 
 Sometimes failures are errors in the installation scripts and those are usually fixed pretty fast. In case of errors, check conversations from that package's Chocolatey page. ([LINQPad](https://chocolatey.org/packages/linqpad5.install) from the example)
 
-## Other important installations that can be installed from command line
+## Other Important Installations That Can Be Installed from the Command Line
 
 Extensions for Visual Studio and VS Code can also be installed from command line. Especially installation of VS Code extensions is extremely easy.
 
@@ -148,7 +148,7 @@ $ code --install-extension ms.python.python
 * [Visual Studio Extensions](https://stackoverflow.com/a/30574978/1292530)
 * [VS Code Extensions](https://code.visualstudio.com/docs/editor/extension-gallery#_command-line-extension-management)
 
-## Things to do manually
+## Things to Do Manually
 
 There might still be some things that have to be installed manually, but when Chocolatey handles most of the bulk installations few manual installations do not feel so bad.
 
@@ -173,7 +173,7 @@ _SQL Server_ installation can be skipped completely as it works nicely with [Doc
 
 Windows Subsystem for Linux is also easiest to install manually ([WSL Windows 10 install guide](https://docs.microsoft.com/en-us/windows/wsl/install-win10)).
 
-## Other package manager
+## Other Package Manager
 
 If you are not fan of Chocolatey, there are other package managers available:
 

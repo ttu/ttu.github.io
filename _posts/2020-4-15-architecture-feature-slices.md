@@ -11,7 +11,7 @@ Source: https://www.betterask.erni/news-room/slices-vs-layers/
 
 In addition to what is shown in the previous image, features can also have their own APIs (routes) and database schemas, with each route being completely independent, much like a microservice, as illustrated in the next example.
 
-### Pros and cons
+### Pros and Cons
 
 Overall, organizing code using vertical slices can streamline development, improve collaboration, and make the codebase more manageable and adaptable to changes.
 
@@ -41,7 +41,7 @@ __Cons__
   * For small projects with a limited codebase, vertical slices may introduce unnecessary complexity and overhead. In such cases, a simpler, flatter structure may be more suitable.
 
 
-### Feature Slice example
+### Feature Slice Example
 
 ![image features and layers](/images/posts/feature-slices/features-layers.png)
 
@@ -80,11 +80,11 @@ Note: in some languages, it is easy to organize larger projects/solutions into s
         - This way feature with a partial view of the DB-model, could not update it
         
 
-**Module / Project references**
+**Module / Project References**
 
 ![image module references](/images/posts/feature-slices/module-references.png)
 
-### JS project and module structure
+### JS Project and Module Structure
 
 JS modules should follow the same kind of reference policy
 
@@ -117,7 +117,7 @@ import Api from '../../features/orders/lib/api'; // Hmmmm... Should I import thi
 
 [Node Hero - Project Structure Tutorial](https://blog.risingstack.com/node-hero-node-js-project-structure-tutorial/)
 
-### Front-end feature grouping
+### Front-End Feature Grouping
 
 * Each feature has its own routing configuration, business logic, models, API, views, etc.
 * React: [Grouping by features or routes](https://reactjs.org/docs/faq-structure.html#grouping-by-features-or-routes)

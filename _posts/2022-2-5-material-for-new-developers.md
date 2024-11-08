@@ -1,14 +1,14 @@
 ---
 layout: post
-title: Material for (new) developers
+title: Material for (New) Developers
 excerpt: A collection of books, links and videos that can be helpful for (new) developers. Experienced programmers might already be knowledgeable about these subjects.
 ---
 
 A collection of books, links and videos that can be helpful for (new) developers. Experienced programmers might already be knowledgeable about these subjects.
 
-### Books, links and videos
+### Books, Links and Videos
 
-#### Technical and non-technical tips and guides
+#### Technical and Non-Technical Tips and Guides
 
 These can help you become a better engineer, improve your knowledge of the software industry and your ability to understand people.
 
@@ -29,7 +29,7 @@ These can help you become a better engineer, improve your knowledge of the softw
 * [The Unicorn Project](https://www.goodreads.com/book/show/44333183-the-unicorn-project)
   * A novel about working in software development in a non-tech centered enterprise company
 
-#### How to write good code
+#### How to Write Good Code
 
 Hard to find a single good book to recommend. It is good to keep in mind that books have always author's personal opinions and you do not need to agree with them all. Overall, following practices will help you to write better code.
 
@@ -57,19 +57,19 @@ Understand the decisions behind architecture choices.
 * [Software Architecture & Design - YouTube playlist](https://www.youtube.com/playlist?list=PL4JxLacgYgqTgS8qQPC17fM-NWMTr5GW6)
   * Good under 1h introduction to distributed systems architectures
 
-#### Keep up with the latest trends
+#### Keep Up with the Latest Trends
 
 * [Hacker news](https://news.ycombinator.com/)
 * [Reddit programming](http://old.reddit.com/r/programming)
 
-#### History of software field
+#### History of Software Field
 
 * [Masters of Doom](https://www.goodreads.com/book/show/222146.Masters_of_Doom) - book
 * [Hackers: Heroes of the Computer Revolution](https://www.goodreads.com/book/show/56829.Hackers) - book
 * [Command Line Heroes](https://www.redhat.com/en/command-line-heroes) - podcast
 * [Halt and Catch Fire](https://www.imdb.com/title/tt2543312/) - TV-series
 
-#### About engineering and product development
+#### About Engineering and Product Development
 
 * [Why coding isn't enough](https://www.youtube.com/watch?v=yzhnRt6ZDKM)
   * _"The job of a software engineer is not to code, at least not 100% of it is; it's to solve a technical problem. So have pride in solving that problem."_

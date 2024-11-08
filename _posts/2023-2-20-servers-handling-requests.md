@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How do servers handle multiple requests simultaneously (Python, WSGI, Gunicorn)?
+title: How Do Servers Handle Multiple Requests Simultaneously (Python, WSGI, Gunicorn)?
 excerpt: Understanding how different servers handle simultaneous requests.
 ---
 Servers can handle requests in different ways, utilizing threads or processes. Some examples include:
@@ -35,7 +35,7 @@ Internally Node.js server also uses thread pool. In Node, I/O operations are off
 > 
 [https://nodejs.org/en/docs/guides/dont-block-the-event-loop/](https://nodejs.org/en/docs/guides/dont-block-the-event-loop/)
 
-### What is fast? -> Benchmarks
+### What Is Fast? -> Benchmarks
 
 [https://www.techempower.com/benchmarks/](https://www.techempower.com/benchmarks/)
 
@@ -50,14 +50,14 @@ Things to consider:
 
 Basic web application requires quite a lot of simultaneous users that raw performance start to really matter. Especially if proper caching is used. If each customer request is e.g. customer specific, then common caching is not an option and performance is even more important.
 
-## Do server handle reqeusts concurrently or parallel?
+## Do Servers Handle Requests Concurrently or in Parallel?
 
 Concurrency relates to an application that is processing more than one task at the same time.
 
 ![Untitled](/images/posts/servers-requests/parallel.png)
 Image from: [https://commons.wikimedia.org/wiki/File:Parallel-concurrent.png](https://commons.wikimedia.org/wiki/File:Parallel-concurrent.png)
 
-## How threads work in Python
+## How Threads Work in Python
 
 ![Untitled](/images/posts/servers-requests/python-threads.png)
 
@@ -84,13 +84,13 @@ Image from: [https://medium.com/@nhudinhtuan/gunicorn-worker-types-practice-advi
 
 Besides threads, Python has couroutines and greenlets.
 
-__Thread vs coroutine (async)__
+__Thread vs Coroutine (Async)__
 
 - Thread is object, coroutine is function
 - Switching and suspending functions is faster than switching and suspending objects
 - Still locked, no real parallelism
 
-__Thread vs greenlets__
+__Thread vs Greenlets__
 
 - Greenlets are like application controlled threads
 - Coroutine is same as greenlet
