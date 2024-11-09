@@ -31,11 +31,11 @@ Who, What, When, Where and Why
 
 ### What Kind of Errors to Log?
 
-Logging can be used to **alert when issues arise**. Logging frameworks can be configure to automatically send alerts through external services when certain errors occur.
+Logging can be used to **alert when issues arise**. Logging frameworks can be configured to automatically send alerts through external services when certain errors occur.
 
 Therefore it is important to **log only cases as errors where we need to act immediately**. This is not always easy to specify. So iteration is also good with logging. If we do not do anything about this case, lower error to info. It is better to log too much in the beginning, than too little.
 
-Do not log normal application beheviour as errors, e.g. business logic rule failures, input validation failures or 'item not found' cases. If everything is working correctly, these are not cases where engineers need to act on immediately.
+Do not log normal application behavior as errors, e.g. business logic rule failures, input validation failures or 'item not found' cases. If everything is working correctly, these are not cases where engineers need to act on immediately.
 
 Errors should be logged only once and when it happens:
 
@@ -83,10 +83,10 @@ log.error('Order creation failed for user', { orderId: order.id, userId: user.id
 Additional data should be structured as an object, allowing services to efficiently serialize it into distinct data fields.
 
 ```js
-log.error('this is the message and it should always be same', { all data, exceptions and variables in additional data });
+log.error('This is the message and it should always be same', { all data, exceptions and variables in additional data });
 ```
 
-Additinal data passed straight as metadata:
+Additional data passed straight as metadata:
 
 ```js
 log.error('Order creation failed', order);
@@ -230,6 +230,14 @@ Structured logging can be implemented with [Python standard library](https://doc
 
 ## Conclusion
 
-Incorporating logging best practices is crucial for maintaining reliable and easily debuggable applications. Logging provides insights into an application’s behavior and helps identify issues effectively. Structured logging, where log messages and variable data are separated, enables monitoring and error tracking services to parse information more accurately and enhances the security of log data by simplifying sensitive information filtering.
+Incorporating logging best practices is crucial for maintaining reliable and easily debuggable applications. Careful consideration of what to log, how to log it, and the use of appropriate logging tools will provide insights into an application’s behavior and help identify issues effectively.
 
-Careful consideration of what to log, how to log it, and using appropriate logging tools will help ensure the logs are both informative and help to identify issues and their root causes.
+__Structured logging__, where log messages and variable data are separated, enables monitoring and error-tracking services to parse information more accurately and enhances the security of log data by simplifying the filtering of sensitive information.
+
+* __Pros:__
+    * Easier to log important info
+    * Easier to parse and analyze logs
+    * Easier for developers to structure error messages and data consistently
+* __Cons:__
+    * More complex to implement
+    * Risk of logging too much additional data
