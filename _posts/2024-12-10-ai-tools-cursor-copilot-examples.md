@@ -12,7 +12,7 @@ This document presents examples of how AI tools, such as Cursor and Copilot, hav
 
 It’s important to note that AI tools evolve rapidly. What is true of their capabilities today may be outdated tomorrow, making this document a snapshot of a particular moment in AI tool evolution.
 
-The examples presented are from real tasks I performed in the following projects:
+The examples presented are from tasks I performed in the following projects:
 
 1. [Python - RuuviTag Sensor Package](https://github.com/ttu/ruuvitag-sensor)
 * `ruuvitag-sensor` is a Python package for communicating with RuuviTag BLE Sensor and for decoding measurement data from broadcasted BLE data.
@@ -37,7 +37,7 @@ The examples presented are from real tasks I performed in the following projects
 
 ## Examples
 
-Interaction is with Cursor. At the time of writin (12-2024), Cursor, compared to Copilot, demonstrated a more comprehensive understanding of the entire codebase. However, given the rapid pace of AI tool development, this advantage may no longer hold true in the near future.
+Interaction is with Cursor. At the time of writing (12-2024), Cursor, compared to Copilot, demonstrated a more comprehensive understanding of the entire codebase. However, given the rapid pace of AI tool development, this advantage may no longer hold true in the near future.
 
 ### Fake JSON Server - Documentation Update
 
@@ -841,19 +841,23 @@ Now the application is stuck on startup, indicating an issue with initialization
 
 Now I see a refresh button, but after clicking it, only a single company is displayed, even though the seed data contains multiple companies.
 
-> 💬 Seed data has multiple complanies, but in the list I can only see Tech Innovators Inc.
+> 💬 Seed data has multiple companies, but in the list I can only see Tech Innovators Inc.
 
 > The issue might be that we need to call SaveChanges() after inserting the seed data. Let's modify the SeedData class to ensure all changes are saved:
 
-This suggested method doesn't exists.
+This suggested method doesn't exist.
 
 ```sh
 error CS1061: 'IDataStore' does not contain a definition for 'SaveChangesAsync' and no accessible extension method 'SaveChangesAsync' accepting a first argument of type 'IDataStore' could be found (are you missing a using directive or an assembly reference?) [/blazor-prototype/JobTracker/JobTracker.csproj]
 ```
 
-It seems like I’m reaching the limits of AI capabilities. I’m starting to encounter strange errors, and the code is no longer functioning as expected.
+It seems like I’m entering the [pit of death](https://www.youtube.com/watch?v=FXjf9OQGAlY). Strange errors are starting to appear, and the code is no longer functioning as expected. Perhaps we now have a sufficient template to begin working on the JSON Flat File Data Store’s new feature manually.
 
-Maybe we now have a good enough template to start working on the JSON Flat File Data Store’s new feature manually.
+#### Conclusion
+
+Cursor successfully created a Blazor WebAssembly prototype for the JSON Flat File Data Store, but it encountered issues with threading and blocking operations.
+
+Overall, Cursor produced a good prototype. With a few minor manual fixes, I’ll be able to start working on the feature.
 
 ## GitHub Workspaces
 
