@@ -580,13 +580,280 @@ When I provided a link to the documentation, Cursor even added functionality tha
 
 __TODO__
 
+I mainly implemented the feature manually, but Cursor provided some good tips:
+
+For example, I didn't have an idead how to implement decision logic which chooses correct FileAccess type:
+
+> 💬 How should GetSupportedStorageAccess work? E.g. Blaxor WASM doesn't support FileAccess so it should return LocalStorageAccess
+
+> 🤖 Looking at the current implementation, we should modify the system to support different storage access types. Here's how we can implement this:
+
+```csharp
+public enum StorageAccessType
+{
+    File,
+    LocalStorage
+}
+
+public static class FileAccess 
+{
+    public static StorageAccessType GetSupportedStorageAccess()
+    {
+        // Check if running in Blazor WASM context
+        if (OperatingSystem.IsBrowser())
+        {
+            return StorageAccessType.LocalStorage;
+        }
+
+        return StorageAccessType.File;
+    }
+
+    // ... rest of the existing code
+} 
+```
+
+> 💬 For the code present, we get this error:
+```
+'OperatingSystem' does not contain a definition for 'IsBrowser'
+```
+How can I resolve this? If you propose a fix, please make it concise.
+
+> 🤖 The error occurs because IsBrowser() is only available in .NET 7.0 and later. For broader compatibility, we can use runtime checks instead. Here's the fix:
+
+```csharp
+public static StorageAccessType GetSupportedStorageAccess()
+{
+    // Check if running in browser context
+    if (Type.GetType("Mono.Runtime") != null && 
+        AppDomain.CurrentDomain.GetAssemblies()
+                .Any(a => a.GetName().Name == "WebAssembly.Net.Http"))
+    {
+        return StorageAccessType.LocalStorage;
+    }
+
+    return StorageAccessType.File;
+}
+```
+
+Is this correct? At the moment, I don’t have any idea. The code looks good, though. (UPDATE: Nope, this doesn’t work with newer apps running on .NET 7+ since they no longer rely on Mono.)
+
+It’s useful for fixing errors without needing to Google.
+
+```csharp
+_fileAccess = StorageAccess.GetSupportedStorageAccess() == StorageAccessType.LocalStorage 
+    ? new LocalStorageAccess() 
+    : new FileAccess();
+```
+
+> 💬 For the code present, we get this error:
+```
+Conditional expression is not valid in language version 8.0 because a common type was not found between 'LocalStorageAccess' and 'FileAccess'. To use a target-typed conversion, upgrade to language version 9.0 or greater.
+```
+How can I resolve this? If you propose a fix, please make it concise.
+
+> 🤖 Let's modify the conditional operator to use explicit type casting. Here's the fix:
+
+```csharp
+_fileAccess = StorageAccess.GetSupportedStorageAccess() == StorageAccessType.LocalStorage 
+    ? (IStorageAccess)new LocalStorageAccess() 
+    : new FileAccess();
+```
+
+>  🤖 This explicitly casts both sides of the conditional to IStorageAccess, which resolves the common type issue in C# 8.0.
+
+Is this a correct fix? Pretty likely, as I remember using this kind of casting in the past.
+
+#### Conclusion
+
+__TODO__
+
+Curosor provied solutions and fixes, that look good, but I can't tell without further inspection if those are correct or not.
+
 ### .NET Blazor WASM - Prototype Project for Testing Local Storage Feature in JSON Flat File Data Store
 
 With no prior experience in Blazor or WebAssembly (WASM), I set out to create a prototype project to test a requested feature for the JSON Flat File Data Store. Having previously worked with .NET view engines, latest being Razor in ASP.NET MVC 3 back in 2011, which gave me some foundational understanding of how Blazor might function.
 
 GitHub issue: [Supporting acting as a local datastore in Blazor Wasm (Client Side)](https://github.com/ttu/json-flatfile-datastore/issues/106)
 
-__TODO__
+
+> 💬 I need an Blazor WASM application for prototyping local strorage functionality in JSON Flat File Datastore. Application could be a company information application for people who are looking and applying for new jobs. I could have a list view of companies, detailed company view and user can add events when they have contacted, applied, what is status etc. Install Datastore's reference locally from the project directory: ~/xxx/json-flatfile-datastore
+
+> 🤖 I'll help you create a Blazor WebAssembly application for tracking job applications and company interactions using a JSON Flat File Datastore. First, let's explore what we have in the workspace and then set up the project structure.
+
+> 🤖 First, let's create the project structure using the .NET CLI:
+```$ dotnet new blazorwasm -o JobTracker```
+
+Cursors is waiting for users approval to execute CLI commands.
+
+> 🤖 Now, let's add the local JSON Flat File Datastore reference:
+```$ cd JobTracker && dotnet add reference ~/src/github/json-flatfile-datastore/JsonFlatFileDataStore/JsonFlatFileDataStore.csproj```
+
+Cursor provided a good explanation of what it was creating.
+
+> 🤖 Now, I'll create the necessary models and services for our application. First, let's create the models:
+
+> 🤖 Now, let's create a service to handle data operations using the JSON Flat File Datastore:
+
+> 🤖 To run the application:
+```sh
+cd JobTracker && dotnet run
+```
+
+I clicked “Run,” but nothing happened. I opened the terminal and realized I was in the wrong directory, so I had to manually run the command.
+
+```sh
+github/blazor-prototype/JobTracker 
+❯ cd JobTracker && dotnet run
+cd: no such file or directory: JobTracker
+```
+
+A minor mistake from Cursor. I executed the code manually and got the site up and running.
+
+> Create some initial information to datastore on startup if data doesn't exist in store
+
+> 🤖 I'll help you add some initial seed data to the application when it starts up if the datastore is empty. Let's modify the CompanyService to include this functionality.
+
+CompanyService may not be the most elegant place for this seeding functionality, but it’s a good starting point.
+
+With the seed data, this error appeared in the browser: `An unhandled error has occurred. Reload.`
+
+I had to check the console to see further information about the error.
+
+```sh
+Microsoft.AspNetCore.Components.WebAssembly.Rendering.WebAssemblyRenderer[100]
+      Unhandled exception rendering component: Cannot wait on monitors on this runtime.
+System.PlatformNotSupportedException: Cannot wait on monitors on this runtime.
+   at System.Threading.Monitor.ObjWait(Int32 millisecondsTimeout, Object obj)
+   at System.Threading.Monitor.Wait(Object obj, Int32 millisecondsTimeout)
+   at System.Threading.ManualResetEventSlim.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at System.Threading.Tasks.Task.SpinThenBlockingWait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at System.Threading.Tasks.Task.InternalWaitCore(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at System.Threading.Tasks.Task.InternalWait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at System.Threading.Tasks.Task.Wait()
+   at JsonFlatFileDataStore.DataStore.InnerCommit(Boolean isOperationAsync, CommitAction commitAction) in /json-flatfile-datastore/JsonFlatFileDataStore/DataStore.cs:line 409
+   at JsonFlatFileDataStore.DataStore.<Commit>d__39`1[[JobTracker.Models.Company, JobTracker, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]].MoveNext() in /json-flatfile-datastore/JsonFlatFileDataStore/DataStore.cs:line 386
+```
+
+No idea what the monitors are in this context, but I guess it has something to do with BackgroundTask and BlockingCollection, which ensures that only a single thread can access the data at a time.
+
+I gave the error to Cursor in the Flat File Data Store project:
+
+> 🤖 The error occurs because Blazor WASM doesn't support blocking operations like Task.Wait(). Let's modify the InnerCommit method to be fully async:
+
+Cursos solution is not usable, as I don't want to remove support for synchronous (blocking) operations.
+
+```csharp
+// Original
+while (waitFlag)
+{
+    if (isOperationAsync)
+        await Task.Delay(5).ConfigureAwait(false);
+    else
+        Task.Delay(5).Wait();
+}
+
+// Solution
+while (waitFlag)
+{
+    await Task.Delay(5).ConfigureAwait(false);
+}
+```
+
+I will need to instruct using only the async version of the methods in the prototype.
+
+> 💬 Use only async methods of JSON Flat File Datastore in the application
+
+> 🤖 I'll modify the CompanyService to use async methods throughout the application. This will improve performance and follow best practices for I/O operations.
+
+Still got same kind of error, but from different place. This time from the CompanyService constructor:
+
+```sh
+Microsoft.AspNetCore.Components.WebAssembly.Rendering.WebAssemblyRenderer[100]
+      Unhandled exception rendering component: Cannot wait on monitors on this runtime.
+System.PlatformNotSupportedException: Cannot wait on monitors on this runtime.
+   at System.Threading.Monitor.ObjWait(Int32 millisecondsTimeout, Object obj)
+   at System.Threading.Monitor.Wait(Object obj, Int32 millisecondsTimeout)
+   at System.Threading.ManualResetEventSlim.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at System.Threading.Tasks.Task.SpinThenBlockingWait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at System.Threading.Tasks.Task.InternalWaitCore(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at System.Threading.Tasks.Task.InternalWait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at System.Threading.Tasks.Task.Wait()
+   at JobTracker.Services.CompanyService..ctor() in /blazor-prototype/JobTracker/Services/CompanyService.cs:line 18
+````
+
+Cursor was actually using .Wait() in the constructor of the CompanyService. Let’s see how Cursor can fix this.
+
+```csharp
+ public CompanyService()
+{
+    _dataStore = new DataStore("companies.json");
+    InitializeDataIfEmptyAsync().Wait();
+}
+```
+
+> 💬 Got this error while starting the application: ...
+
+> 🤖 The error occurs because we're using .Wait() in the constructor, which is not supported in WebAssembly. We need to modify the initialization approach to handle async initialization properly in Blazor WASM. Here's how we'll fix it:
+
+Although Cursor understood why this wasn’t working in another project, it used .Wait() here. For the solution, it added some not so elegant code with semaphores. However, since this is a prototype, I’m not too picky.
+
+> Now I can see Loading... text on screen. No list of initial companies.
+
+> 🤖 The issue might be that we're not properly handling the async initialization in the Blazor WASM environment. Let's modify the CompanyService to ensure the data store is properly initialized and the file path is correctly handled:
+
+> 🤖 I've completely refactored the CompanyService to use an in-memory collection instead of JSON Flat File Datastore. This approach will work better in Blazor WebAssembly because:
+
+Now it has removed the use of the JSON Flat File Datastore and is using only in-memory data. This is not the direction I want to take. Let’s try moving the seeding to startup.
+
+> 💬 Move seed data functionality away from service and to own class that is executed immediately on the startup
+
+> 🤖 I'll create a separate class for seed data and modify the service and program to handle initialization properly.
+
+Now I got this error:
+
+```sh
+System.AggregateException: One or more errors occurred. (Error reading JObject from JsonReader. Path '', line 0, position 0.)
+ ---> Newtonsoft.Json.JsonReaderException: Error reading JObject from JsonReader. Path '', line 0, position 0.
+   at Newtonsoft.Json.Linq.JObject.Load(JsonReader reader, JsonLoadSettings settings)
+   at Newtonsoft.Json.Linq.JObject.Parse(String json, JsonLoadSettings settings)
+   at Newtonsoft.Json.Linq.JObject.Parse(String json)
+   at JsonFlatFileDataStore.DataStore.GetJsonObjectFromFile() in /json-flatfile-datastore/JsonFlatFileDataStore/DataStore.cs:line 441
+   at JsonFlatFileDataStore.DataStore..ctor(String path, Boolean useLowerCamelCase, String keyProperty, Boolean reloadBeforeGetCollection, String encryptionKey, Boolean minifyJson) in /json-flatfile-datastore/JsonFlatFileDataStore/DataStore.cs:line 78
+   at Program.<Main>$(String[] args) in /blazor-prototype/JobTracker/Program.cs:line 15
+   --- End of inner exception stack trace ---
+```
+
+This was my fault, as I used an empty string as the initial data instead of an empty object in JSON Flat File Datastore.
+
+```csharp
+private string _content = string.Empty;
+// Changed to this
+private string _content = "{}";
+```
+
+Now the application is stuck on startup, indicating an issue with initialization. Let’s focus on getting it up and running.
+
+> 💬 Do not wait for initialization to complete on startup and add refresh company list button to application
+
+> I'll modify the program to start without waiting for initialization and add a refresh button to the company list.
+
+Now I see a refresh button, but after clicking it, only a single company is displayed, even though the seed data contains multiple companies.
+
+> 💬 Seed data has multiple complanies, but in the list I can only see Tech Innovators Inc.
+
+> The issue might be that we need to call SaveChanges() after inserting the seed data. Let's modify the SeedData class to ensure all changes are saved:
+
+This suggested method doesn't exists.
+
+```sh
+error CS1061: 'IDataStore' does not contain a definition for 'SaveChangesAsync' and no accessible extension method 'SaveChangesAsync' accepting a first argument of type 'IDataStore' could be found (are you missing a using directive or an assembly reference?) [/blazor-prototype/JobTracker/JobTracker.csproj]
+```
+
+It seems like I’m reaching the limits of AI capabilities. I’m starting to encounter strange errors, and the code is no longer functioning as expected.
+
+Maybe we now have a good enough template to start working on the JSON Flat File Data Store’s new feature manually.
 
 ## GitHub Workspaces
 
