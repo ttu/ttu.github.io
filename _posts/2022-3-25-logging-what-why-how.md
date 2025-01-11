@@ -127,6 +127,22 @@ throw new Error('Order ${order.id} creation failed for user ${user.id}');
 throw new OrderCreationError('Order creation failed for user', { order, userId: user.id});
 ```
 
+### Hierarchy of log levels
+
+Different levels of logging vary based on the language and logging framework used. However, the following levels are commonly used:
+
+- **DEBUG**: Detailed information, typically of interest only when diagnosing problems or during development.
+- **INFO**: General information confirming that things are working as expected.
+- **WARNING**: An indication that something unexpected happened. The software is still working as expected.
+- **ERROR**: Due to a more serious problem, the software has not been able to perform some function.
+- **CRITICAL** / **FATAL**: A serious error, indicating that the program itself may be unable to continue running.
+
+Use debug logs only in local environments. Debug logging can be turned on through a flag or environment variable and removed from logs after a short period.
+
+Use warnings for unexpected events that don’t break functionality (e.g., invalid user input that still allows the software to continue, or a missing user record in another system). Manual action may be required later but isn’t urgent.
+
+Use errors for situations where the software cannot complete a function (e.g., an external service returned an error). These often require immediate attention and can be configured to send alerts.
+
 ### Personally Identifiable Information (PII)
 
 Do not log any personally identifiable information (PII). While some services, such as Sentry, attempt to clean up PII from logged data, not all services do this automatically.
@@ -227,6 +243,29 @@ It is important to note that certain property names, such as `message` and `asct
 Example of using extra in [Sentry](https://docs.sentry.io/platforms/python/integrations/logging/) and in [DataDog](https://www.datadoghq.com/blog/python-logging-best-practices/#add-custom-attributes-to-your-json-logs).
 
 Structured logging can be implemented with [Python standard library](https://docs.python.org/3/howto/logging-cookbook.html#implementing-structured-logging), but it might be worth considering using a library like [structlog](https://www.structlog.org/en/stable/).
+
+**JSON serialization errors**
+
+If you use JSON logging, you may run into issues when serializing certain objects: `TypeError: Object of type xxx is not JSON serializable.`
+
+It is a good practice not to pass class instances directly to the logger. Instead, select only the data that is needed. However, if you do need to log complex objects, you can use a custom JSON encoder or make sure that the object is serializable.
+
+If you must pass an exception as an object, you can use `exc_info`.
+
+```py
+try:
+    complex_data = NonSerializableComplexData()
+    result = 1/0
+except Exception as e:
+    logger.error(
+        "Handling of complex data failed",
+        value=complex_data.value,
+        error=str(e),
+        exc_info=True
+    )
+```
+
+`exc_info=True` captues the current exception, and `exc_info=exception_isntance` captures the passed exception instance.
 
 ## Conclusion
 
