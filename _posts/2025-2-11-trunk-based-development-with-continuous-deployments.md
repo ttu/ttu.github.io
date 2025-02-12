@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Faster Deployments with Trunk-Based Development and Continuous Deployment
-excerpt: Learn how Trunk-Based Development and Continuous Deployment can accelerate your delivery pipeline. This real-world case study shows how a single shared branch approach, combined with automated deployments, can simplify collaboration and speed up feature delivery.
+excerpt: Learn how Trunk-Based Development and Continuous Deployment can accelerate your delivery pipeline. This real-world example shows how a single shared branch approach, combined with continuous deployments, can simplify collaboration and speed up feature delivery.
 ---
 
 Trunk-Based Development and Continuous Deployment won't work for everyone. It's not a silver bullet, but it can be a good fit.
@@ -13,6 +13,8 @@ This article showcases how one company successfully implemented TBD and CD, sugg
 ## Practices
 
 Each organization is different and has unique(-ish) challenges. Each organization has its own culture, processes, and tools. Each organization has developers with different skillsets and levels of pragmatism.
+
+Each organization has its own way of doing things. Some practices have evolved over years to fit the organization's needs, while others are simply just "randomly" chosen practices that have been kept for no good reason.
 
 * Branching Strategies
   * Git flow
@@ -40,7 +42,7 @@ Each organization is different and has unique(-ish) challenges. Each organizatio
 
 ### Branching Strategies
 
-There are many different branching strategies, and their names and terminology vary across different sources.
+There are many different branching strategies, and their names and terminology vary across different sources. Currently most popular seems to be Trunk-Based Development (TBD), GitHub flow and Git flow.
 
 * Git flow
   * Classic branching strategy
@@ -58,15 +60,33 @@ There are many different branching strategies, and their names and terminology v
     * Allow commit straight to main without PR
     * main branch is always deployable
 
-Which flow is correct also depends on the use case of the application. If you have planned releases and need to support multiple versions, you might need release branches. If you don't have planned releases, you can use GitHub flow or TBD.
+
+<br/>
+
+![Git flow](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*hmZzuG8oU7fqsnpfTgKDUw.png){: width="600" }
+
+Git Flow
+
+![GitHub flow](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*bvubr15Z_l3UknX1w8Mx1A.png){: width="600" }
+
+GitHub Flow
+
+<br/>
+
+Which flow is correct also depends on the use case of the application. 
+
+If you have planned releases and need to support multiple versions, you might need release branches (Git flow, Github flow with release branches). If you don't have planned releases, you can use GitHub flow or TBD.
+
+If you have an extremely demanding quality requirements, you might need to use uat and staging environments.
 
 * Release and support branches
   * Release branches
   * Support branches
   * Tags for releases
 
-TODO: Image of Git flow and Github flow
 
+Links:
+* [Git-Flow vs GitHub-Flow](https://quangnguyennd.medium.com/git-flow-vs-github-flow-620c922b2cbd)
 * [Release and support branches](https://tleyden.github.io/blog/2014/04/09/a-successful-git-branching-model-with-enterprise-support/)
 * [UAT branch](https://medium.com/towards-data-science/how-to-structure-your-git-branching-strategy-by-a-data-engineer-45ff96857bb)
 * [Patterns for Managing Source Code Branches](https://martinfowler.com/articles/branching-patterns.html)
@@ -129,7 +149,7 @@ Continuous deployment process:
 
 ![Deplyment TBD](/images/posts/continuous-deployment/deploy-tbd.png){: width="700" }
 
-In CD it is possible to have separate testing environments, but both are deployed to the same time.
+In CD it is possible to have separate testing environments and deployment is done simultaneously to all environments.
 
 ## Benefits of Trunk-Based Development and Continuous Deployment
 
@@ -137,11 +157,11 @@ In CD it is possible to have separate testing environments, but both are deploye
 * __Simplified Release Management:__ No need to think and plan releases.
 * __Reduced Merge Conflicts:__ Short lived branches mean fewer merge conflicts.
 * __Faster Time-to-Market:__ Features, fixes, and changes reach production faster.
+* __Faster Feedback:__ Quick deployments mean faster feedback from users and stakeholders.
+* __Reduced Risk:__ Smaller, incremental changes are easier to test and rollback if needed.
 * __Encourage Ownership:__ Developers need to test and understand the system better in order to confidently deploy to production.
 * __Trust in the Process:__ Developers have confidence that the process will work.
 * __Better Collaboration:__ Developers work on smaller, incremental changes, leading to fewer isolated code silos and easier coordination.
-* __Faster Feedback:__ Quick deployments mean faster feedback from users and stakeholders.
-* __Reduced Risk:__ Smaller, incremental changes are easier to test and rollback if needed.
 * __Improved Quality:__ Continuous testing and deployment encourages better testing practices, automation and monitoring.
 * __Feature Flags:__ Enable controlled releases without redeploying entire systems.
 
@@ -150,25 +170,25 @@ In CD it is possible to have separate testing environments, but both are deploye
 While TBD and CD offers numerous benefits, they also presents challenges:
 
 * __Error Proneness:__ More deployments mean more changes that can lead to production errors if not managed properly.
-* __Coordination of Systems Changes:__ Integrating multiple systems and deployments simultaneously can be complex.
-* __Testing Environments:__ Ensuring that all features are thoroughly tested before merging is essential.
-* __"Messy" Git History:__ Commits are not tied to a feature or ready functionality.
 * __Team Discipline:__ Developers need strong discipline to keep commits small, maintain code quality and test the code.
+* __Testing Environments:__ Ensuring that all features are thoroughly tested before merging is essential.
+* __Coordination of Systems Changes:__ Integrating multiple systems and deployments simultaneously can be complex.
 * __CI Pipeline Speed:__ Fast feedback loops become crucial as all developers commit to the main branch.
 * __Feature Flags Management:__ Increased complexity in managing multiple feature flags and their lifecycle.
+* __"Messy" Git History:__ Commits are not tied to a feature or ready functionality.
 
 ## Requirements for Success
 
 To implement Continuous Deployment successfully, your team benefits from:
 
+* __QA (Product) Mindset:__ Foster a culture where developers understand the product and own testing responsibilities.
 * __Fast Pull Request Process:__ Automate and streamline code reviews.
-* __Automated Tests:__ Ensure code quality with robust test coverage.
-* __QA Mindset:__ Foster a culture where developers own testing responsibilities.
-* __Monitoring:__ Keep an eye on production performance in real-time.
-* __Fast Rollback:__ Implement rollback mechanisms to revert changes quickly.
+* __Developer Experience:__ Easy to develop and test all systems.
+* __Automated Tests:__ Ensure functionality keeps on working with automated tests.
+* __Monitoring:__ Monitoring and alerting for production systems.
+* __Fast Rollback:__ Rollback mechanisms to revert changes quickly.
 * __Feature Flags:__ Enable controlled releases without redeploying entire systems.
 * __Smoke Tests:__ Quickly verify that new code doesn't break critical functionality.
-* __Developer Experience:__ Easy to develop and test all systems.
 * __Learning Mindset:__ Encourage continuous learning and improvement through e.g. post-mortems and retrospectives.
 
 None of these are mandatory, but they make the process easier and safer. Which in the end is better for developers mental health.
