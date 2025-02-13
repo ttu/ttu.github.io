@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Faster Deployments with Trunk-Based Development and Continuous Deployment
-excerpt: Learn how Trunk-Based Development and Continuous Deployment can accelerate your delivery pipeline. This real-world example shows how a single shared branch approach, combined with continuous deployments, can simplify collaboration and speed up feature delivery.
+excerpt: Learn how Trunk-Based Development and Continuous Deployment can speed up your delivery pipeline. This real-world example shows how a single shared branch approach, combined with continuous deployments, can simplify release management and speed up feature delivery.
 ---
 
 Trunk-Based Development and Continuous Deployment won't work for everyone. It's not a silver bullet, but it can be a good fit.
@@ -42,7 +42,7 @@ Each organization has its own way of doing things. Some practices have evolved o
 
 ### Branching Strategies
 
-There are many different branching strategies, and their names and terminology vary across different sources. Currently most popular seems to be Trunk-Based Development (TBD), GitHub flow and Git flow.
+There are many different branching strategies, and their names, terminology and definitions vary across different sources. Currently most popular seems to be Trunk-Based Development (TBD), GitHub flow and Git flow.
 
 * Git flow
   * Classic branching strategy
@@ -57,7 +57,7 @@ There are many different branching strategies, and their names and terminology v
   * Main branch is always deployable
   * Theoretical difference to GitHub flow (depends on the source)
     * Feature branches are short lived
-    * Allow commit straight to main without PR
+    * Allow commit straight to main without PR (some define that using other branches is not allowed)
     * main branch is always deployable
 
 
@@ -65,19 +65,18 @@ There are many different branching strategies, and their names and terminology v
 
 ![Git flow](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*hmZzuG8oU7fqsnpfTgKDUw.png){: width="600" }
 
-Git Flow
+_Git Flow_ (original source of image is unknown)
 
 ![GitHub flow](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*bvubr15Z_l3UknX1w8Mx1A.png){: width="600" }
 
-GitHub Flow
+_GitHub Flow_ (original source of image is unknown)
 
 <br/>
-
 Which flow is correct also depends on the use case of the application. 
 
-If you have planned releases and need to support multiple versions, you might need release branches (Git flow, Github flow with release branches). If you don't have planned releases, you can use GitHub flow or TBD.
+If you have planned releases or need to support multiple versions, you need release branches (Git flow, Github flow with release branches). If you don't have planned releases, you can use GitHub flow or TBD.
 
-If you have an extremely demanding quality requirements, you might need to use uat and staging environments.
+If you have an extremely demanding quality requirements, you might need to use UAT and staging environments before releasing to production.
 
 * Release and support branches
   * Release branches
@@ -86,7 +85,8 @@ If you have an extremely demanding quality requirements, you might need to use u
 
 
 Links:
-* [Git-Flow vs GitHub-Flow](https://quangnguyennd.medium.com/git-flow-vs-github-flow-620c922b2cbd)
+* [Git-Flow vs GitHub-Flow](https://medium.com/@dimiak_/demystify-git-branching-strategies-choose-the-best-for-you-8f08b9cad3b3)
+* [Demystify Git Branching Strategies — Choose the best for you.](https://medium.com/@dimiak_/demystify-git-branching-strategies-choose-the-best-for-you-8f08b9cad3b3)
 * [Release and support branches](https://tleyden.github.io/blog/2014/04/09/a-successful-git-branching-model-with-enterprise-support/)
 * [UAT branch](https://medium.com/towards-data-science/how-to-structure-your-git-branching-strategy-by-a-data-engineer-45ff96857bb)
 * [Patterns for Managing Source Code Branches](https://martinfowler.com/articles/branching-patterns.html)
@@ -95,27 +95,28 @@ Links:
 
 ## What is Trunk-Based Development?
 
-Trunk-Based Development involves working from a single shared branch of code, often referred to as the "trunk" or "main" branch. This approach eliminates the need for long-lived feature branches, fostering collaboration and simplifying release management.
+Trunk-Based Development involves working from a single shared branch of code, often referred to as the "trunk" or "main" branch. 
 
-The goal of TBD is to simplify the release process, reduce deployment times, and encourage a culture of continuous integration and continuous deployments (CI/CD).
+The goal of TBD is to simplifying release management and helps to achieve continuous deployment.
 
-Key is to have main branch in a deployable state at all times. Testing is done during the development and during the CI/CD pipeline.
+Key is to have main branch in a deployable state at all times. Manual testing is done during the development and automated tests during the CI/CD pipeline.
 
 ![TBD 1](/images/posts/continuous-deployment/branches-1.png){: width="850" }
 
-TBD promotes the use of feature flags. This allows developers to merge code changes into the trunk without having the whole feature completed. 
-
-Main-branch can contain non working functionality or partial features that are not in use. These do not need to be hidden behind feature flags.
+TBD promotes the use of feature flags. This allows developers to merge code changes into the trunk without having the whole feature completed. Main-branch can contain non working functionality or partial features that are not in use. These do not need to be hidden behind feature flags.
 
 ![TBD 2](/images/posts/continuous-deployment/branches-2.png){: width="850" }
 
-TBD promotes short lived feature branches. This reduces the risk of divergence and makes the review process easier.
+
+As features don't need to be completed before merging to main, branches can be short lived. This reduces the risk of divergence and makes the review process easier.
 
 ![Branch Divergence](https://martinfowler.com/articles/branching-patterns/leroy-branch.jpg){: width="450" }
 
+(image from: [Patterns for Managing Source Code Branches](https://martinfowler.com/articles/branching-patterns/leroy-branch.jpg))
+
 Additionally, feature flags allow developers to release new functionality without deploying new code, giving teams the flexibility to gradually roll out features.
 
-Parameter feature flags can be used to test new functionality in production.
+Enabling feature flags to be used with parameters allows testing new functionality in production, before it is released to all users.
 
 ### Git Practices
 
@@ -193,7 +194,7 @@ To implement Continuous Deployment successfully, your team benefits from:
 
 None of these are mandatory, but they make the process easier and safer. Which in the end is better for developers mental health.
 
-Developers are pedantic about the code quality and the tests. This is a good thing. But it can also slow down the development. It is important to find the right balance between code quality and speed of development.
+Developers are pedantic about the code quality and the tests. This is a good thing, but it can also slow down the development. It is important to find the right balance between code quality and speed of development.
 
 Culture change is hard. It takes time and effort to change the way people are used to work.
 
