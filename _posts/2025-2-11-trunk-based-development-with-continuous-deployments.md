@@ -154,23 +154,27 @@ Continuous deployment process:
 
 In CD it is possible to have separate testing environments and deployment is done simultaneously to all environments.
 
+![Deplyment TBD with separate testing environments](/images/posts/continuous-deployment/deploy-tbd-test-env.png){: width="700" }
+
 
 ## Benefits of Trunk-Based Development and Continuous Deployment
 
-* __Simple Workflow:__ No need to manage release branches, tags, etc.
-* __Simplified Release Management:__ No need to think and plan releases.
-* __Better Developer Experience:__ Developers are able to develop and test all systems and have access to required infrastructure, monitoring etc.
-* __Reduced Merge Conflicts:__ Short lived branches mean fewer merge conflicts.
-* __Feature Flags:__ Enable controlled releases without redeploying entire systems.
-* __Faster Time-to-Market:__ Features, fixes, and changes reach production faster.
-* __Faster Feedback:__ Quick deployments mean faster feedback from users and stakeholders.
-* __Reduced Risk:__ Smaller, incremental changes are easier to test and rollback if needed.
-* __Encourage Ownership:__ Developers need to test and understand the system better in order to confidently deploy to production.
-* __Understanding of the Product:__ Developers need to understand the product (and business) to be able to test it.
-* __Undestanding the System:__ Developers need to understand the system to be able to test it and to monitor it.
-* __Increased Responsibility:__ Developers need to be responsible to not to break the system.
-* __Improved Quality:__ Continuous testing and deployment encourages better testing practices, automation and monitoring.
-* __Better Collaboration:__ Developers work on smaller, incremental changes, leading to fewer isolated code silos and easier coordination.
+* __Technical Benefits__
+  * __Simple Workflow:__ No need to manage release branches, tags, etc.
+  * __Simplified Release Management:__ No need to think and plan releases.
+  * __Reduced Merge Conflicts:__ Short lived branches mean fewer merge conflicts.
+  * __Reduced Risk:__ Smaller, incremental changes are easier to test and rollback if needed.
+  * __Faster Time-to-Market:__ Features, fixes, and changes reach production faster.
+  * __Feature Flags:__ Enable controlled releases without redeploying entire systems.
+* __Team Benefits__
+  * __Better Collaboration:__ Developers work on smaller, incremental changes, leading to fewer isolated code silos and easier coordination.
+  * __Improved Quality:__ Continuous testing and deployment encourages better testing practices, automation and monitoring.
+  * __Understanding of the Product:__ Developers need to understand the product (and business) to be able to test it.
+  * __Undestanding the System:__ Developers need to understand the system to test and monitor it effectively.
+* __Developer Benefits__
+  * __Increased Responsibility:__ Developers need to be responsible for not breaking the system.
+  * __Encourage Ownership:__ Developers need to test and understand the system better to confidently deploy to production.
+  * __System Development Experience:__ Developers are able to develop and test all systems and have access to required infrastructure, monitoring etc.
 
 
 ## Challenges of Trunk-Based Development and Continuous Deployment
