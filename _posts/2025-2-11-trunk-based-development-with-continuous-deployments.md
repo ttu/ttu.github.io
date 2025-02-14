@@ -76,7 +76,7 @@ Which flow is correct also depends on the use case of the application.
 
 If you have planned releases or need to support multiple versions, you need release branches (Git flow, Github flow with release branches). If you don't have planned releases, you can use GitHub flow or TBD.
 
-If you have an extremely demanding quality requirements, you might need to use UAT and staging environments before releasing to production.
+If you have an extremely demanding quality requirements, you might need to use testing and staging environments before releasing to production.
 
 * Release and support branches
   * Release branches
@@ -97,16 +97,17 @@ Links:
 
 Trunk-Based Development involves working from a single shared branch of code, often referred to as the "trunk" or "main" branch. 
 
-The goal of TBD is to simplifying release management and helps to achieve continuous deployment.
+The goal of TBD is to simplifying version control usage, maintain stable codebase and to help achieve continuous deployment.
 
-Key is to have main branch in a deployable state at all times. Manual testing is done during the development and automated tests during the CI/CD pipeline.
+Key is to have main branch in a deployable/stable state at all times. Manual testing is done during the development and automated tests during the CI/CD pipeline.
 
 ![TBD 1](/images/posts/continuous-deployment/branches-1.png){: width="850" }
 
-TBD promotes the use of feature flags. This allows developers to merge code changes into the trunk without having the whole feature completed. Main-branch can contain non working functionality or partial features that are not in use. These do not need to be hidden behind feature flags.
+TBD promotes the use of feature flags. This allows developers to merge code changes into the trunk without having the whole feature completed. Main-branch can contain new functionality that will replace old functionality, non working functionality or partial features that are not in use. These do not need to be hidden behind feature flags.
 
 ![TBD 2](/images/posts/continuous-deployment/branches-2.png){: width="850" }
 
+Having 2 different versions of the same functionality at the same time is not uncommon in TBD. In A/B testing it is also common to have 2 or more versions of the same feature, so it is not only a thing in TBD.
 
 As features don't need to be completed before merging to main, branches can be short lived. This reduces the risk of divergence and makes the review process easier.
 
@@ -116,9 +117,10 @@ As features don't need to be completed before merging to main, branches can be s
 
 Additionally, feature flags allow developers to release new functionality without deploying new code, giving teams the flexibility to gradually roll out features.
 
-Enabling feature flags to be used with parameters allows testing new functionality in production, before it is released to all users.
+Enabling feature flags to be used e.g. with parameters allows testing new functionality in production, before it is released to all users. `www.mysite.com/app?featureV2=true`
 
-### Git Practices
+
+## Git Practices
 
 One of the age-old questions is whether to merge or rebase.
 
@@ -138,7 +140,7 @@ With Continuous Deployment, your main branch deploys straight to production. Thi
 
 __Continuous Integration:__ Main-branch is always in a building state and test are passing.
 
-__Continuous Delivery:__ Main-branch deploys to test and is promoted to production
+__Continuous Delivery:__ Main-branch deploys to test and is manually promoted to production
 
 __Continuous Deployment:__ Main deploys straight to production. There can be a separate testing environment, but both are deployed to the same time.
 
@@ -152,51 +154,58 @@ Continuous deployment process:
 
 In CD it is possible to have separate testing environments and deployment is done simultaneously to all environments.
 
+
 ## Benefits of Trunk-Based Development and Continuous Deployment
 
 * __Simple Workflow:__ No need to manage release branches, tags, etc.
 * __Simplified Release Management:__ No need to think and plan releases.
+* __Better Developer Experience:__ Developers are able to develop and test all systems and have access to required infrastructure, monitoring etc.
 * __Reduced Merge Conflicts:__ Short lived branches mean fewer merge conflicts.
+* __Feature Flags:__ Enable controlled releases without redeploying entire systems.
 * __Faster Time-to-Market:__ Features, fixes, and changes reach production faster.
 * __Faster Feedback:__ Quick deployments mean faster feedback from users and stakeholders.
 * __Reduced Risk:__ Smaller, incremental changes are easier to test and rollback if needed.
 * __Encourage Ownership:__ Developers need to test and understand the system better in order to confidently deploy to production.
-* __Trust in the Process:__ Developers have confidence that the process will work.
-* __Better Collaboration:__ Developers work on smaller, incremental changes, leading to fewer isolated code silos and easier coordination.
+* __Understanding of the Product:__ Developers need to understand the product (and business) to be able to test it.
+* __Undestanding the System:__ Developers need to understand the system to be able to test it and to monitor it.
+* __Increased Responsibility:__ Developers need to be responsible to not to break the system.
 * __Improved Quality:__ Continuous testing and deployment encourages better testing practices, automation and monitoring.
-* __Feature Flags:__ Enable controlled releases without redeploying entire systems.
+* __Better Collaboration:__ Developers work on smaller, incremental changes, leading to fewer isolated code silos and easier coordination.
+
 
 ## Challenges of Trunk-Based Development and Continuous Deployment
 
 While TBD and CD offers numerous benefits, they also presents challenges:
 
-* __Error Proneness:__ More deployments mean more changes that can lead to production errors if not managed properly.
 * __Team Discipline:__ Developers need strong discipline to keep commits small, maintain code quality and test the code.
+* __Error Proneness:__ More deployments mean more changes that can lead to production errors if not managed properly.
 * __Testing Environments:__ Ensuring that all features are thoroughly tested before merging is essential.
-* __Coordination of Systems Changes:__ Integrating multiple systems and deployments simultaneously can be complex.
 * __CI Pipeline Speed:__ Fast feedback loops become crucial as all developers commit to the main branch.
+* __Coordination of Systems Changes:__ Integrating multiple systems and deployments simultaneously can be complex.
 * __Feature Flags Management:__ Increased complexity in managing multiple feature flags and their lifecycle.
 * __"Messy" Git History:__ Commits are not tied to a feature or ready functionality.
 
+
 ## Requirements for Success
 
-To implement Continuous Deployment successfully, your team benefits from:
+To implement Continuous Deployment successfully, your organization benefits from:
 
-* __QA (Product) Mindset:__ Foster a culture where developers understand the product and own testing responsibilities.
-* __Fast Pull Request Process:__ Automate and streamline code reviews.
+* __QA (Product) Mindset:__ Developers should understand the product and own testing responsibilities.
 * __Developer Experience:__ Easy to develop and test all systems.
+* __Fast Pull Request Process:__ Automate and streamline code reviews.
 * __Automated Tests:__ Ensure functionality keeps on working with automated tests.
 * __Monitoring:__ Monitoring and alerting for production systems.
-* __Fast Rollback:__ Rollback mechanisms to revert changes quickly.
+* __Fast Rollback:__ Rollback mechanisms to revert changes quickly or roll back to a previous version.
 * __Feature Flags:__ Enable controlled releases without redeploying entire systems.
 * __Smoke Tests:__ Quickly verify that new code doesn't break critical functionality.
 * __Learning Mindset:__ Encourage continuous learning and improvement through e.g. post-mortems and retrospectives.
 
-None of these are mandatory, but they make the process easier and safer. Which in the end is better for developers mental health.
+None of these are mandatory, but they make the process easier and safer. This in the end is better for developers mental health, as they are not stressed about the production stability.
 
 Developers are pedantic about the code quality and the tests. This is a good thing, but it can also slow down the development. It is important to find the right balance between code quality and speed of development.
 
 Culture change is hard. It takes time and effort to change the way people are used to work.
+
 
 ## Real Life Example
 
@@ -204,7 +213,8 @@ Culture change is hard. It takes time and effort to change the way people are us
 * Internal and customer-facing systems.
 * 50 developers across 5+ teams.
 
-#### Key Features
+
+### Key Features
 
 * Larger Systems: Systems around single puposes.
 * Common "Micro" Services: Services that were used by multiple larger systems.
@@ -214,14 +224,16 @@ Culture change is hard. It takes time and effort to change the way people are us
   * Lava Layers: Long lived systems with multiple different style per system.
 * 3rd Party Integrations: Integration with external services.
 
-####  Tools
 
-* Version Control: GitHub with Google Cloud CI/CD pipelines.
-* Monorepos: Repository had code and deployment configurations.
+###  Tools
+
+* CI: GitHub with Google Cloud CI/CD pipelines.
+* Monorepos: Some of the repository had all related code and deployment configurations.
 * Deployment: Kubernetes for container orchestration.
 * Monitoring: Implemented using commercial tools.
 
-#### Architecture
+
+### Architecture
 
 This is only a high level overview of the architecture. It is not a complete picture, but gives you a general idea, that it was not a small or extremely simple system.
 
@@ -231,16 +243,15 @@ External systems had hundreds of thousands of visitors per day. Internal systems
 
 No team was responsible for a single system, but each team worked on all or most of the systems.
 
-
 New functionality was often added with better practices in mind. Old working functionality was left as it was or was refactored only when the functionality was changed.
 
 
-## Learnings
+### Learnings
 
 1. **Keep it Simple:** Do not overthink or overcomplicate the process.
 
 
-### Organization
+#### Organization
 
 1. **Speed Over Perfect Stability:** The organization must accept that faster deployments may occasionally cause issues, but the benefit is getting valuable changes to users more quickly.
 
@@ -253,7 +264,7 @@ New functionality was often added with better practices in mind. Old working fun
 Note: These lessons apply beyond just Continuous Deployment - they reflect a broader mindset of iterative development and production testing. Start learning and testing as quickly as possible.
 
 
-### Development
+#### Development
 
 1. **Team Independence:** When a single team can make changes to any system, the whole process becomes simpler as less coordination is needed.
 
