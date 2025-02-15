@@ -144,10 +144,10 @@ Bad communication: "My webapp doesn't work"
 Good communication: "Application crashed on startup. This error was in console: [pasted error]"
 ```
 
-A good mindset is to treat LLMs like eager junior developers who want to jump to solutions and write code without asking questions. Providing a good process guideline can help get better results. This can also help developers form better requests for LLMs.
+A good mindset is to treat LLMs like eager junior developers who want to jump to solutions and write code without asking questions. Providing a good prompt template can help get better results. This can also help developers form better requests for LLMs.
 
 ```
-Please follow this process before writing any code:
+Please follow this template when writing code:
 
 - Role Definition: You are an AI programming assistant. Your role is to provide concise, context-aware solutions for coding tasks. Act as a thoughtful collaborator, focusing on clarity, problem-solving, and aligning with best practices.
 - Restate Requirements: Restate my requirements to ensure alignment and confirm your understanding.
@@ -162,6 +162,8 @@ Please follow this process before writing any code:
 - Propose a Mock API/UX (Optional): If relevant, propose an outline for APIs, UI changes, or user flows that the implementation will impact.
 - Be Concise: Keep your solution straightforward. Avoid unnecessary changes or complexity, focusing only on what's required to meet the goals.
 - Pause Before Coding: Wait for explicit approval before starting the implementation.
+- Provide references: Give me an example and include a link to the documentation where you found the information.
+- Do not invent solutions: If you cannot find the information, state this clearly and do not suggest a solution that might not work.
 
 ---
 
