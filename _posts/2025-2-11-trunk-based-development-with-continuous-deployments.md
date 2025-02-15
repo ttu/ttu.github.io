@@ -211,108 +211,101 @@ Developers are pedantic about the code quality and the tests. This is a good thi
 Culture change is hard. It takes time and effort to change the way people are used to work.
 
 
-## Real Life Example
+## Real-World Example
 
-* 5-10 large systems including web frontend, backend, warehouse, data, scripts, custom tools and reporting modules.
-* Internal and customer-facing systems.
-* 50 developers across 5+ teams.
+Let's look at an e-commerce organization that managed both buying and selling operations. Their systems included multiple interconnected systems: an e-commerce platform, warehouse management, order processing, product verification, and procurement systems, etc.
 
+The customer-facing systems handled hundreds of thousands of daily visitors, while internal tools served hundreds of employees. The platform processed thousands of orders daily, requiring reliable deployment practices to maintain system stability. Crashing the systems affected immediate revenue or halted the work of tens or hundreds of employees.
+
+### System Overview
+
+* 5-10 major systems including web frontend, backend, warehouse, data processing, scripts, custom tools, and reporting modules
+* Both internal and customer-facing systems
+* 50 developers across 5+ teams
+* Teams organized around domains or products, including developers, designers, and product owners
+* Teams worked across multiple systems within their domain, rather than owning single systems
+* Tech stack: TypeScript, Python, PostgreSQL, Redis, React, Node.js, Kubernetes, GCP, GitHub
 
 ### Key Features
 
-* Larger Systems: Systems around single puposes.
-* Common "Micro" Services: Services that were used by multiple larger systems.
-* Cross-service Communication: Synchronous and asynchronous communication.
-* Good and not so good architecture
-  * Feature Modules: Modular design for better developer experience.
-  * Lava Layers: Long lived systems with multiple different style per system.
-* 3rd Party Integrations: Integration with external services.
+* Large Systems: Each system focused on a single purpose
+* Common Services: Shared services used across multiple larger systems
+* Cross-service Communication: Mix of synchronous and asynchronous communication
+* Architecture Quality
+  * Feature Modules: Modular design for improved developer experience
+  * Lava Layers: Long-running systems with varying architectural styles
+* Third-party Integrations: Connected with external services
 
+### Tools
 
-###  Tools
-
-* CI: GitHub with Google Cloud CI/CD pipelines.
-* Monorepos: Some of the repository had all related code and deployment configurations.
-* Deployment: Kubernetes for container orchestration.
-* Monitoring: Implemented using commercial tools.
-
+* Monorepos: Repositories containing both application and infrastructure code, sometimes combining frontend and backend
+* CI/CD: GitHub with Google Cloud pipelines
+* Deployment: Kubernetes for container orchestration
+* Monitoring: Commercial monitoring solutions
 
 ### Architecture
 
-This is only a high level overview of the architecture. It is not a complete picture, but gives you a general idea, that it was not a small or extremely simple system.
-
-External systems had hundreds of thousands of visitors per day. Internal systems had hundreds of users per day.
+This high-level overview provides a general understanding of the system's complexity, though it's not a complete picture.
 
 ![Architecture](/images/posts/continuous-deployment/architecture.png){: width="850" }
 
-No team was responsible for a single system, but each team worked on all or most of the systems.
-
-New functionality was often added with better practices in mind. Old working functionality was left as it was or was refactored only when the functionality was changed.
+New features were implemented using current best practices, while existing functionality was preserved and only refactored when changes were required.
 
 
-### Learnings
+### Key Learnings
+
+#### Fundamental Principle
 
 1. **Keep it Simple:** Do not overthink or overcomplicate the process.
 
-
-#### Organization
+#### Organizational Mindset
 
 1. **Speed Over Perfect Stability:** The organization must accept that faster deployments may occasionally cause issues, but the benefit is getting valuable changes to users more quickly.
-
-1. **Good Internal Communication:** Internal teams struggle with constantly changing internal tools, processes, and customer-facing functionality. This can be mitigated with better communication (external communication should not be forgotten).
-
-1. **Embrace Rapid Change:** All teams, not just developers, must be comfortable with frequent updates. Teams need to adapt their mindset to accept quickly changing functionality and be willing to make step-by-step changes to their processes.
-
-1. **Organization Priorities:** Don't let measurement targets slow down improvement. Sometimes achieving long-term goals requires accepting temporary process complexity or manual work.
+2. **Good Internal Communication:** Internal teams struggle with constantly changing internal tools, processes, and customer-facing functionality. This can be mitigated with better communication (external communication should not be forgotten).
+3. **Embrace Rapid Change:** All teams, not just developers, must be comfortable with frequent updates. Teams need to adapt their mindset to accept quickly changing functionality and be willing to make step-by-step changes to their processes.
+4. **Organization Priorities:** Don't let measurement targets slow down improvement. Sometimes achieving long-term goals requires accepting temporary process complexity or manual work.
 
 Note: These lessons apply beyond just Continuous Deployment - they reflect a broader mindset of iterative development and production testing. Start learning and testing as quickly as possible.
 
 
 #### Development
 
+##### Team and Process
+
 1. **Team Independence:** When a single team can make changes to any system, the whole process becomes simpler as less coordination is needed.
+2. **Team Mentorship:** Teams need experienced developers to mentor and guide others.
+3. **No Separate QA:** Developers test with product specialists, designers, and product owners.
+4. **Product and QA Mindset:** Developers need to understand what they are building and why it matters for the product, so they can properly validate and verify functionality.
 
-1. **Trading Stability for Developer Experience:** While stability is important, we prioritize faster production updates and better developer experience.
-
-1. **Product and QA Mindset:** Developers need to understand what they are building and why it matters for the product, so they can properly validate and verify functionality.
+##### Development Workflow
 
 1. **Faster Development:** Focus only on work that provides value.
+2. **More Minor Fixes:** Since commits aren't tied to complete features, team members frequently make small improvement commits.
+3. **Branch Maintenance:** Keep feature branches synchronized with the main branch. Branches should be small and short lived.
+4. **Streamlined Review Process:** Code reviews need to be quick and efficient. Review process is always too slow.
+5. **Version Compatibility:** New functionality must work with both current and upcoming versions to ensure smooth transitions.
+
+##### Quality and Testing
 
 1. **Development Environment:** Developers need robust development environments for testing changes, including local instances, Docker, mock servers, up-to-date test data, and mock data.
+2. **Test Data for Feature Development:** Having proper test data is crucial for feature development.
+3. **Trust in Automation:** Have confidence that automated testing will catch most errors.
+4. **Manual Smoke Tests:** Manually verify changed functionality in production after deployment.
+5. **Testing in Production:** Use parameter feature flags to safely test new features in production before full rollout.
+6. **Temporary Testing Environments:** Maintain separate testing environments when needed for collaboration with designers and other stakeholders.
 
-1. **Test Data for Feature Development:** Having proper test data is crucial for feature development.
+##### Maintenance and Improvement
 
-1. **More Minor Fixes:** Since commits aren't tied to complete features, team members frequently make small improvement commits.
+1. **Trading Stability for Developer Experience:** While stability is important, we prioritize faster production updates and better developer experience.
+2. **Quick Issue Resolution:** Address and fix issues immediately when discovered.
+3. **Pragmatic Code Quality:** Code merged to main branch doesn't need to be perfect - if it improves the current state, merge it and improve in future PRs. Could it be better? Yes, but it's not a blocker.
+4. **Regular Cleanup:** Dedicate time to maintaining and cleaning up the codebase.
 
-1. **Trust in Automation:** Have confidence that automated testing will catch most errors.
-
-1. **Manual Smoke Tests:** Manually verify changed functionality in production after deployment.
+##### Learning and Monitoring
 
 1. **Accepting Failures:** It's acceptable to break things once, but not acceptable to repeat the same mistake.
-
-1. **Learn from Mistakes:** Use postmortems and retrospectives to learn from inevitable mistakes and improve processes.
-
-1. **Testing in Production:** Use parameter feature flags to safely test new features in production before full rollout.
-
-1. **No Separate QA:** Developers test with product specialists, designers, and product owners.
-
-1. **Quick Issue Resolution:** Address and fix issues immediately when discovered.
-
-1. **Branch Maintenance:** Keep feature branches synchronized with the main branch. Branches should be small and short lived.
-
-1. **Streamlined Review Process:** Code reviews need to be quick and efficient. Review process is always too slow.
-
-1. **Pragmatic Code Quality:** Code merged to main branch doesn't need to be perfect - if it improves the current state, merge it and improve in future PRs. Could it be better? Yes, but it's not a blocker.
-
-1. **Team Mentorship:** Teams need experienced developers to mentor and guide others.
-
-1. **Version Compatibility:** New functionality must work with both current and upcoming versions to ensure smooth transitions.
-
-1. **Regular Cleanup:** Dedicate time to maintaining and cleaning up the codebase.
-
-1. **Temporary Testing Environments:** Maintain separate testing environments when needed for collaboration with designers and other stakeholders.
-
-1. **Monitoring:** It is extremely hard to get monitoring right. Use post-mortems to learn from mistakes and do corrective actions to monitoring alerts.
+2. **Learn from Mistakes:** Use postmortems and retrospectives to learn from inevitable mistakes and improve processes.
+3. **Monitoring:** It is extremely hard to get monitoring right. Use post-mortems to learn from mistakes and do corrective actions to monitoring alerts.
 
 
 ## Conclusion
