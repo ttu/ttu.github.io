@@ -119,6 +119,11 @@ Additionally, feature flags allow developers to release new functionality withou
 
 Enabling feature flags to be used e.g. with parameters allows testing new functionality in production, before it is released to all users. `www.mysite.com/app?featureV2=true`
 
+Good example of how TBD can simplify the development process is hotfixing. Normally there needs to be a separate release branch for hotfixes.
+
+![Hotfix from branch](/images/posts/continuous-deployment/hotfix-to-production.png){: width="850" }
+
+In TBD as all commits are deployed to production, hotfix is created directly to main branch or merged to main from a new branch and deployed to production immediately.
 
 ## Git Practices
 
