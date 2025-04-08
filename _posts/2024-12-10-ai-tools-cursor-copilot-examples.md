@@ -195,6 +195,14 @@ User can also provide their own global and per-project rules for AI.
 
 > System rules -> User rules -> Prompt
 
+### Helping the AI with Good Project Structure
+
+- Clear naming: Helps the AI identify the correct functionality and encourages developers to use proper domain terminology.  
+- Logical project structure: Minimize the scope the AI needs to work within. A smaller “blast radius” allows it to stay focused. (Feature slice architecture)
+- Good code structure: Use small, composable components or widgets. This makes it easier to track what changed and reduces the risk of the AI introducing unnecessary or overly broad modifications. (Composable components)
+- Make small, incremental changes: Once a change looks correct, approve it and move on to the next step. This approach makes it easier to review and understand each change.
+- Use Git effectively: Commit after each small change. Keep a clear history for easier review. Tip: use git commit --amend to add to the previous commit when appropriate.  
+ 
 ### Other Insights from The Internet
 
 Seniors use AI to accelerate what they already know how to do.
