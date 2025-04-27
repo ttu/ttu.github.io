@@ -201,7 +201,8 @@ User can also provide their own global and per-project rules for AI.
 - Logical project structure: Minimize the scope the AI needs to work within. A smaller “blast radius” allows it to stay focused. (Feature slice architecture)
 - Good code structure: Use small, composable components or widgets. This makes it easier to track what changed and reduces the risk of the AI introducing unnecessary or overly broad modifications. (Composable components)
 - Make small, incremental changes: Once a change looks correct, approve it and move on to the next step. This approach makes it easier to review and understand each change.
-- Use Git effectively: Commit after each small change. Keep a clear history for easier review. Tip: use git commit --amend to add to the previous commit when appropriate.  
+- Testing: Use factories to create test data. This makes it easier for AI to make changes and additions to tests. Follow code coverage to ensure that changes made by AI are not reducing test coverage. AI can accidentally mock out important parts of the codebase, so be careful with that.
+- Use Git effectively: Commit after each small change. Keep a clear history for easier review. AI tool's revert/reject/undo functionality sometimes removes too much code. Tip: use git commit --amend to add to the previous commit when appropriate.
  
 ### Other Insights from The Internet
 
