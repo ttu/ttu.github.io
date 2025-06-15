@@ -37,14 +37,6 @@ Therefore it is important to **log only cases as errors where we need to act imm
 
 Do not log normal application behavior as errors, e.g. business logic rule failures, input validation failures or 'item not found' cases. If everything is working correctly, these are not cases where engineers need to act on immediately.
 
-Errors should be logged only once and when it happens:
-
-```
-- Exception is raised
-    - Exception is caught -> Handle & log -> Return error result
-    - Exception is not caught -> Global catch -> Log → Framework will return 500
-```
-
 In some cases it is hard to define what is an error and what is not. For example, if we are fetching data from external service, we can have following cases:
 
 ```
@@ -60,6 +52,30 @@ In some cases it is hard to define what is an error and what is not. For example
 2. Data is fetched from external service -> Data is returned -> Exception in our code
     - Log, as this is something that needs to be fixed immediately
 ```
+
+### Where to Log Errors?
+
+Errors should be logged only once and when it happens:
+
+```
+- Exception is raised
+    - Exception is caught -> Handle & log -> Return error result
+    - Exception is not caught -> Global catch -> Log → Framework will return 500
+```
+
+Sometimes this is not as easy as it seems. For example, if we are fetching data from external service and 3rd party libary raises and exception and that is handled and re-thrown as our own exception. Own exception is then handled in our business logic.
+
+````
+3rd party API connection -> Exception handled and re-thrown as our own exception
+Feature -> Exception handled and return a failed result
+API -> Return a correct error response
+```
+
+3rd party API can log info on error level for debugging purposes. It doesn't have full context of the error, so there is no knowledge if it is critical or not.
+
+Feature knows the context and can make better decision of the severity of the error. E.g. sometimes feature can retry the request and only if it fails again, it should be logged as error.
+
+API shouldn't anymore log errors. It should return a correct error response. There can be also a backup handling for unhandled errors. This is often implemented as a common middleware.
 
 ## How to Log?
 
