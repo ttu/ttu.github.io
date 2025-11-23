@@ -71,7 +71,7 @@ Great! This is already pretty close to jumping as your both tires are in the air
 
 <h2>Jumping</h2>
 
-Jumping is extremely complicated topic… Learn manual, learn bunnyhop, learn xxx and after that you can learn jumping.
+Jumping is extremely complicated topic... Learn manual, learn bunnyhop, learn xxx and after that you can learn jumping.
 
 Naturally it is good to master these techniques, but unfortunately most of us don't have skill or enough time to train that much.
 
@@ -97,6 +97,8 @@ When jumpst start to get bigger there is a big chance for so called "dead-sailor
 <iframe width="99%" height="350" src="https://www.youtube.com/embed/lxOTn7-tJFw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 There are many steps to do. Mostly I have noticed that when I start to do too many things, everything breaks down and I can't do even most simple jumps nicely.
+
+Do you need bunnyhop skills? Well it really helps and especially on a smaller steep jumps where you can't get enough speed. Keep on jumping from all the small obstacles and rocks and you will get there. Also good place to practice this is at the skatepark.
 
 <h2>Steep Jumps</h2>
 
@@ -131,6 +133,8 @@ Normal wheelie is a nice trick. "Power" wheelie required by drops is actually an
 
 1. Dont yank arms. Pull should come from the body movement
 2. Seat up and low gear
+3. Look far ahead
+4. Keep small break pressure on the rear brake all the time
 
 Rear brake is your friend and will save you if you are going to go over.
 
@@ -169,6 +173,16 @@ Keep the pedals flat. Less things to think while approaching the corner. Keep pe
 [RIDE BETTER: RIDING TUTORIALS BY MATTI LEHIKOINEN & LEO KOKKONEN](https://polebicycles.com/ride-better-riding-tutorials-by-matti-lehikoinen-leo-kokkonen/)
 
 Interseting part of this was, that I actually had the realization that you do not need to steer the bike with handlebars/arms, but you can steer with hips.
+
+<h2>Turning the bike</h2>
+
+Not just a berms, but also general turning the bike. Bike turns with the side knobs, so it is important to turn the bike sideways.
+
+When you turn the bike sideways, you need to make some space for the bike between your legs, so turn the hips so you are looking towards the exit.
+
+<h2>How to set break levers</h2>
+
+[This will improve your riding | Pro tips](https://youtu.be/074PS_hMkTE?si=OrDnghLg7ZTJYIfi)
 
 <h2>Bar Turn</h2>
 
