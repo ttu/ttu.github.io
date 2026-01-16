@@ -4,13 +4,13 @@ title: Applikaation kehitys moniagenttiworkflowssa
 excerpt: Applikaation kehitys moniagenttiympäristössä. Aloitettiin yksinkertaisesta single-agent workflowsta ja siirryttiin hiljalleen moniagentti- ja rinnakkaisagentti-workflowiin. Kokemuksia Claude Coden, CodeRabbitin ja muiden agenttien käytöstä git worktrees -työnkulussa.
 ---
 
-**NOTE:** Postauksen sisältö on pääosin muistiinpanoja demon tueksi.
+**NOTE:** Postauksen sisältö on pääosin muistiinpanoja demon tueksi. Demossä käydään läpi flowta, ei perehdytä ruleihin/skilleihin etc.
 
 Käytin tässä lomalla aikaa omien projektien koodaamiseen. **Cursorilla** olin jo tykittänyt lisälaskua vahingossa kiitettävän summan, joten päätin käyttää pitkästä aikaa **Claude Codea**, kun siitä on tullut maksettua.
 
 Päätin vihdoin toteuttaa hätävara-applikaation, jonka toteuttamiseen ei ole aiemmin ollut aikaa.
 
-Emergency Supply Tracker ([Repository](https://github.com/ttu/emergency-supply-tracker) - [Application](https://ttu.github.io/emergency-supply-tracker/)
+Emergency Supply Tracker ([Repository](https://github.com/ttu/emergency-supply-tracker) - [Application](https://ttu.github.io/emergency-supply-tracker/))
 
 Aikaa mennyt muutamia tunteja päivässä parin viikon ajan. Ilman agentteja oletettavasti täysiä työpäiviä olisi mennyt paljon enemmän.
 
@@ -20,7 +20,7 @@ Tällä kertaa aloitin speksaamalla alkuun hyvin ja agentti teki hyvän toteutus
 
 Toki tässä hyvässä suunnittelussa vähän vaikeuttaa se, että tarkalleen ei osaa speksatessa määritellä toiminnallisuutta, mitä tulee haluamaan. Noin 50 commitin jälkeen, kun oli perusteet kunnossa oli aika siirtyä iteroimaan.
 
-_Muistutus_: Hyvät E2E testit heti alkuun. Nyt oli suunnitteilla vasta stepissa ~60. Muutenkin on hyvä lukea suunnitelma ajatuksella läpi, sillä arkkitehtuuriin liittyvät muutokset ovat hankalampia tehdä myöhemmin.
+_Muistutus_: Lue suunnitelma ajatuksella läpi. Arkkitehtuuriin liittyvät muutokset ovat hankalampia tehdä myöhemmin. Hyvät E2E testit heti alkuun. Nyt oli suunnitteilla vasta stepissa ~60.
 
 Koska oli loma ja silloin viettää mielellään aikaa perheen kanssa, niin totesin, että helpompi laittaa Claude paukuttamaan mahdollisimman monta taskia samaa aikaa, jotta saa token quotan käytettyä mahdollisimman nopeasti. Oli siis hyvä tutustua miten saadaan samanaikaisesti laitettua monta agenttia töihin.
 
@@ -28,18 +28,49 @@ Koska oli loma ja silloin viettää mielellään aikaa perheen kanssa, niin tote
 
 Modeleista Opus 4.5:sta oli kehittynyt maasta taivaisiin ja jengi sai sillä tehtyä jotain nanopartikkelikvanttilaskentatoteutuksia. Omassa käytössä importit meni vieläkin testien sisään jne. mutta hyvin se sai kyllä koodia aikaan. Perus CRUD:ssa ei nyt Sonnet 4.5:iin verrattuna mitään suurta edistystä.
 
+Toki modelien kanssa vaikutta myös, että kuinka paljon palveluntarjoaja rajoittaa sen kykyä, eli joskus saattaa antaa huonompia vastauksia riippuen kuormasta.
+
+## Komennot, Sub-agentit, Rulet ja MCP:t
+
+Itse vedän pääosin "natiivina" ilman suurempia **agenttiruleja** tai skilleja tai **MCP**:itä. Vain perus _AGENTS.md_ käytössä. Luotan, että pääosin agenttien omat *system promptit* ja *roolit* ovat riittävästi määriteltyjä. 
+
+Claudelle voi tehdä **komentoja** ja **sub-agentteja**. Komento yksinkertaistaa jonkin pienen flown toistoa (esim. PR:n luonti, katselmointikommenttien haku ja korjaus jne.). Subagentti on taustalla toimiva agentti, joka voi suorittaa jonkin pidemmän taskin (esim. E2E testaus), jättäen pääprosessin vapaaksi tekemään jotain muuta.
+
+Tuntuu, että ruleissa ja commandeissa toimii samat lainalaisuudet kuin prompteissa, välillä noudatetaan, välillä ei. AGENTS:iakin noudatetaan vähän miten sattuu vaikka se olisikin agentin muistissa.
+
+Näihin toki olisi hyvä käyttää enemmän aikaa, mutta oletan, että työkalut kehittyvät nopeammin kuin omat/hyvät käytännöt yleistyvät. Ja missä on yleiset jaetut parhaat agentit ja rulet? 
+
+**MCP**:n sijaan käytin pääasiassa agenttien/editorien omia toiminnallisuuksia tai agentit käyttivät CLI työkaluja. Toki usein nämä toiminnallisuudet ovat MCP:itä.
+
+Esim. GitHub MCP:n sijaan Claude voisi käyttää omaa GitHub-työkalua. Minulla agentti alkoi suoraan käyttämään GitHubin CLI:tä, joka oli jo omalla koneellä käyttövalmiina. Itse en antanut Claudelle täyttä vapautta käyttää GitHub CLI:tä, mutta sujuvuuden nimissä lukuoperaatiot sallin. Cursorin kanssa meni hermot GitHub CLI:n kanssa, koska oli yheysongelmia sandboxista, mutta se nyt vaikka ongelmatapauksissa kävi selaimella katsomassa PR:n kommentit...
+
+CLI:llä agentti osasi luoda PR:iä ja myös käydä PR:n kommenteista lukemassa CodeRabbitin ehdottamia korjauksia, joten niitäkään ei pitänyt copy/pasteilla promptiin. Toki tokenit kuluivat vauhdilla.
+
+Myöskin CodeRabbit ohjeisti käyttämään CLI:tä agenttien kanssa.
+
+[CodeRabbit - CLI integraatio](https://docs.coderabbit.ai/cli/claude-code-integration)
+
+CLI:llä on hyvä lähteä liikkeelle ja parantaa myöhemmin MCP:ien kanssa mikäli tarvetta.
+
+Claude osaa myös käyttää selainta ilman MCP:tä, mutta tuntui välillä vielä tolkuttoman hitaalta.
+
+[Claude Code - Chrome integraatio](https://code.claude.com/docs/en/chrome)
+
+Toki onko siinä suurta eroa, että onko käytössä agentin oma toiminnallisuus vai MCP? Ehkä samaa siellä pellin alla lopulta on. Itse pääasiassa tykkään, että käyttämäni työkalu tarjoaa mahdollisimman kattavasti toiminnallisuudet ja ei pidä mitään konffata. Puolensa kyllä kummallakin.
+
+
 ## Workflow
 
 ### Single Agent
 
-Aluksi tein yhtä toiminnallisuutta kerrallaan. Silloin pysyy paremmin kartalla, että mitä ollaan tekemässä. Taskein ollessa melko pieniä odotteluaikakin on lyhyt.
+Aluksi tein yhtä toiminnallisuutta kerrallaan. Silloin pysyy paremmin kartalla, että mitä ollaan tekemässä. Taskien ollessa melko pieniä odotteluaikakin on lyhyt.
 
 Tällä flowlla pysytyy myös helpommin validoimaan muutokset ja pysyy itse kontrollissa mitä on tehty.
 
 ````
 1. Kirjoita promptiin mitä halutaan
 2. Agentti koodaa
-3. Mahdollisesti pyytää agentilta commit messagen
+3. Mahdollisesti pyytää agentilta commit messagen tai muuta yhteenvetoa
 4. Itse käyttää versionhallintaa ja puskee commitin versionhallintaan
 ````
 
@@ -63,11 +94,11 @@ E: Testing/refactorin/security/monitoring/... Agent
 
 _Claude/Cursor_ voi hoitaa kaikkia näitä tehtäviä, mutta yleistä on, että eri työkalut/agentit hoitavat eri **agenttirooleja**. 
 
-Hyvin yleistäen voisi sanoa, että kaikki ovat yleisagentteja, mutta niillä on vain tarkemmin määritetty **rooli**, **rulet** ja **system promptit**. Valmiit (maksulliset) työkalut ovat yleensä täysin optimoitu niille suunniteltuun tehtävään.
+Hyvin yleistäen voisi sanoa, että kaikki ovat yleisagentteja, mutta niillä on vain tarkemmin määritetty **rooli**, **rulet** ja **system promptit**. Valmiit (maksulliset) työkalut ovat yleensä täysin optimoitu niille suunniteltuun tehtävään. Toki tämän lisäksi työkaluissa saattaa olla vaikka mitä erikoiskäsittelyjä, joista käyttäjä ei ole tietoinen.
 
 Esim.
 ````
-A: Specification Agent: GitHub Copilot joka käsittelee issuet GitHubissa
+A: Specification Agent - GitHub Copilot joka käsittelee issuet GitHubissa
 B: Planning Agent - Claude Code suunnittelee toteutuksen (plan mode)
 B: Implementation Agent - Claude Code toteuttaa
 C: Review Agent - CodeRabbit katselmoi koodit
@@ -78,9 +109,10 @@ D: Sentry AI Agent - Sentry AI analysoi tuotannon virheet ja ehdottaa korjauksia
 
 Parallel workflow tarkoittaa, että agentti-instanssit toimivat samanaikaisesti. Yleensä tällä tarkoitetaan, että tekee esim. samanaikaisesti monen eri taskin kehitystä.
 
-Clauden ohjeissa oli ihan hyvin erilaisia workflowja kuvattu.
+Clauden ohjeissa oli ihan hyvin erilaisia workflowja kuvattu, esim.
 
-[Claude Code - workflows](https://code.claude.com/docs/en/common-workflows#create-pull-requests)
+[Claude Code - create pull requests](https://code.claude.com/docs/en/common-workflows#create-pull-requests)
+[Claude Code - worktrees](https://code.claude.com/docs/en/common-workflows#run-parallel-claude-code-sessions-with-git-worktrees)
 
 Monia samanaikaisia asioita tehdessä, ei oma aivokapasiteetti riitä kaiken seuraamiseen ja silloin on annettava kontrolli agentteille. Vaikka kontrollin siirtää pois itseltä, niin vastuu pysyy. Toiminnallisuuden varmistamisen helppous nouseeavainasemaan.
 
@@ -113,17 +145,34 @@ VS Codea tuli oikeastaan vaan käytettyä muokkausten katselemiseen ja välillä
 
 Vielä enemmän saisi varmaan automatisoitua PR:n luonteja jne., mutta valmis maailma, mihinkä tässä kiire.
 
+
 #### Toiminnallisuuden varmistaminen
 
+Hyvä muistaa, että agentti:
+* Tuottaa koodia todennäköisyyksien ja opittujen mallien perusteella.
+  * Optimoi kielillistä uskottavuutta, ei totuutta
+* Ei ymmärrä tarkoitusta, liiketoimintaa tai miksi jotain tehdään.
+* Ei ole samanlaista mallia järjestelmästä kuin ihmisellä.
+* Muisti on lyhyt ja suoraa tietoa ei ole mitä siellä on.
+  * Jokainen sessio lähtee tyhjästä muistista
+* Tekee pienessä koossa järkeviä ratkaisuja, mutta kokonaisuuden kannalta huonoja.
+* Riikoo epäsuoria oletuksia (suorituskyky, ylläpidettävyys, security).
+* Ei huomaa, että jokin ratkaisu saattaa olla todella huono.
+
+Nämä kyllä pätee myös ihmisiinkin, mutta agentin tapauksessa virheitä voidaan tehdä huomattavasti nopeammin.
+
 Agenttien kanssa samat asiat ovat tärkeitä kuin normaalistikkin:
-* Hyvä arkkitehtuuri (feature slices, domain driven design, etc.)
+* Arkkitehtuuri, selkeä koodirakenne, modulaarisuus, tyypitys, dokumentaatio, konsistentti tyyli etc. (feature slices, component architecture, domain design etc.)
 * Koodin formatointi ja lintterit
 * Yksikkötestit ja testikattavuus
 * E2E testit (oletettavasti tarpeeksi testattavia polkuja)
+* Accessibilityn validointi (a11y)
 * Pre-commit hook (ja pre-push hook)
 * PR kohtainen testiympäristö
-* Automaattinen katselmointi (CodeRabbit)
+* Smoke testit uuteen ympäristöön
+* Automaattinen katselmointi (CodeRabbit etc.)
 * Automaattinen testikattavuuden validointi
+* Staattinen koodianalyysi (SonarQube etc.)
 
 Kaiken **automatisointi** ja **pakottaminen** tärkeää, sillä agentti ei muista millään seurata sääntöjä. Esim. Claude ei aina luo _AGENTS.md_ tiedostoa automaattisesti vaan sitä pitää siitä muistuttaa. Sekään ei vielä takaa, että siellä olevia sääntöjä noudatetaan. Tämän takia perushommat unohtuvat usein, mutta jos esim. validoinnit ovat määritetty pre-commitissa, niin agentti ei pääse commitoimaan, ellei koodia ole validoitu. Samaten PR:n automaattinen katselmointi estää PR:n mergeämisen jne.
 
@@ -132,35 +181,53 @@ Liiallinen rinnakkaisten featureiden kehitys toi myös ongelmia työkalujen kans
 Muita mitä voi lisätä:
 * Mutaatiotestit
 * Lighthouse performance testaus
-* Accessibilityn validointi (a11y)
 * Visuaalinen regressiotestaus
 * ...
 
 AI:n kanssa testattavaa koodia tulee todella nopeasti, joten automaation on syytä olla hyvässä kunnossa ja testikoodia saa olla paljon. Mitä vähemmän haluaa manuaalisesti testata, sitä enemmän pitäisi olla automaatiotestejä.
 
-### Rulet ja MCP:t
+### Tilanne ohjelmiston kasvaessa
 
-Itse vedin natiivina ilman suurempia **agenttiruleja** tai skilleja tai **MCP**:itä. Vain perus _AGENTS.md_ käytössä. Luotan, että pääosin agenttien omat *system promptit* ja *roolit* ovat riittävästi määriteltyjä. Näihin toki olisi hyvä käyttää enemmän aikaa, mutta oletan, että työkalut kehittyvät nopeammin kuin hyvät käytännöt yleistyvät.
+Ohjelman kasvaessa sykli alkaa hidastua. CI löysi yhä enemmän virheitä, ja osa niistä meni CI:stä läpi. Kun agentti löysi virheitä, jotka eivät liittyneet sen tekemiin muutoksiin, se hämmentyi entistä enemmän. Oli pakko parantaa testejä ja kasvattaa kattavuutta sekä lisätä validointia. Lisättiin muun muassa smoke-testejä, otettiin testi-id:t käyttöön ja laajennettiin koodin type check kattamaan myös testikoodit. Validointisyklistä tuli huomattavasti hitaampi, mutta silti kaiken toimivuuden tarkistaminen omalla koneella oli edelleen nopeampaa kuin CI:n palautteen odottaminen.
 
-**MCP**:n sijaan käytin pääasiassa agenttien/editorien omia toiminnallisuuksia tai agentit käyttivät CLI työkaluja.
+```
+Project Time Estimate
 
-Esim. GitHub MCP:n sijaan Claude voisi käyttää omaa GitHub-työkalua. Minulla agentti alkoi suoraan käyttämään GitHubin CLI:tä, joka oli jo omalla koneellä käyttövalmiina. Itse en antanut Claudelle täyttä vapautta käyttää GitHub CLI:tä, mutta sujuvuuden nimissä lukuoperaatiot sallin.
+  Codebase Stats
+  ┌─────────────────────────┬────────────────────────────────────────┐
+  │         Metric          │                 Value                  │
+  ├─────────────────────────┼────────────────────────────────────────┤
+  │ Total commits           │ 226                                    │
+  ├─────────────────────────┼────────────────────────────────────────┤
+  │ Project duration        │ ~19 days (Dec 23, 2025 - Jan 11, 2026) │
+  ├─────────────────────────┼────────────────────────────────────────┤
+  │ Source code (src + e2e) │ ~43,400 lines                          │
+  ├─────────────────────────┼────────────────────────────────────────┤
+  │ Test code               │ ~20,700 lines                          │
+  ├─────────────────────────┼────────────────────────────────────────┤
+  │ Documentation           │ ~20,000 lines                          │
+  └─────────────────────────┴────────────────────────────────────────┘
+  Time Estimates (All AI-Generated)
 
-Claudelle voi tehdä **komentoja** ja **subagentteja**. Komento yksinkertaistaa jonkin pienen flown toistoa (esim. PR:n luonti, katselmointikommenttien haku ja korjaus jne.). Subagentti on taustalla toimiva agentti, joka voi suorittaa jonkin pidemmän taskin (esim. E2E testaus), jättäen pääprosessin vapaaksi tekemään jotain muuta.
+  AI Time (Claude sessions):
+  - ~226 commits × ~15-20 min avg per commit cycle = ~55-75 hours of AI compute time
+  - This includes code generation, iteration, test fixes, and reviews
 
-CLI:llä agentti osasi luoda PR:iä ja myös käydä PR:n kommenteista lukemassa CodeRabbitin ehdottamia korjauksia, joten niitäkään ei pitänyt copy/pasteilla promptiin. Toki tokenit kuluivat vauhdilla. Myöskin Cursorin agentilla on välillä vaikeuksia käyttää CLI:tä (esim. sandboxissa), joten MCP on varmasti usein toimintavarmempi.
+  Human Developer Time (supervision/prompting):
+  - Review, prompting, and directing AI: ~3-5 min per commit = ~12-20 hours
+  - Initial planning, architecture decisions, testing the app: ~10-15 hours
+  - Total human time: ~25-35 hours (~1.5-2 hours/day over 19 days)
 
-Myöskin CodeRabbit ohjeisti käyttämään CLI:tä agenttien kanssa.
+  Comparison
 
-[CodeRabbit - CLI integraatio](https://docs.coderabbit.ai/cli/claude-code-integration)
+  If this were built manually by a developer:
+  - 43K lines of production code + 21K test lines + 20K docs
+  - Traditional estimate: 200-400 hours (5-10 weeks full-time)
 
-CLI:llä on hyvä lähteä liikkeelle ja parantaa myöhemmin MCP:ien kanssa mikäli tarvetta.
+  AI acceleration factor: ~6-10x faster with human oversight reduced to prompting and review.
+```
 
-Claude osaa myös käyttää selainta ilman MCP:tä, mutta tuntui kyllä vielä tolkuttoman hitaalta.
-
-[Claude Code - Chrome integraatio](https://code.claude.com/docs/en/chrome)
-
-Toki onko siinä suurta eroa, että onko käytössä agentin oma toiminnallisuus vai MCP? Ehkä samaa siellä pellin alla lopulta on. Itse pääasiassa tykkään, että käyttämäni työkalu tarjoaa mahdollisimman kattavasti toiminnallisuudet ja ei pidä mitään konffata. Puolensa kyllä kummallakin.
+25-35h on tässä vaiheessa projektia ihan realistinen arvio. Kadeksin vieläkin niitä, jotka vibettävät jonkun toimivan softan muutamassa tunnissa... Ja tämä nyt ei ole kummoinen softa loppupeleissä.
 
 ## Kehittyneempi flow
 
@@ -184,13 +251,15 @@ Esimerkkinä multi-agentti flow ja näitä voi luonnollisesti tehdä myös rinna
 
 Tällä samalla tavalla myös agentit voivat taustalla tehdä jatkuvasti koodikannan parannuksia, kunhan prosessi on tarpeeksi automatisoitu.
 
+Tämän lisäksi on sitten vielä **Agentic Swarm** Frameworkit, joilla voi koordinoida monia agentteja yhdessä.
+
 ## Cursor vs Claude
 
-Cursorissa worktrees on paremmin integroitu työkaluun. Toki taas tässä on itsellä vähemmän kontrollia, joten alkuun on vähän epäselvää, että miten Cursor worktree brancheja luo, missä tiedostot ovat, PR:n luonti on vähän epäselvää, lokaali testaus worktree-hakemistossa jne.
+Cursorissa worktrees on paremmin integroitu työkaluun. Toki taas tässä on itsellä vähemmän kontrollia, joten alkuun on vähän epäselvää, että miten Cursor worktree brancheja luo, missä tiedostot ovat, PR:n luonti, lokaali testaus worktree-hakemistossa jne.
 
 [Cursor - worktrees dokumentaatio](https://cursor.com/docs/configuration/worktrees#worktrees-in-the-scm-pane)
 
-Cursorissa pitää ajatella, että worktree moodissa koodit eivät ole normaalisi näkyvissa vaan pelkästään agentin muistissa, kunnes ne ovat hyväksytty. Ajatuksena on, että ei pidä ajatella, että missä koodit ovat, vaan että agentti tekee sen sen muistissa.
+Cursorissa ajatuksena on, että ei pidä ajatella, että missä koodit ovat, vaan että agentti tekee sen sen muistissa.
 
 Hakemistot:
 ```
@@ -228,9 +297,27 @@ _**Product engineers mindset**_ tulee jatkossa entistäkin tärkeämmäksi. Kood
   * Osaa määritellä, mitä halutaan ja miten sen pitäisi toimia
   * Osaa arvioida ratkaisujen toteutettavuuden ja kustannukset
   * Ymmärtää teknisiä mahdollisuuksia ja rajoitteita
+  * Pystyy arvioimaan agentin tuottaman koodin laadun
+  * Osaa ohjata agentin parempaan suuntaan
 * Validointi ja testaus
   * Tietää, miten testata ja validoida ratkaisuja
   * Osaa rakentaa pipelineja, jotka varmistavat toiminnallisuuden
+
+Tämä kuvaus on kopioitu Moovyn [työpaikkailmoituksesta](https://moovysmart.fi/rekrytointi-ai-native-full-stack-developer/):
+
+* **Delegate**, **Review**, **Own**
+  * AI-native kehittäjä ei kirjoita kaikkea koodia itse. Hän delegoi sen AI-agenteille – Claude Code, Cursor, Antigravity – ja keskittyy siihen, missä ihminen on yhä ylivoimainen: arkkitehtuuriin, designiin ja laatuun.
+    * **Delegate**: Anna AI:n kirjoittaa ensimmäinen versio. 
+    * **Review**: Tarkista, paranna, refaktoroi. 
+    * **Own**: Vastaa lopputuloksesta sataprosenttisesti.
+* Työaika jakautuu:
+  * 40% AI-generoidun koodin review ja refaktorointi
+  * 20% Arkkitehtuuri ja design patterns
+  * 20% AI-agenttien ohjaus ja delegointi
+  * 10% Suunnittelu ja spesifiointi
+  * 10% Kriittiset toteutukset (uudet, monimutkaiset ongelmat)
+* Vastuu laadusta on 100%
+* Rooli vaatii kokemusta – paljon kokemusta. Et voi arvioida AI:n tuottamaa koodia, jos et tiedä miltä hyvä koodi näyttää.
 
 ![to infinity & beyond kissakuva](/images/posts/multi-agent/multi-agent-cats.png){: width="500" }
 
