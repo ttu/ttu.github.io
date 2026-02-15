@@ -86,7 +86,27 @@ Separating the log message from variable information by passing variables as par
 
 Embedding variables directly in log messages makes it difficult for monitoring and error tracking services to parse meaningful data. Dynamic information, like user IDs, complicates event data generation and error grouping. Structured logging resolves this by isolating variable data, allowing services to process log data more reliably.
 
-From a security perspective, it’s easier to filter out sensitive information when it’s recorded as additional data fields rather than embedded within the error message itself.
+From a security perspective, it's easier to filter out sensitive information when it's recorded as additional data fields rather than embedded within the error message itself.
+
+Log message with the traditional approach would look like this:
+```
+2024-11-24 10:15:23 ERROR User login failed for user a3f2c5d8-9b1e with invalid nonce
+```
+
+Log message with the structured approach would look like this:
+```json
+{
+  "timestamp": "2024-11-24T10:15:23Z",
+  "level": "ERROR",
+  "message": "User login failed",
+  "user_id": "a3f2c5d8-9b1e",
+  "error_code": "INVALID_NONCE"
+}
+```
+
+With structured logging, the data fields like `user_id` and `error_code` can be easily queried, filtered, and analyzed by log management systems. Naturally additional data can be added also with the traditional approach, but it doesn't make it easier to parse.
+
+### Logging structured data examples
 
 ```js
 // Not good
