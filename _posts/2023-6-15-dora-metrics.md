@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How Metrics Can Help the Team to Keep Track of the Process Improvement
+title: How DORA Metrics Help Teams Track Process Improvement
 excerpt: A brief guide on DORA metrics and how they can be used to keep track of improvements in the software development process.
 ---
 
