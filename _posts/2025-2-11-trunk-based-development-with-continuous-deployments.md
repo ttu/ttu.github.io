@@ -222,6 +222,31 @@ Let's look at an e-commerce organization that managed both buying and selling op
 
 The customer-facing systems handled hundreds of thousands of daily visitors, while internal tools served hundreds of employees. The platform processed thousands of orders daily, requiring reliable deployment practices to maintain system stability. Crashing the systems affected immediate revenue or halted the work of tens or hundreds of employees.
 
+### How Work Was Decided
+
+The way work was picked mattered as much as the way it was deployed. Continuous deployment only pays off if what gets deployed is small and worth measuring.
+
+```
+Team/Business/Anyone defines problems
+→ Problem research is done and hypotheses formed
+→ Problems are prioritized quarterly
+→ Team selects what they think will bring most value
+→ Build the smallest valuable change
+→ Continuous deployment
+→ Measure customer outcomes
+→ Team learns and decides what to do next
+```
+
+* __Anyone can define a problem:__ Problems come from the team, business, support, or customers, not only from a roadmap.
+* __Research before hypotheses:__ The problem is investigated, data, customer feedback, support tickets, existing behavior,before anyone jumps to a solution.
+* __Hypotheses, not solutions:__ The research is turned into an assumption that can be proven wrong.
+* __Team picks the work:__ Prioritization is shared, but the team decides what it actually takes on.
+* __Smallest valuable change:__ Build the least amount that can produce a real signal.
+* __Measure outcomes, not output:__ The point of deploying fast is to learn fast from real customers.
+* __Loop back:__ Learnings feed the next round of solving the same problem or show that it is solved well enough and it is time to move on.
+
+CD makes this easier as changes can be deployed to production fast and easily. The faster a change reaches real users, the faster the team gets the signal it needs for the next round.
+
 ### System Overview
 
 * 5-10 major systems including web frontend, backend, warehouse, data processing, scripts, custom tools, and reporting modules
@@ -282,13 +307,17 @@ Note: These lessons apply beyond just Continuous Deployment - they reflect a bro
 3. **No Separate QA:** Developers test with product specialists, designers, and product owners.
 4. **Product and QA Mindset:** Developers need to understand what they are building and why it matters for the product, so they can properly validate and verify functionality.
 
+
 ##### Development Workflow
 
 1. **Faster Development:** Focus only on work that provides value.
 2. **More Minor Fixes:** Since commits aren't tied to complete features, team members frequently make small improvement commits.
 3. **Branch Maintenance:** Keep feature branches synchronized with the main branch. Branches should be small and short lived.
-4. **Streamlined Review Process:** Code reviews need to be quick and efficient. Review process is always too slow.
-5. **Version Compatibility:** New functionality must work with both current and upcoming versions to ensure smooth transitions.
+4. **Feature Flags:** Use feature flags to hide incomplete features, allowing for incremental development and testing in production without affecting all users.
+5. **Small tasks:** Break down work into small, manageable tasks that can be completed quickly and deployed to production.
+6. **Shared Feature Ownership:** Because a feature is split into small tasks that merge to main continuously, several developers can work on the same feature at once instead of one person owning a long-lived branch.
+7. **Streamlined Review Process:** Code reviews need to be quick and efficient. Review process is always too slow.
+8. **Version Compatibility:** New functionality must work with both current and upcoming versions to ensure smooth transitions.
 
 ##### Quality and Testing
 
@@ -306,11 +335,14 @@ Note: These lessons apply beyond just Continuous Deployment - they reflect a bro
 3. **Pragmatic Code Quality:** Code merged to main branch doesn't need to be perfect - if it improves the current state, merge it and improve in future PRs. Could it be better? Yes, but it's not a blocker.
 4. **Regular Cleanup:** Dedicate time to maintaining and cleaning up the codebase.
 
-##### Learning and Monitoring
+##### Observability and Learning
 
-1. **Accepting Failures:** It's acceptable to break things once, but not acceptable to repeat the same mistake.
-2. **Learn from Mistakes:** Use postmortems and retrospectives to learn from inevitable mistakes and improve processes.
-3. **Monitoring:** It is extremely hard to get monitoring right. Use post-mortems to learn from mistakes and do corrective actions to monitoring alerts.
+1. **Observability:** Implement monitoring and alerting to quickly identify and address issues in production.
+2. **Alerting:** Team members should be notified of issues that they need to address immediately.
+3. **Monitoring:** State of the system should be visible to all team members. Gives confidence and peace of mind.
+4. **Accepting Failures:** It's acceptable to break things once, but not acceptable to repeat the same mistake.
+5. **Learn from Mistakes:** Use postmortems and retrospectives to learn from inevitable mistakes and improve processes.
+6. **Continuous Improvement:** It is extremely hard to get monitoring right. Use post-mortems to learn from mistakes and do corrective actions to monitoring alerts.
 
 
 ## Conclusion
