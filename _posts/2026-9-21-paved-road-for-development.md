@@ -6,7 +6,7 @@ excerpt: The paved road is the base for developer experience. Environment, conte
 
 The paved road is the foundation of developer experience.
 
-It is a well-marked path like that makes work easier, faster and simply more pleasant.
+It is a well-marked path that makes work easier, faster and simply more pleasant.
 
 > Make the safe, common way the easiest way, without making it the only way.
 
@@ -85,40 +85,44 @@ Validations and visible signals about whether a change actually works before it 
 * **Required reviews**
   * Human approval gate: even AI-authored changes get a second set of eyes
 
-## Why a Paved Road Matters especially for AI agents
+## Why a Paved Road Matters Especially for AI Agents
 
-AI agents want to complete the tasks they are assigned. Sometimes they get creative how they approach a problem, but a paved road ensures that they operate within safe and predictable boundaries that we have defined.
+AI agents want to complete the tasks they are assigned. Sometimes they get creative in how they approach a problem, but a paved road ensures that they operate within safe and predictable boundaries that we have defined.
 
-Paved road allows agents to:
+A paved road allows agents to:
 * Use the same tools and environments as everyone else, so there is less setup to get wrong
 * Follow the same processes as human developers
 * Find answers in shared docs instead of guessing
 * Inspect the same CI/CD pipelines and automated checks
 * Use the same logs and monitoring to see what went wrong
 
+### Forced Guardrails
+
+AI agents can't be trusted to always follow defined practices on their own. We need to enforce guardrails that agents can't skip. 
+
 ![Validations](/images/posts/paved-road/validations.png){: width="450" }
 
-We need to force guardrails, that agent can't skip. AI agents can't be trusted to always follow defined practices on their own.
+Although agents have a good guidance how we hope they would work, they can always reason around the guidance and skip local validation steps. That's why the important checks should also run somewhere the agent has no control over, like the CI pipeline. There the checks run every time, and the agent can't skip them.
 
-## Importance of easy Manual Testing
+### Importance of Easy Manual Testing
 
-AI Agents can create code and features fast, but they still need reliable environments to test their changes before they reach production.
+AI agents can create code and features fast, but they still need reliable environments to test their changes before they reach production.
 
-Often creating envirnoment and test data can be time-consuming and error-prone. Having a paved road with pre-configured environments and readily available test data significantly speeds up the manual testing process and reduces the likelihood of mistakes.
+Creating environments and test data can often be time-consuming and error-prone. Having a paved road with pre-configured environments and readily available test data significantly speeds up the manual testing process and reduces the likelihood of mistakes.
 
 ![Deployment Environments](/images/posts/paved-road/deployment-environments.png){: width="650" }
 
-Important is that, depending on the workflow, we have locally good test setup and/or with PRs good test environments available.
+Depending on the workflow, it is important to have a good local test setup and/or good test environments for PRs.
 
-## Integrating agents to own systems
+### Integrating Agents into Your Own Systems
 
 In order to enable agents to work efficiently, they need to be able to access the data they require to complete the tasks they are assigned.
 
-It is important to keep in mind that agents should not be allowed to make changes to data they are not supposed to modify. 
+It is important to keep in mind that agents should not be allowed to make changes to data they are not supposed to modify.
 
 ![Agent Access](/images/posts/paved-road/agent-access.png){: width="650" }
 
-Agents can make wrong conclusions or take actions they are not supposed to in order to complete the tasks. Proper access controls and permissions should be enforced to ensure data integrity and security.
+Agents can draw wrong conclusions or take actions they are not supposed to in order to complete the tasks. Proper access controls and permissions should be enforced to ensure data integrity and security.
 
 ## Paved Road Higher-Level Practices
 
