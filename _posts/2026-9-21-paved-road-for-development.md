@@ -16,8 +16,6 @@ Depending on the scale you look at, a paved road means different things.
 
 This post stays at the level of the code creation process: getting an environment up, writing the code, and getting it merged. It mainly covers 4 aspects: Environment, Context, Guardrails, and Feedback.
 
-
-
 ![Paved Road](/images/posts/paved-road/paved-road.png){: width="850" }
 
 * **Environment:** everything needed to get from a fresh clone to running code, identically every time
@@ -33,6 +31,7 @@ Everything needed to get from a fresh clone to running code, identically every t
 
 * **Devcontainer**
   * Consistent, reproducible dev setup: same OS, tools, versions, extensions for every human or agent
+  * AI agents can use the same consistent environment as humans or e.g. Docker Sandbox that is designed for agent use
 * **Dependency management**
   * Lockfiles & pinned versions: same package versions everywhere, no "works on my machine"
 * **Secrets & config**
@@ -68,18 +67,60 @@ Automated checks that catch mistakes as early and as cheaply as possible.
 
 ## Feedback
 
-Fast, visible signals about whether a change actually works before it reaches production.
+Validations and visible signals about whether a change actually works before it reaches production.
 
 * **CI**
-  * Automated build/test/lint runs on push: the shared source of truth
-* **Review bots / PR comments**
-  * Automated summaries, risk flags, suggestions surfaced inline on the PR
+  * Automated build/test/lint runs on push. No changes reach the main branch without passing these checks
+  * Largest test suite runs in CI, covering more scenarios than local tests
+  * Additional checks e.g. visual regression tests
+* **PRs and comments**
+  * Inline feedback on code changes, facilitating discussion and review
+* **3rd party tools**
+  * **Review bots**
+    * Automated review of code changes, providing suggestions and identifying potential issues
+  * **Static analyzers / Security scanners**
+    * Automated checks for code quality and security issues
 * **Automatic PR environments**
-  * Ephemeral, real running instance per PR: see the change, not just diffs
+  * Relevant environment spun up automatically for each PR, allowing testing in a realistic setting
 * **Required reviews**
   * Human approval gate: even AI-authored changes get a second set of eyes
 
-## Paved Road Extensions
+## Why a Paved Road Matters especially for AI agents
+
+AI agents want to complete the tasks they are assigned. Sometimes they get creative how they approach a problem, but a paved road ensures that they operate within safe and predictable boundaries that we have defined.
+
+Paved road allows agents to:
+* Use the same tools and environments as everyone else, so there is less setup to get wrong
+* Follow the same processes as human developers
+* Find answers in shared docs instead of guessing
+* Inspect the same CI/CD pipelines and automated checks
+* Use the same logs and monitoring to see what went wrong
+
+![Validations](/images/posts/paved-road/validations.png){: width="450" }
+
+We need to force guardrails, that agent can't skip. AI agents can't be trusted to always follow defined practices on their own.
+
+## Importance of easy Manual Testing
+
+AI Agents can create code and features fast, but they still need reliable environments to test their changes before they reach production.
+
+Often creating envirnoment and test data can be time-consuming and error-prone. Having a paved road with pre-configured environments and readily available test data significantly speeds up the manual testing process and reduces the likelihood of mistakes.
+
+![Deployment Environments](/images/posts/paved-road/deployment-environments.png){: width="650" }
+
+Important is that, depending on the workflow, we have locally good test setup and/or with PRs good test environments available.
+
+## Integrating agents to own systems
+
+In order to enable agents to work efficiently, they need to be able to access the data they require to complete the tasks they are assigned.
+
+It is important to keep in mind that agents should not be allowed to make changes to data they are not supposed to modify. 
+
+![Agent Access](/images/posts/paved-road/agent-access.png){: width="650" }
+
+Agents can make wrong conclusions or take actions they are not supposed to in order to complete the tasks. Proper access controls and permissions should be enforced to ensure data integrity and security.
+
+## Paved Road Higher-Level Practices
 
 As mentioned in the beginning, a paved road can cover much more than the code creation process. Once several teams share the same road, it pays to standardize a level higher, on the practices, tools and signals that apply across the whole development organization. Exactly which ones are worth paving depends on the organization and the projects it runs.
 
