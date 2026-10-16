@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Paved Road for Development
+title: Paved Road for Humans and Agents
 excerpt: The paved road is the base for developer experience. Environment, context, guardrails and feedback. And in the age of AI it matters more than ever.
 ---
 
@@ -21,7 +21,7 @@ This post stays at the level of the code creation process: getting an environmen
 * **Environment:** everything needed to get from a fresh clone to running code, identically every time
 * **Context:** the written-down knowledge that tells a newcomer how things are done and why
 * **Guardrails:** automated checks that catch mistakes early
-* **Feedback:** fast, visible signals about whether a change actually works before it reaches production
+* **Feedback:** validations and visible signals from CI, reviews and PR environments about whether a change actually works before it reaches production
 
 Funnily enough, in the age of AI this matters even more than before. An agent won't be happier for it, but it will produce working functionality with good enough quality, because the same road that keeps humans from getting lost keeps the agent on track.
 
